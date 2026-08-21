@@ -18,6 +18,18 @@ base64 -d 001-2026-08-21-initial-comparative-playtest.json.gz.b64 | gunzip > man
 
 The decompressed bytes are the supplied test export unchanged.
 
+SHA-256 of the original JSON:
+
+```text
+d46d4f2319ab9b941977270230dc5465056b237e0b8114ea9320fdf560dac209
+```
+
+SHA-256 of the gzip payload before base64 encoding:
+
+```text
+d754de0e036802fc10e39ee218ff9d495a6876be1818e212727fbdd975dbf070
+```
+
 ## Test coverage
 
 One tester completed all nine routes:

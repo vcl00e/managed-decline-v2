@@ -1,0 +1,15 @@
+{
+  "name": "managed-decline-narrative-interaction-lab-v001",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Dependency-free comparative prototypes for narrative-supporting interaction in Managed Decline.",
+  "scripts": {
+    "generate": "node generate-scenarios.mjs",
+    "start": "node generate-scenarios.mjs && node server.mjs",
+    "test": "node generate-scenarios.mjs && node tests/validate.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

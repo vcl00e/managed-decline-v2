@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Managed Decline Narrative Interaction Lab v001">
+  <title>Managed Decline — Narrative Interaction Lab</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <button id="home-button" class="brand-button" type="button" aria-label="Return to prototype selection">
+      <span class="brand-mark" aria-hidden="true">MD</span>
+      <span>
+        <strong id="lab-title">Narrative Interaction Lab</strong>
+        <small id="lab-subtitle">Three narrative slices × three interaction philosophies</small>
+      </span>
+    </button>
+    <nav class="top-actions" aria-label="Prototype controls">
+      <span id="mode-badge" class="chip">Prototype mode</span>
+      <button id="export-button" type="button">Export traces</button>
+      <button id="clear-button" type="button">Clear local data</button>
+    </nav>
+  </header>
+
+  <div id="app"></div>
+
+  <footer>
+    <p>Prototype content is experimental and non-authoritative. Run data remains in this browser until exported.</p>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

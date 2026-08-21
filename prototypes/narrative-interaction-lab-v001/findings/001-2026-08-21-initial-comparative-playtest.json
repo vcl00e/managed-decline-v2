@@ -1,0 +1,1748 @@
+{
+  "schemaVersion": 1,
+  "prototype": "narrative-interaction-lab-v001",
+  "exportedAt": "2026-08-21T17:03:12.220Z",
+  "blindMode": false,
+  "runs": [
+    {
+      "schemaVersion": 1,
+      "prototype": "narrative-interaction-lab-v001",
+      "id": "80b0f86c-b8b2-410c-a785-1523b4c5c8a5",
+      "sliceId": "intimacy",
+      "variantId": "baseline",
+      "blindMode": false,
+      "annotationMode": false,
+      "startedAt": "2026-08-21T13:11:52.600Z",
+      "endedAt": "2026-08-21T13:14:49.551Z",
+      "abandonedAt": null,
+      "steps": [
+        {
+          "index": 0,
+          "at": "2026-08-21T13:14:02.041Z",
+          "elapsedMs": 129441,
+          "nodeId": "start",
+          "speaker": "Tabitha",
+          "actionId": "offer-return",
+          "label": "“Do you actually want it back?”",
+          "intent": "Ask what she means",
+          "before": {
+            "position": "road",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          },
+          "after": {
+            "position": "road",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          }
+        },
+        {
+          "index": 1,
+          "at": "2026-08-21T13:14:15.423Z",
+          "elapsedMs": 142823,
+          "nodeId": "direct_response",
+          "speaker": "Tabitha",
+          "actionId": "yes-again",
+          "label": "“Yes. I want to see you again.”",
+          "intent": "Be explicit",
+          "before": {
+            "position": "road",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          },
+          "after": {
+            "position": "road",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "explicitInterest": true
+            }
+          }
+        },
+        {
+          "index": 2,
+          "at": "2026-08-21T13:14:23.464Z",
+          "elapsedMs": 150864,
+          "nodeId": "phone",
+          "speaker": "Phone",
+          "actionId": "decline-call",
+          "label": "Decline and put the phone away",
+          "intent": "Keep attention here",
+          "before": {
+            "position": "road",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "explicitInterest": true
+            }
+          },
+          "after": {
+            "position": "road",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "explicitInterest": true,
+              "declinedSophie": true
+            }
+          }
+        },
+        {
+          "index": 3,
+          "at": "2026-08-21T13:14:49.550Z",
+          "elapsedMs": 176950,
+          "nodeId": "declined",
+          "speaker": "Tabitha",
+          "actionId": "end-decline",
+          "label": "Stay until she boards",
+          "intent": "Complete the quiet promise",
+          "before": {
+            "position": "road",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "explicitInterest": true,
+              "declinedSophie": true
+            }
+          },
+          "after": {
+            "position": "road",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [
+              "Tabitha's coat remains at your flat"
+            ],
+            "meters": {},
+            "flags": {
+              "explicitInterest": true,
+              "declinedSophie": true
+            }
+          }
+        }
+      ],
+      "debrief": {
+        "savedAt": "2026-08-21T13:22:06.709Z",
+        "ratings": {
+          "presence": 4,
+          "comprehension": 4,
+          "agency": 4,
+          "pull": 4,
+          "burden": 2
+        },
+        "notes": "1. i was trying to get her in into bed\n2. all of the choices felt like my decision\n3. i showed interest by staying. not sure if it was good or bad but a safe move\n4. rain, bus stop, tabitha looking down the road, \n5. it didn't. i wanted to input\n6. i expect to meet her again and progress the relationship"
+      },
+      "finalState": {
+        "position": "road",
+        "inventory": [
+          "Tabitha's coat"
+        ],
+        "evidence": [],
+        "residue": [
+          "Tabitha's coat remains at your flat"
+        ],
+        "meters": {},
+        "flags": {
+          "explicitInterest": true,
+          "declinedSophie": true
+        }
+      },
+      "ending": {
+        "title": "You stay",
+        "summary": "The last two minutes contain almost no dialogue. Later, the coat hanging in your flat makes the relationship feel more real than any explicit reward screen could.",
+        "residues": [
+          "Tabitha's coat at home",
+          "A remembered act of attention",
+          "An unanswered call from Sophie"
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "prototype": "narrative-interaction-lab-v001",
+      "id": "52a19ab6-113e-41d9-b3c2-b2c4d59ad70c",
+      "sliceId": "intimacy",
+      "variantId": "support",
+      "blindMode": false,
+      "annotationMode": false,
+      "startedAt": "2026-08-21T13:23:16.195Z",
+      "endedAt": "2026-08-21T13:25:42.978Z",
+      "abandonedAt": null,
+      "steps": [
+        {
+          "index": 0,
+          "at": "2026-08-21T13:24:23.898Z",
+          "elapsedMs": 67703,
+          "nodeId": "start",
+          "speaker": "Scene",
+          "actionId": "sit-beside",
+          "label": "Sit beside her",
+          "intent": "Accept closeness without speaking",
+          "before": {
+            "position": "road",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          },
+          "after": {
+            "position": "bench",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "choseCloseness": true
+            }
+          }
+        },
+        {
+          "index": 1,
+          "at": "2026-08-21T13:25:00.962Z",
+          "elapsedMs": 104767,
+          "nodeId": "positioned",
+          "speaker": "Tabitha",
+          "actionId": "start-remove",
+          "label": "Start taking the coat off",
+          "intent": "Treat the request literally",
+          "before": {
+            "position": "bench",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "choseCloseness": true
+            }
+          },
+          "after": {
+            "position": "bench",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "choseCloseness": true,
+              "offeredPhysicalReturn": true
+            }
+          }
+        },
+        {
+          "index": 2,
+          "at": "2026-08-21T13:25:17.255Z",
+          "elapsedMs": 121060,
+          "nodeId": "coat_return",
+          "speaker": "Tabitha",
+          "actionId": "let-hand-rest",
+          "label": "Do not move away",
+          "intent": "Let the physical contact exist",
+          "before": {
+            "position": "bench",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "choseCloseness": true,
+              "offeredPhysicalReturn": true
+            }
+          },
+          "after": {
+            "position": "bench",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "choseCloseness": true,
+              "offeredPhysicalReturn": true,
+              "acceptedTouch": true
+            }
+          }
+        },
+        {
+          "index": 3,
+          "at": "2026-08-21T13:25:29.424Z",
+          "elapsedMs": 133229,
+          "nodeId": "phone",
+          "speaker": "Phone",
+          "actionId": "decline-screen",
+          "label": "Turn the screen face down and decline",
+          "intent": "Make the prioritisation visible",
+          "before": {
+            "position": "bench",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "choseCloseness": true,
+              "offeredPhysicalReturn": true,
+              "acceptedTouch": true
+            }
+          },
+          "after": {
+            "position": "bench",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "choseCloseness": true,
+              "offeredPhysicalReturn": true,
+              "acceptedTouch": true,
+              "declinedVisibly": true
+            }
+          }
+        },
+        {
+          "index": 4,
+          "at": "2026-08-21T13:25:42.978Z",
+          "elapsedMs": 146783,
+          "nodeId": "decline",
+          "speaker": "Tabitha",
+          "actionId": "walk-door",
+          "label": "Walk her to the bus door",
+          "intent": "Complete the act of accompaniment",
+          "before": {
+            "position": "bench",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "choseCloseness": true,
+              "offeredPhysicalReturn": true,
+              "acceptedTouch": true,
+              "declinedVisibly": true
+            }
+          },
+          "after": {
+            "position": "bench",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [
+              "Tabitha's coat remains at your flat",
+              "You stayed until the last possible moment"
+            ],
+            "meters": {},
+            "flags": {
+              "choseCloseness": true,
+              "offeredPhysicalReturn": true,
+              "acceptedTouch": true,
+              "declinedVisibly": true
+            }
+          }
+        }
+      ],
+      "debrief": {
+        "savedAt": "2026-08-21T13:28:40.548Z",
+        "ratings": {
+          "presence": 2,
+          "comprehension": 2,
+          "agency": 2,
+          "pull": 3,
+          "burden": 4
+        },
+        "notes": "I felt like the choices weren't mine because they were the only reasonably sensible thing to do if I wanted to get her in bed"
+      },
+      "finalState": {
+        "position": "bench",
+        "inventory": [
+          "Tabitha's coat"
+        ],
+        "evidence": [],
+        "residue": [
+          "Tabitha's coat remains at your flat",
+          "You stayed until the last possible moment"
+        ],
+        "meters": {},
+        "flags": {
+          "choseCloseness": true,
+          "offeredPhysicalReturn": true,
+          "acceptedTouch": true,
+          "declinedVisibly": true
+        }
+      },
+      "ending": {
+        "title": "You accompany her to the edge",
+        "summary": "Almost nothing is said. The remembered action is that you stayed, declined the call and walked with her until the door closed.",
+        "residues": [
+          "Tabitha's coat",
+          "A visible prioritisation",
+          "A memory of accompaniment"
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "prototype": "narrative-interaction-lab-v001",
+      "id": "1ec07332-3f26-4641-9063-b9143b2b71f4",
+      "sliceId": "intimacy",
+      "variantId": "system",
+      "blindMode": false,
+      "annotationMode": false,
+      "startedAt": "2026-08-21T13:28:47.890Z",
+      "endedAt": "2026-08-21T13:30:25.619Z",
+      "abandonedAt": null,
+      "steps": [
+        {
+          "index": 0,
+          "at": "2026-08-21T13:29:08.942Z",
+          "elapsedMs": 21052,
+          "nodeId": "start",
+          "speaker": "System",
+          "actionId": "flirt",
+          "label": "Flirt — costs 1 Composure",
+          "intent": "Raise Warmth, risk Awkwardness",
+          "before": {
+            "position": "road",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "warmth": 2,
+              "trust": 2,
+              "awkwardness": 3,
+              "composure": 3
+            },
+            "flags": {}
+          },
+          "after": {
+            "position": "road",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "warmth": 4,
+              "trust": 2,
+              "awkwardness": 4,
+              "composure": 2
+            },
+            "flags": {
+              "flirted": true
+            }
+          }
+        },
+        {
+          "index": 1,
+          "at": "2026-08-21T13:29:27.128Z",
+          "elapsedMs": 39238,
+          "nodeId": "round2",
+          "speaker": "System",
+          "actionId": "close-stance",
+          "label": "Close stance: sit beside her",
+          "intent": "+1 Warmth, +1 Awkwardness",
+          "before": {
+            "position": "road",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "warmth": 4,
+              "trust": 2,
+              "awkwardness": 4,
+              "composure": 2
+            },
+            "flags": {
+              "flirted": true
+            }
+          },
+          "after": {
+            "position": "bench",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "warmth": 5,
+              "trust": 2,
+              "awkwardness": 5,
+              "composure": 2
+            },
+            "flags": {
+              "flirted": true
+            }
+          }
+        },
+        {
+          "index": 2,
+          "at": "2026-08-21T13:30:10.234Z",
+          "elapsedMs": 82344,
+          "nodeId": "phone",
+          "speaker": "System",
+          "actionId": "decline-system",
+          "label": "Decline: +2 Warmth, -1 Trust",
+          "intent": "Prioritise romance route",
+          "before": {
+            "position": "bench",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "warmth": 5,
+              "trust": 2,
+              "awkwardness": 5,
+              "composure": 2
+            },
+            "flags": {
+              "flirted": true
+            }
+          },
+          "after": {
+            "position": "bench",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "warmth": 7,
+              "trust": 1,
+              "awkwardness": 5,
+              "composure": 2
+            },
+            "flags": {
+              "flirted": true,
+              "declinedSophie": true
+            }
+          }
+        },
+        {
+          "index": 3,
+          "at": "2026-08-21T13:30:25.619Z",
+          "elapsedMs": 97729,
+          "nodeId": "resolve",
+          "speaker": "System",
+          "actionId": "calculate",
+          "label": "Resolve relationship check",
+          "intent": "Convert accumulated values into outcome",
+          "before": {
+            "position": "bench",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "warmth": 7,
+              "trust": 1,
+              "awkwardness": 5,
+              "composure": 2
+            },
+            "flags": {
+              "flirted": true,
+              "declinedSophie": true
+            }
+          },
+          "after": {
+            "position": "bench",
+            "inventory": [
+              "Tabitha's coat"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "warmth": 7,
+              "trust": 1,
+              "awkwardness": 5,
+              "composure": 2
+            },
+            "flags": {
+              "flirted": true,
+              "declinedSophie": true
+            }
+          }
+        }
+      ],
+      "debrief": {
+        "savedAt": "2026-08-21T13:31:16.675Z",
+        "ratings": {
+          "presence": 1,
+          "comprehension": 5,
+          "agency": 1,
+          "pull": 1,
+          "burden": 4
+        },
+        "notes": "it felt like completing a tax form. no immersion or fun at all"
+      },
+      "finalState": {
+        "position": "bench",
+        "inventory": [
+          "Tabitha's coat"
+        ],
+        "evidence": [],
+        "residue": [],
+        "meters": {
+          "warmth": 7,
+          "trust": 1,
+          "awkwardness": 5,
+          "composure": 2
+        },
+        "flags": {
+          "flirted": true,
+          "declinedSophie": true
+        }
+      },
+      "ending": {
+        "title": "Relationship check complete",
+        "summary": "The system makes consequences explicit and strategically readable. It also encourages the player to treat every gesture as a value conversion rather than attend to Tabitha as a person.",
+        "residues": [
+          "Visible optimisation model",
+          "Clear but flattened feedback",
+          "A diagnostic comparison against the narrative-support version"
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "prototype": "narrative-interaction-lab-v001",
+      "id": "55e95998-f450-42e9-96b6-0807196cbad1",
+      "sliceId": "ensemble",
+      "variantId": "baseline",
+      "blindMode": false,
+      "annotationMode": false,
+      "startedAt": "2026-08-21T16:21:00.863Z",
+      "endedAt": "2026-08-21T16:23:50.838Z",
+      "abandonedAt": null,
+      "steps": [
+        {
+          "index": 0,
+          "at": "2026-08-21T16:21:56.685Z",
+          "elapsedMs": 55822,
+          "nodeId": "start",
+          "speaker": "Maya",
+          "actionId": "stay-quiet",
+          "label": "Say nothing",
+          "intent": "Avoid taking the floor",
+          "before": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          },
+          "after": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          }
+        },
+        {
+          "index": 1,
+          "at": "2026-08-21T16:22:21.017Z",
+          "elapsedMs": 80154,
+          "nodeId": "theo",
+          "speaker": "Theo",
+          "actionId": "ask-song",
+          "label": "“What banned song?”",
+          "intent": "Seek context before aligning",
+          "before": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          },
+          "after": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "askedContext": true
+            }
+          }
+        },
+        {
+          "index": 2,
+          "at": "2026-08-21T16:23:00.278Z",
+          "elapsedMs": 119415,
+          "nodeId": "sophie",
+          "speaker": "Sophie",
+          "actionId": "apologise-sophie",
+          "label": "Apologise for not explaining",
+          "intent": "Repair the expectation",
+          "before": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "askedContext": true
+            }
+          },
+          "after": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "askedContext": true,
+              "apologisedSophie": true
+            }
+          }
+        },
+        {
+          "index": 3,
+          "at": "2026-08-21T16:23:50.838Z",
+          "elapsedMs": 169975,
+          "nodeId": "announcement",
+          "speaker": "Maya",
+          "actionId": "speak-notice",
+          "label": "Explain the booking suspension and show the notice photograph",
+          "intent": "Make the conflict public",
+          "before": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "askedContext": true,
+              "apologisedSophie": true
+            }
+          },
+          "after": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "askedContext": true,
+              "apologisedSophie": true
+            }
+          }
+        }
+      ],
+      "debrief": {
+        "savedAt": "2026-08-21T16:28:02.212Z",
+        "ratings": {
+          "presence": 4,
+          "comprehension": 3,
+          "agency": 4,
+          "pull": 4,
+          "burden": 2
+        },
+        "notes": "Pressured situation, I felt like I needed courage to speak up. I felt like the situation forced me to do some damaging things but I had to do them to make the most out of the situation. So made some imperfect but meaningful choices. I didn't like the overall vibe of this piece because the plot was meh but the writing and details were still good so I felt I lived the moment."
+      },
+      "finalState": {
+        "position": "door",
+        "inventory": [
+          "Suspension notice photo"
+        ],
+        "evidence": [],
+        "residue": [],
+        "meters": {},
+        "flags": {
+          "askedContext": true,
+          "apologisedSophie": true
+        }
+      },
+      "ending": {
+        "title": "The room becomes a campaign",
+        "summary": "Your photograph gives the event a public object around which people can organise. Theo plays. Maya is grateful and furious that you took the decision from her.",
+        "residues": [
+          "The notice photograph circulates",
+          "The broadcast becomes public evidence",
+          "Maya remembers who made it political"
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "prototype": "narrative-interaction-lab-v001",
+      "id": "a655576d-c2d7-49eb-a407-873d62828a24",
+      "sliceId": "ensemble",
+      "variantId": "support",
+      "blindMode": false,
+      "annotationMode": false,
+      "startedAt": "2026-08-21T16:28:10.213Z",
+      "endedAt": "2026-08-21T16:31:26.600Z",
+      "abandonedAt": null,
+      "steps": [
+        {
+          "index": 0,
+          "at": "2026-08-21T16:29:01.265Z",
+          "elapsedMs": 51052,
+          "nodeId": "start",
+          "speaker": "Scene",
+          "actionId": "go-door",
+          "label": "Wait by the door for Sophie",
+          "intent": "Protect a personal expectation",
+          "before": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          },
+          "after": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "firstSophie": true
+            }
+          }
+        },
+        {
+          "index": 1,
+          "at": "2026-08-21T16:29:21.298Z",
+          "elapsedMs": 71085,
+          "nodeId": "sophie_arrival",
+          "speaker": "Sophie",
+          "actionId": "bring-sophie-in",
+          "label": "Walk her into the room and introduce her to Maya",
+          "intent": "Connect the personal and public parts of the evening",
+          "before": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "firstSophie": true
+            }
+          },
+          "after": {
+            "position": "stage",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "firstSophie": true,
+              "introducedSophieMaya": true
+            }
+          }
+        },
+        {
+          "index": 2,
+          "at": "2026-08-21T16:30:52.947Z",
+          "elapsedMs": 162734,
+          "nodeId": "middle",
+          "speaker": "Scene",
+          "actionId": "hand-photo",
+          "label": "Place your phone with the notice photograph beside Maya’s script",
+          "intent": "Give her evidence and let her decide whether to use it",
+          "before": {
+            "position": "stage",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "firstSophie": true,
+              "introducedSophieMaya": true
+            }
+          },
+          "after": {
+            "position": "stage",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [
+              "Maya received the notice photograph privately"
+            ],
+            "meters": {},
+            "flags": {
+              "firstSophie": true,
+              "introducedSophieMaya": true,
+              "gaveMayaPhoto": true
+            }
+          }
+        },
+        {
+          "index": 3,
+          "at": "2026-08-21T16:31:26.600Z",
+          "elapsedMs": 196387,
+          "nodeId": "maya_decides",
+          "speaker": "Scene",
+          "actionId": "post-yourself",
+          "label": "Take the phone back and post the photograph yourself",
+          "intent": "Override her choice through your own public action",
+          "before": {
+            "position": "stage",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [
+              "Maya received the notice photograph privately"
+            ],
+            "meters": {},
+            "flags": {
+              "firstSophie": true,
+              "introducedSophieMaya": true,
+              "gaveMayaPhoto": true
+            }
+          },
+          "after": {
+            "position": "stage",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [
+              "Maya received the notice photograph privately"
+            ],
+            "meters": {},
+            "flags": {
+              "firstSophie": true,
+              "introducedSophieMaya": true,
+              "gaveMayaPhoto": true
+            }
+          }
+        }
+      ],
+      "debrief": {
+        "savedAt": "2026-08-21T16:33:48.367Z",
+        "ratings": {
+          "presence": 4,
+          "comprehension": 4,
+          "agency": 4,
+          "pull": 3,
+          "burden": 3
+        },
+        "notes": "It was easier to understand what was going on, but I also felt the narrative was flattened into a mechanical process. I felt less feelings and focused more on outcomes. It didn't feel as immersive as dialogue only"
+      },
+      "finalState": {
+        "position": "stage",
+        "inventory": [
+          "Suspension notice photo"
+        ],
+        "evidence": [],
+        "residue": [
+          "Maya received the notice photograph privately"
+        ],
+        "meters": {},
+        "flags": {
+          "firstSophie": true,
+          "introducedSophieMaya": true,
+          "gaveMayaPhoto": true
+        }
+      },
+      "ending": {
+        "title": "You override the room",
+        "summary": "The post travels faster than Maya’s words. The event gains public reach and loses some of its intimacy. The consequence is not marked good or bad; several people interpret your act differently.",
+        "residues": [
+          "Viral notice photograph",
+          "Maya’s choice was overridden",
+          "A larger public audience"
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "prototype": "narrative-interaction-lab-v001",
+      "id": "fc459389-4da7-4a5f-8dac-77ccb50c0d9c",
+      "sliceId": "ensemble",
+      "variantId": "system",
+      "blindMode": false,
+      "annotationMode": false,
+      "startedAt": "2026-08-21T16:41:58.784Z",
+      "endedAt": "2026-08-21T16:42:41.094Z",
+      "abandonedAt": null,
+      "steps": [
+        {
+          "index": 0,
+          "at": "2026-08-21T16:42:24.342Z",
+          "elapsedMs": 25558,
+          "nodeId": "start",
+          "speaker": "System",
+          "actionId": "boost-stage",
+          "label": "Help Maya rehearse: +2 Maya, -1 Time",
+          "intent": "Optimise speaker readiness",
+          "before": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "event": 3,
+              "maya": 2,
+              "sophie": 2,
+              "publicPressure": 1,
+              "time": 4
+            },
+            "flags": {}
+          },
+          "after": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "event": 3,
+              "maya": 4,
+              "sophie": 2,
+              "publicPressure": 1,
+              "time": 3
+            },
+            "flags": {}
+          }
+        },
+        {
+          "index": 1,
+          "at": "2026-08-21T16:42:25.919Z",
+          "elapsedMs": 27135,
+          "nodeId": "round2",
+          "speaker": "System",
+          "actionId": "ignore-council",
+          "label": "Ignore call",
+          "intent": "Protect event operations",
+          "before": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "event": 3,
+              "maya": 4,
+              "sophie": 2,
+              "publicPressure": 1,
+              "time": 3
+            },
+            "flags": {}
+          },
+          "after": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "event": 3,
+              "maya": 4,
+              "sophie": 2,
+              "publicPressure": 3,
+              "time": 3
+            },
+            "flags": {}
+          }
+        },
+        {
+          "index": 2,
+          "at": "2026-08-21T16:42:41.094Z",
+          "elapsedMs": 42310,
+          "nodeId": "round3",
+          "speaker": "System",
+          "actionId": "withhold-meter",
+          "label": "Withhold evidence: +1 Maya, -1 Public Pressure",
+          "intent": "Protect character relationship",
+          "before": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "event": 3,
+              "maya": 4,
+              "sophie": 2,
+              "publicPressure": 3,
+              "time": 3
+            },
+            "flags": {}
+          },
+          "after": {
+            "position": "door",
+            "inventory": [
+              "Suspension notice photo"
+            ],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "event": 3,
+              "maya": 5,
+              "sophie": 2,
+              "publicPressure": 2,
+              "time": 3
+            },
+            "flags": {}
+          }
+        }
+      ],
+      "debrief": {
+        "savedAt": "2026-08-21T16:44:54.924Z",
+        "ratings": {
+          "presence": 1,
+          "comprehension": 4,
+          "agency": 1,
+          "pull": 1,
+          "burden": 4
+        },
+        "notes": "I was given the goal at the start and that made me lose interest in the experience. Instead I was just mechanically working out which options gave maya the best support and picked them. It felt like administrative work rather than playing a game. I stopped reading the dialogue and just clicked through."
+      },
+      "finalState": {
+        "position": "door",
+        "inventory": [
+          "Suspension notice photo"
+        ],
+        "evidence": [],
+        "residue": [],
+        "meters": {
+          "event": 3,
+          "maya": 5,
+          "sophie": 2,
+          "publicPressure": 2,
+          "time": 3
+        },
+        "flags": {}
+      },
+      "ending": {
+        "title": "Event score resolved",
+        "summary": "The variant provides clear prioritisation and repeatable optimisation. It also makes the evening read as a set of gauges to balance, reducing the ambiguity and human ownership of the scene.",
+        "residues": [
+          "Transparent event model",
+          "High strategic legibility",
+          "Diagnostic evidence of thematic dilution"
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "prototype": "narrative-interaction-lab-v001",
+      "id": "d8c9ff43-6b06-45ff-bc11-0ecf8c007eb7",
+      "sliceId": "institution",
+      "variantId": "baseline",
+      "blindMode": false,
+      "annotationMode": false,
+      "startedAt": "2026-08-21T16:45:04.000Z",
+      "endedAt": "2026-08-21T16:46:48.362Z",
+      "abandonedAt": null,
+      "steps": [
+        {
+          "index": 0,
+          "at": "2026-08-21T16:45:48.159Z",
+          "elapsedMs": 44159,
+          "nodeId": "start",
+          "speaker": "Maya",
+          "actionId": "ask-email",
+          "label": "Ask to see the email",
+          "intent": "Inspect the official account through dialogue",
+          "before": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          },
+          "after": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          }
+        },
+        {
+          "index": 1,
+          "at": "2026-08-21T16:46:09.791Z",
+          "elapsedMs": 65791,
+          "nodeId": "email",
+          "speaker": "Official email",
+          "actionId": "call-number",
+          "label": "Call the number in the footer",
+          "intent": "Seek an official clarification",
+          "before": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          },
+          "after": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          }
+        },
+        {
+          "index": 2,
+          "at": "2026-08-21T16:46:35.949Z",
+          "elapsedMs": 91949,
+          "nodeId": "call",
+          "speaker": "Council contact centre",
+          "actionId": "repeat-official",
+          "label": "Tell Maya exactly what they said",
+          "intent": "Transmit the official account without resolving it",
+          "before": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          },
+          "after": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "repeatedOfficial": true
+            }
+          }
+        },
+        {
+          "index": 3,
+          "at": "2026-08-21T16:46:48.362Z",
+          "elapsedMs": 104362,
+          "nodeId": "conclusion",
+          "speaker": "Maya",
+          "actionId": "tell-nothing",
+          "label": "“Don’t post anything until we know more.”",
+          "intent": "Withhold the story",
+          "before": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "repeatedOfficial": true
+            }
+          },
+          "after": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {
+              "repeatedOfficial": true
+            }
+          }
+        }
+      ],
+      "debrief": {
+        "savedAt": "2026-08-21T16:52:15.611Z",
+        "ratings": {
+          "presence": 4,
+          "comprehension": 4,
+          "agency": 4,
+          "pull": 4,
+          "burden": 2
+        },
+        "notes": "i enjoyed figuring out the situation i was in. i felt only one of the options made sense each time as the other two always appears to be a bit self destructive and reckless - but even though that was the case I still felt in control because there was always one option that aligned with what I felt i would do. But it might have been more interesting if there were multiple options that I felt I would realistically do then it would feel more like choosing my own fate than reading a story."
+      },
+      "finalState": {
+        "position": "entrance",
+        "inventory": [],
+        "evidence": [],
+        "residue": [],
+        "meters": {},
+        "flags": {
+          "repeatedOfficial": true
+        }
+      },
+      "ending": {
+        "title": "The information stays private",
+        "summary": "Another attendee posts a much less careful version later. Choosing not to circulate information does not prevent a public narrative from forming.",
+        "residues": [
+          "Private knowledge",
+          "Someone else’s public account",
+          "Maya remembers your caution"
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "prototype": "narrative-interaction-lab-v001",
+      "id": "bb7d8ba5-5fed-458f-a63c-a3c9f953017d",
+      "sliceId": "institution",
+      "variantId": "support",
+      "blindMode": false,
+      "annotationMode": false,
+      "startedAt": "2026-08-21T16:52:19.887Z",
+      "endedAt": "2026-08-21T16:55:43.663Z",
+      "abandonedAt": null,
+      "steps": [
+        {
+          "index": 0,
+          "at": "2026-08-21T16:53:26.588Z",
+          "elapsedMs": 66701,
+          "nodeId": "start",
+          "speaker": "Scene",
+          "actionId": "inspect-notice",
+          "label": "Read the notice on the door",
+          "intent": "Observe the public wording",
+          "before": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          },
+          "after": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [
+              "Notice: temporary adjustment to booking provision"
+            ],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          }
+        },
+        {
+          "index": 1,
+          "at": "2026-08-21T16:54:13.677Z",
+          "elapsedMs": 113790,
+          "nodeId": "notice",
+          "speaker": "Notice",
+          "actionId": "peel-notice",
+          "label": "Lift the corner to read the older timetable",
+          "intent": "Inspect without removing the official notice",
+          "before": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [
+              "Notice: temporary adjustment to booking provision"
+            ],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          },
+          "after": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [
+              "Notice: temporary adjustment to booking provision",
+              "All regular sessions were manually crossed out"
+            ],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          }
+        },
+        {
+          "index": 2,
+          "at": "2026-08-21T16:54:29.265Z",
+          "elapsedMs": 129378,
+          "nodeId": "choose_second",
+          "speaker": "Scene",
+          "actionId": "show-what-have",
+          "label": "Show Maya what you observed before offering an interpretation",
+          "intent": "Separate evidence from conclusion",
+          "before": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [
+              "Notice: temporary adjustment to booking provision",
+              "All regular sessions were manually crossed out"
+            ],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          },
+          "after": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [
+              "Notice: temporary adjustment to booking provision",
+              "All regular sessions were manually crossed out"
+            ],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          }
+        },
+        {
+          "index": 3,
+          "at": "2026-08-21T16:55:43.663Z",
+          "elapsedMs": 203776,
+          "nodeId": "interpret",
+          "speaker": "Maya",
+          "actionId": "leave-decision",
+          "label": "“You know the group better than I do.”",
+          "intent": "Return ownership of the public message to Maya",
+          "before": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [
+              "Notice: temporary adjustment to booking provision",
+              "All regular sessions were manually crossed out"
+            ],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          },
+          "after": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [
+              "Notice: temporary adjustment to booking provision",
+              "All regular sessions were manually crossed out"
+            ],
+            "residue": [],
+            "meters": {},
+            "flags": {}
+          }
+        }
+      ],
+      "debrief": {
+        "savedAt": "2026-08-21T16:58:32.697Z",
+        "ratings": {
+          "presence": 4,
+          "comprehension": 4,
+          "agency": 3,
+          "pull": 4,
+          "burden": 2
+        },
+        "notes": "I was disappointed with the final options list because what I wanted to do wasn't in the options. I wanted to take some action rather than let Maya decide but the actions available were not the ones I wanted to do. I felt this run through was also immersive but compared to the dialogue focused one it felt less immersive and felt more like I was a 3rd party observer from far away."
+      },
+      "finalState": {
+        "position": "entrance",
+        "inventory": [],
+        "evidence": [
+          "Notice: temporary adjustment to booking provision",
+          "All regular sessions were manually crossed out"
+        ],
+        "residue": [],
+        "meters": {},
+        "flags": {}
+      },
+      "ending": {
+        "title": "Maya owns the message",
+        "summary": "You participated in understanding the situation but declined to dictate its public meaning. Maya’s later choices can still use or disregard what you observed.",
+        "residues": [
+          "Maya authors the group message",
+          "Your evidence remains private or shared",
+          "Responsibility stays distributed"
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "prototype": "narrative-interaction-lab-v001",
+      "id": "e6280b1a-d2a2-4dcf-9cd1-c40ef309f269",
+      "sliceId": "institution",
+      "variantId": "system",
+      "blindMode": false,
+      "annotationMode": false,
+      "startedAt": "2026-08-21T16:58:34.258Z",
+      "endedAt": "2026-08-21T17:00:05.125Z",
+      "abandonedAt": null,
+      "steps": [
+        {
+          "index": 0,
+          "at": "2026-08-21T16:58:54.111Z",
+          "elapsedMs": 19853,
+          "nodeId": "start",
+          "speaker": "System",
+          "actionId": "interview-patel",
+          "label": "Interview Patel: +2 Case Strength",
+          "intent": "Collect witness testimony",
+          "before": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [],
+            "residue": [],
+            "meters": {
+              "caseStrength": 0,
+              "closureConfidence": 1,
+              "officialCredibility": 3,
+              "publicUrgency": 2
+            },
+            "flags": {}
+          },
+          "after": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [
+              "Patel testimony"
+            ],
+            "residue": [],
+            "meters": {
+              "caseStrength": 2,
+              "closureConfidence": 2,
+              "officialCredibility": 3,
+              "publicUrgency": 2
+            },
+            "flags": {}
+          }
+        },
+        {
+          "index": 1,
+          "at": "2026-08-21T16:59:17.187Z",
+          "elapsedMs": 42929,
+          "nodeId": "round2",
+          "speaker": "System",
+          "actionId": "photo-assets-system",
+          "label": "Photograph assets: +2 Case Strength",
+          "intent": "Collect material proof",
+          "before": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [
+              "Patel testimony"
+            ],
+            "residue": [],
+            "meters": {
+              "caseStrength": 2,
+              "closureConfidence": 2,
+              "officialCredibility": 3,
+              "publicUrgency": 2
+            },
+            "flags": {}
+          },
+          "after": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [
+              "Patel testimony",
+              "Asset photograph"
+            ],
+            "residue": [],
+            "meters": {
+              "caseStrength": 4,
+              "closureConfidence": 3,
+              "officialCredibility": 3,
+              "publicUrgency": 2
+            },
+            "flags": {}
+          }
+        },
+        {
+          "index": 2,
+          "at": "2026-08-21T16:59:38.332Z",
+          "elapsedMs": 64074,
+          "nodeId": "conclude",
+          "speaker": "System",
+          "actionId": "conclude-unknown",
+          "label": "Conclusion: Insufficient evidence",
+          "intent": "Avoid committing",
+          "before": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [
+              "Patel testimony",
+              "Asset photograph"
+            ],
+            "residue": [],
+            "meters": {
+              "caseStrength": 4,
+              "closureConfidence": 3,
+              "officialCredibility": 3,
+              "publicUrgency": 2
+            },
+            "flags": {}
+          },
+          "after": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [
+              "Patel testimony",
+              "Asset photograph"
+            ],
+            "residue": [],
+            "meters": {
+              "caseStrength": 4,
+              "closureConfidence": 3,
+              "officialCredibility": 3,
+              "publicUrgency": 2
+            },
+            "flags": {}
+          }
+        },
+        {
+          "index": 3,
+          "at": "2026-08-21T17:00:05.125Z",
+          "elapsedMs": 90867,
+          "nodeId": "publish",
+          "speaker": "System",
+          "actionId": "summary-case",
+          "label": "Publish summary",
+          "intent": "Preserve some uncertainty",
+          "before": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [
+              "Patel testimony",
+              "Asset photograph"
+            ],
+            "residue": [],
+            "meters": {
+              "caseStrength": 4,
+              "closureConfidence": 3,
+              "officialCredibility": 3,
+              "publicUrgency": 2
+            },
+            "flags": {}
+          },
+          "after": {
+            "position": "entrance",
+            "inventory": [],
+            "evidence": [
+              "Patel testimony",
+              "Asset photograph"
+            ],
+            "residue": [],
+            "meters": {
+              "caseStrength": 4,
+              "closureConfidence": 3,
+              "officialCredibility": 3,
+              "publicUrgency": 2
+            },
+            "flags": {}
+          }
+        }
+      ],
+      "debrief": {
+        "savedAt": "2026-08-21T17:03:10.288Z",
+        "ratings": {
+          "presence": 1,
+          "comprehension": 1,
+          "agency": 3,
+          "pull": 1,
+          "burden": 3
+        },
+        "notes": "I was disappointed that there was not feedback after picking an action. I expected to see the action being carried out and some dialogue and interaction as a result but it just skips to the next option. I was satisfied that it gave me the option to conclude there wasn't enough evidence rather than forcing me to make a likely mistake of guessing. I don't like the +2 stuff I didn't trust it and ignored it."
+      },
+      "finalState": {
+        "position": "entrance",
+        "inventory": [],
+        "evidence": [
+          "Patel testimony",
+          "Asset photograph"
+        ],
+        "residue": [],
+        "meters": {
+          "caseStrength": 4,
+          "closureConfidence": 3,
+          "officialCredibility": 3,
+          "publicUrgency": 2
+        },
+        "flags": {}
+      },
+      "ending": {
+        "title": "Case resolved",
+        "summary": "The player has a clear model of progress and a satisfying evidence-completion loop. The cost is that interpretation now looks like a scored puzzle whose central purpose is reaching the correct answer.",
+        "residues": [
+          "Evidence checklist",
+          "Confidence scoring",
+          "Diagnostic evidence of abstraction and optimisation capture"
+        ]
+      }
+    }
+  ]
+}

@@ -6,28 +6,16 @@
 
 ## Raw evidence
 
-The exact browser export supplied after testing is stored losslessly as:
+The exact browser export supplied after testing is stored directly as readable JSON:
 
-`001-2026-08-21-initial-comparative-playtest.json.gz.b64`
+`001-2026-08-21-initial-comparative-playtest.json`
 
-It is the gzip-compressed original JSON encoded as base64. To recover the original export:
-
-```bash
-base64 -d 001-2026-08-21-initial-comparative-playtest.json.gz.b64 | gunzip > managed-decline-narrative-lab-2026-08-21T17-03-12.221Z.json
-```
-
-The decompressed bytes are the supplied test export unchanged.
+It is the supplied test export unchanged and can be opened directly in GitHub or any text editor.
 
 SHA-256 of the original JSON:
 
 ```text
 d46d4f2319ab9b941977270230dc5465056b237e0b8114ea9320fdf560dac209
-```
-
-SHA-256 of the gzip payload before base64 encoding:
-
-```text
-d754de0e036802fc10e39ee218ff9d495a6876be1818e212727fbdd975dbf070
 ```
 
 ## Test coverage

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>Listening Exercise — Narrative Interaction Lab v002</title>
+  <meta name="description" content="A dependency-free comparative prototype for testing long-form narrative rhythm and support dosage in Managed Decline.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <noscript>This prototype requires JavaScript.</noscript>
+  <div id="app" class="app-shell">
+    <header class="site-header">
+      <div>
+        <p class="eyebrow">Managed Decline · Narrative Interaction Lab v002</p>
+        <h1>Listening Exercise</h1>
+      </div>
+      <div class="header-actions">
+        <button id="export-button" class="quiet-button" type="button">Export traces</button>
+        <button id="reset-button" class="quiet-button danger" type="button">Clear local traces</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="start-screen" class="start-screen" aria-labelledby="start-title">
+        <div class="start-copy">
+          <p class="kicker">One Friday evening in Greystone</p>
+          <h2 id="start-title">A community broadcast, a locked hall and a compact social map</h2>
+          <p id="start-description">
+            This prototype tests whether a compact diorama and restrained interaction can sustain a 25–40 minute dialogue-first session without turning the evening into a process layer.
+          </p>
+          <p>
+            There are no announced objectives, exposed relationship values or optimisation meters. Read the situation, decide what matters and act as you would want this protagonist to act.
+          </p>
+          <p id="research-disclosure" class="research-disclosure">
+            Three test conditions vary the dosage of narrative support. Use blind mode for formal comparison.
+          </p>
+        </div>
+
+        <form id="start-form" class="start-form">
+          <label>
+            Tester ID <span class="muted">(optional; do not use a real name)</span>
+            <input id="tester-id" name="testerId" autocomplete="off" maxlength="64" placeholder="e.g. T03">
+          </label>
+          <label>
+            Facilitator note <span class="muted">(optional)</span>
+            <input id="facilitator-note" name="facilitatorNote" autocomplete="off" maxlength="160" placeholder="e.g. order 2, first condition">
+          </label>
+
+          <fieldset>
+            <legend>Condition</legend>
+            <div id="variant-options" class="variant-options"></div>
+          </fieldset>
+
+          <div class="start-controls">
+            <button class="primary-button" type="submit">Begin the evening</button>
+            <p id="stored-count" class="muted" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <section id="game-screen" class="game-screen" hidden>
+        <div class="run-header" aria-live="polite">
+          <div>
+            <span id="run-condition" class="condition-label"></span>
+            <span id="run-phase" class="phase-label"></span>
+          </div>
+          <div class="diegetic-status">
+            <span id="run-time"></span>
+            <span aria-hidden="true">·</span>
+            <span id="run-location"></span>
+          </div>
+        </div>
+
+        <div class="play-layout">
+          <section class="diorama-panel" aria-label="Compact Greystone diorama">
+            <div id="diorama" class="diorama"></div>
+            <div id="map-legend" class="map-legend"></div>
+          </section>
+
+          <section id="scene-panel" class="scene-panel" aria-live="polite" aria-atomic="false">
+            <div id="scene-meta" class="scene-meta"></div>
+            <h2 id="scene-title"></h2>
+            <div id="scene-body" class="scene-body"></div>
+            <div id="ending-residues" class="ending-residues" hidden></div>
+            <div id="observation-log" class="observation-log" hidden></div>
+            <p id="map-prompt" class="map-prompt" hidden></p>
+            <div id="choice-list" class="choice-list"></div>
+            <details id="annotation-panel" class="annotation-panel" hidden>
+              <summary>Design annotation</summary>
+              <p id="annotation-text"></p>
+            </details>
+          </section>
+        </div>
+      </section>
+
+      <section id="completion-screen" class="completion-screen" hidden aria-labelledby="completion-title">
+        <div id="survey-panel">
+          <p class="kicker">Post-run reflection</p>
+          <h2 id="completion-title">Playtest questions</h2>
+          <p id="completion-summary"></p>
+
+          <form id="survey-form" class="survey-form">
+            <div id="rating-questions" class="rating-questions"></div>
+
+            <label>
+              What were you trying to do before the game made the evening’s conflict explicit?
+              <textarea name="spontaneousIntentions" rows="3" maxlength="1200"></textarea>
+            </label>
+            <label>
+              Which place, movement, object, message or gesture do you remember most clearly?
+              <textarea name="rememberedElements" rows="3" maxlength="1200"></textarea>
+            </label>
+            <label>
+              Which decision gave you two or more options you could genuinely imagine choosing? Which decision did not?
+              <textarea name="choiceQuality" rows="3" maxlength="1200"></textarea>
+            </label>
+            <label>
+              What do you expect to see, hear or be allowed to do later because of this evening?
+              <textarea name="expectedAftermath" rows="3" maxlength="1200"></textarea>
+            </label>
+            <label>
+              At what point, if any, did dialogue or interaction start feeling tiring, administrative or like a process?
+              <textarea name="burdenPoint" rows="3" maxlength="1200"></textarea>
+            </label>
+            <label>
+              Other notes
+              <textarea name="notes" rows="4" maxlength="2000"></textarea>
+            </label>
+
+            <button class="primary-button" type="submit">Save this trace locally</button>
+          </form>
+        </div>
+
+        <div id="saved-panel" hidden>
+          <p class="kicker">Trace recorded locally</p>
+          <h2>Playtest complete</h2>
+          <p id="saved-summary"></p>
+          <div class="completion-actions">
+            <button id="completion-export" class="primary-button" type="button">Export readable JSON</button>
+            <button id="another-run" class="secondary-button" type="button">Start another condition</button>
+          </div>
+          <p class="muted">Nothing is transmitted. The export contains only the identifier and notes entered in this prototype.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Keyboard: number keys select visible choices.</span>
+      <span>Data remains in this browser until exported or cleared.</span>
+    </footer>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

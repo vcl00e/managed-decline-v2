@@ -1,0 +1,194 @@
+scenario:
+  id: listening-exercise
+  title: Listening Exercise
+  status: non_canonical_research_fixture
+  expected_minutes: 25_to_40
+  setting:
+    town: Greystone
+    time: friday_evening_to_saturday_morning
+    weather: rain_then_clear
+
+research_question:
+  primary: >-
+    Across one sustained evening, does optional observation or sparse decisive
+    action improve presence, interpretation, agency and memory enough to justify
+    its interruption and production cost relative to a dialogue-first baseline?
+
+identity_envelope:
+  premise_invariants:
+    - existing_community_activity_displaced_by_administrative_risk_distinction
+    - official_listening_initiative_uses_same_powered_place
+    - displaced_activity_continues_in_changed_form
+    - public_evidence_is_useful_unsafe_and_ambiguous
+    - intimate_and_public_motives_overlap
+  dramatic_invariants:
+    - person_versus_public_usefulness
+    - continuation_versus_recognition
+    - private_leverage_versus_public_pressure
+    - safety_procedure_versus_selective_capacity
+    - no_actor_has_complete_truth_or_clean_solution
+  iconic_elements:
+    - wet_station_square
+    - chained_hall_door
+    - greystone_listens_banners
+    - low_signal_equipment_store_dispose_label
+    - flyer_folded_to_list
+    - applause_in_the_wrong_room
+    - saturday_same_square
+  mechanical_identity:
+    - choose_first_attention
+    - triangulate_partial_accounts
+    - decide_whether_to_become_public_witness
+    - control_information_flow_without_score
+    - retain_visible_residue
+  thematic_question: >-
+    When an institution can recognise community only through an approved
+    programme, what happens to the people already doing the thing?
+
+locations:
+  square:
+    name: Station Square
+    function:
+      - compact_social_geography
+      - public_witnesses
+      - transitions
+  cafe:
+    name: Platform One Café
+    function:
+      - intimate_threshold
+      - uncertain_invitation
+  hall:
+    name: Barlow Rooms
+    function:
+      - institutional_contradiction
+      - material_evidence
+  pub:
+    name: The Lantern
+    function:
+      - improvised_ensemble_event
+      - possible_future_routine
+  morning:
+    name: Saturday morning
+    function:
+      - visible_aftermath
+      - affordance_and_memory_residue
+
+characters:
+  maya:
+    role: community_radio_organiser
+    wants:
+      - keep_evening_alive
+      - prevent_relocation_becoming_proof_of_successful_consultation
+    knows:
+      - restriction_email
+      - booking_history
+    does_not_know:
+      - full_property_strategy
+  tabitha:
+    role: intimate_thread_and_socially_consequential_presence
+    wants:
+      - know_whether_invited_as_person_or_public_effect
+      - retain_authorship_of_speech_or_silence
+  sophie:
+    role: friend_social_cost_and_outside_interpreter
+    wants:
+      - understand_what_she_was_invited_to
+      - have_unplanned_labour_acknowledged
+  theo:
+    role: photographer_and_evidence_problem
+    wants:
+      - use_strong_image_honestly
+      - avoid_exposing_contacts_or_misrepresenting_len
+  nadia:
+    role: council_community_partnership_delivery
+    wants:
+      - preserve_defensible_public_account
+      - stop_temporary_restriction_becoming_empty_building
+  len:
+    role: caretaker_and_operational_witness
+    wants:
+      - follow_restriction
+      - keep_people_safe
+      - avoid_becoming_face_of_someone_elses_decision
+
+situation_state:
+  actual:
+    electrician: requested_not_booked
+    evening_group_risk_reviews: mostly_absent_because_not_previously_required
+    listening_pilot_risk_pack: supplied_by_contractor
+    pilot_power: temporary_extension_lead
+    future_booking_policy: consolidation_under_consideration
+    low_signal_termination_decision: none_formally_taken
+    low_signal_future_bookings: not_confirmed
+  public:
+    building: operating_normally
+    evening_access: temporarily_restricted
+    pilot: separately_controlled_activation
+    community_provision_affected: officially_no
+  rumour_candidates:
+    - council_listening_event_silences_radio_group
+    - hall_closed_for_electrical_safety
+    - group_successfully_consulted_and_relocated
+    - funded_operator_saved_building
+
+conditions:
+  baseline:
+    name: Dialogue baseline + passive diorama
+    separate_support_actions: 0
+    bindings:
+      arrival_threshold: dialogue_intention_then_automatic_staging
+      speaker: passive_windowsill_staging
+      photograph: authored_dialogue_commitment
+  observation:
+    name: Baseline + optional observation
+    separate_support_actions:
+      minimum: 0
+      maximum: 2
+    bindings:
+      hall_notice: optional_once
+      hall_window: optional_once
+    must_remain_optional: true
+  decisive:
+    name: Baseline + sparse decisive actions
+    separate_support_actions: 3
+    bindings:
+      arrival_threshold:
+        - walk_together
+        - cross_separately
+        - ask_tabitha_to_wait
+      speaker:
+        - inside
+        - doorway
+        - square
+      photograph:
+        - transfer_to_maya
+        - email_nadia_with_maya_copied
+        - cautious_public_question
+        - keep_private
+
+scene_spine:
+  - arrival_map
+  - first_private_account
+  - phone_interruption
+  - tabitha_threshold
+  - hall_map
+  - institutional_conversation
+  - pub_transition
+  - pub_first_account
+  - broadcast
+  - public_witness_decision
+  - photograph_information_flow
+  - final_song
+  - leave_or_stay
+  - phone_and_tabitha_aftermath
+  - saturday_visible_aftermath
+
+quality_gates:
+  - no_objective_or_success_state
+  - no_relationship_or_evidence_meter
+  - at_least_two_credible_options_at_major_decisions
+  - immediate_reaction_after_commitment
+  - persistent_visible_shadow
+  - optional_observation_not_required_for_comprehension
+  - no_support_action_chain
+  - baseline_allowed_to_win

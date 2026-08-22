@@ -1,0 +1,15 @@
+{
+  "name": "managed-decline-narrative-interaction-lab-v002",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "A dependency-free long-form prototype testing dialogue sustainability, map usefulness and narrative-support dosage in Managed Decline.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node tests/validate.mjs",
+    "check": "node --check app.js && node --check engine.js && node --check story.js && node --check server.mjs && node --check tests/validate.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

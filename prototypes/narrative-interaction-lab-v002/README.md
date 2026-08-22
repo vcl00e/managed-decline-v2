@@ -3,7 +3,7 @@
 - **Status:** test-ready comparative prototype
 - **Scenario status:** research fixture; not automatically canon for *Managed Decline*
 - **Expected run length:** approximately 25–40 minutes
-**Runtime:** dependency-free browser application; Node.js 18 or later is used only for the local server and validator
+- **Runtime:** dependency-free browser application; Node.js 18 or later is used only for the local server and validator
 
 ## Purpose
 
@@ -53,6 +53,16 @@ The server binds to `127.0.0.1` and stores no data. Set another port with either
 PORT=4180 npm start
 node server.mjs --port=4180
 ```
+
+### Repository transport note
+
+This branch was written through the GitHub connector, whose write endpoint has a payload ceiling below the size of several original prototype source files. To preserve the tested build byte-for-byte rather than truncate or rewrite those sources, the exact original `app.js`, `story.mjs`, `styles.css` and validator are stored losslessly as gzip/base64 payloads under:
+
+```text
+.prototype-upload/narrative-interaction-lab-v002/
+```
+
+`npm start` serves the original browser sources transparently from that payload. `npm test` reconstructs the exact original source set in a temporary directory and runs the original validator there. This is a repository-transfer workaround, not part of the proposed game architecture; the payload can later be materialised back into ordinary source files with no semantic change.
 
 ## Test modes
 
@@ -109,11 +119,9 @@ Do not use a real name in the tester field. The prototype has no consent-managem
 
 ```text
 index.html                         application shell
-styles.css                        responsive UI and CSS diorama
-app.js                            runtime, rendering, telemetry and survey
-story.mjs                         authored condition graphs and state
-server.mjs                        no-cache local static server
-validate.mjs                      graph, dosage and privacy checks
+server.mjs                        local server; exposes original browser sources
+validate.mjs                      wrapper that runs the original validator
+.prototype-upload/...             lossless original large source payload
 scenario-payload/                 human-readable scenario contract
 docs/DESIGN.md                    hypotheses and implementation boundaries
 docs/PLAYTEST.md                  facilitator and analysis protocol
@@ -122,6 +130,8 @@ docs/TRACE-SCHEMA.md              exported JSON structure
 docs/VERIFICATION.md              implementation verification record
 findings/README.md                location for numbered findings reports
 ```
+
+The browser still receives the original logical files `/app.js`, `/story.mjs` and `/styles.css`; they are decoded by the local server from the payload directory.
 
 ## Validation
 
@@ -137,7 +147,16 @@ findings/README.md                location for numbered findings reports
 - the app has no external resources, network transmission code, progress bars or meters;
 - JSON export remains human-readable.
 
-Automated browser routes have completed all three conditions end to end, including the post-run survey and trace-save path, without a runtime exception or console warning. Blind naming and hidden annotations were also checked. See [`docs/VERIFICATION.md`](docs/VERIFICATION.md) for the exact route metrics and harness limitation.
+The original validated build produced:
+
+```text
+baseline: 40 reachable nodes, 104 choices, routes 24–28 decisions.
+observation: 40 reachable nodes, 106 choices, routes 24–30 decisions.
+decisive: 41 reachable nodes, 107 choices, routes 25–29 decisions.
+Validated 3 conditions successfully.
+```
+
+Automated browser routes completed all three conditions end to end in the original verified build, including the post-run survey and trace-save path, without a runtime exception or console warning. Blind naming and hidden annotations were also checked. See [`docs/VERIFICATION.md`](docs/VERIFICATION.md) for the exact route metrics and harness limitation.
 
 ## Current limitations
 

@@ -1,38 +1,55 @@
 # Narrative Interaction Lab v002
 
-A dependency-free, long-form prototype for testing **session sustainability and narrative-support dosage** in *Managed Decline*.
+A dependency-free, long-form formative prototype for testing the current **arrangement ecology** in *Managed Decline*.
 
-It deliberately follows `narrative-interaction-lab-v001` rather than repeating that prototype’s baseline/support/system comparison. The first lab established that strong authored dialogue can outperform extra handling, especially when subtext is operationalised into required gestures. This version asks the remaining question:
+This version supersedes the earlier untested v002 support-dosage design before that branch produced findings. `narrative-interaction-lab-v001` established a strong directional result: dialogue-first presentation beat more operational/system-forward interaction in every tested slice. The August 23 design pass then supplied the missing activity model:
 
-> Can a dialogue-first evening sustain attention across exploration, several scenes, a phone interruption, ensemble conflict, intimacy and visible aftermath—and how much additional support helps before it feels like process?
+> **Managed Decline is a dialogue-first social RPG about entering, making, altering, keeping and breaking human arrangements under pressure.**
+
+This prototype asks whether that model actually produces compelling play for roughly one sustained session.
 
 ## The evening
 
-**One Evening on Moor Lane** begins after work with no assigned task. Three places are active on one compact lane:
+**One Evening on Moor Lane** begins after work with no assigned mission. Three physical places are active:
 
-- **Bellwether Rooms** — a community hall whose main room has passed inspection, while its caretaking contract has quietly ended;
-- **The Crown & Anchor** — a pub hired as the council’s official “continuity venue” under terms that conflict with the public story;
-- **Moor Lane Stop** — a bus shelter where Tabitha has found a scratched brass hall key in an old coat.
+- **Bellwether Rooms** — a community hall with a real electrical fault, a passed main room, and no current authorised caretaker;
+- **The Crown & Anchor** — the council's substitute venue, genuinely useful but materially different from the public claim of seamless continuity;
+- **Moor Lane Stop** — where Tabitha has found an old Bellwether key in her mother's coat while the last bus quietly moves earlier.
 
-The player chooses which two situations to visit and in what order. The third interrupts by phone. Six characters then converge at the pub around a dropped community performance, an institutional contradiction, a disputed publicity photograph and the question of what the brass key should now mean.
+The player may visit any two locations in either order. The unvisited situation then interrupts by phone. Nadia's online neighbourhood voice room provides a fourth social space before all three arrangements converge at the pub.
 
-The prototype never announces an objective. Helping Theo’s band, correcting the public account, protecting Maya, spending time with Tabitha, or simply leaving remain possible intentions rather than quest labels.
+Foreground arrangements:
 
-## Treatments
+1. Maya/Theo's attempt to give the Thursday group some kind of ending and first hearing for a song;
+2. Tabitha's private plan to get chips and leave the lane before the shortened last-bus window closes;
+3. Sophie's attempt to make the substitute venue genuinely count, including a conditional publicity photograph.
 
-All versions use the same characters, dialogue architecture, locations, order freedom, four aftermaths and hidden narrative state.
+The arrangements collide around time, incomplete information, public framing, authority, access, and a brass side-door key that is physically useful without conferring permission.
 
-| Version | Treatment |
-|---|---|
-| **Passive diorama** | Destination and dialogue choices only. Physical conduct is realised through staging and prose. |
-| **Optional observation** | Adds exactly two optional discoveries: the hall inspection slip and the pub invoice. Each disappears after use and funds later authored dialogue. |
-| **Sparse decisive action** | Adds visible handling only where physical form changes possession, witnesses, consent or persistent residue: phone gestures and the final handling of the brass key. |
+## What is implemented
 
-There are no meters, scores, quest lists, objectives or player-facing state sidebars in any treatment.
+Only the mechanical ecology needed for the experiment:
+
+- presence and audience;
+- commitments and expectations;
+- information and framing;
+- access and belonging;
+- limited material state;
+- relationship positions and memory;
+- persistent residue.
+
+Player-facing interaction uses:
+
+- dialogue as the primary input;
+- frequent map-level attention choice during the open-life phase;
+- two optional environmental observations;
+- phone/public-private conduct;
+- one high-semantic material climax;
+- no announced objective, visible relationship values, action points, quest log, plan canvas, inventory game, or state sidebar.
 
 ## Run
 
-Requires Node.js 18 or later.
+Requires Node.js 18+.
 
 ```bash
 cd prototypes/narrative-interaction-lab-v002
@@ -45,42 +62,13 @@ Open:
 http://127.0.0.1:4173
 ```
 
-The prototype has no package dependencies and makes no network requests.
-
-## Useful modes
+For hidden-state design debugging:
 
 ```text
-?blind=1
+http://127.0.0.1:4173/?annotate=1
 ```
 
-Shows Version A/B/C rather than the treatment names.
-
-```text
-?annotate=1
-```
-
-Shows design annotations and action-intent tags.
-
-```text
-?variant=passive
-?variant=observe
-?variant=decisive
-```
-
-Starts a treatment directly.
-
-```text
-?order=ABC
-?order=BCA
-```
-
-Changes the displayed treatment order for counterbalancing. Valid orders are `ABC`, `ACB`, `BAC`, `BCA`, `CAB` and `CBA`.
-
-Parameters can be combined:
-
-```text
-http://127.0.0.1:4173/?blind=1&order=BCA
-```
+Do not use annotation mode for a normal participant session.
 
 ## Validate
 
@@ -89,68 +77,42 @@ npm test
 npm run check
 ```
 
-The validator checks, among other things:
+Current validation checks include:
 
-- exactly three locations, six characters and three treatments;
-- valid graph targets and unique action IDs;
-- no dead ends;
-- complete reachability for all authored nodes;
-- all four aftermaths remain reachable in every treatment;
-- every ordered pair of opening locations produces the correct unvisited-location phone interruption;
-- optional observations disappear after discovery and unlock funded later dialogue;
-- sparse decisive actions exist only in the intended treatment;
-- the source contains no quest/objective/meter/score fields or state-sidebar implementation;
-- browser exports remain readable, indented JSON.
+- exactly three physical locations, six important characters and three foreground arrangements;
+- unique action IDs and valid node targets;
+- all six ordered pairs of opening locations correctly trigger the unvisited-location phone interruption;
+- representative routes reach all four aftermaths;
+- a complete representative route contains at least 4,200 authored words;
+- no browser network requests;
+- readable, indented JSON trace export;
+- no exposed quest/objective/meter/state-sidebar vocabulary or UI.
+
+At the time of this revision the implementation validates **31 nodes and 84 authored actions**. The shortest representative complete route contains about **4,300 authored words**, before player deliberation and debrief.
 
 ## Telemetry
 
-Run traces are stored only in browser `localStorage` under a version-specific key. Nothing is transmitted.
+Run traces are stored only in browser `localStorage`. Nothing is transmitted.
 
 A trace records:
 
-- treatment and displayed blind label;
-- timestamps, duration and completion/abandonment;
-- every destination and dialogue/material action;
+- timestamps and duration;
+- every map, dialogue, observation, phone/material action;
 - semantic action intent;
-- before/after story snapshots;
-- optional observations;
-- decisive material acts;
-- ending and visible residue;
+- complete hidden before/after state snapshots;
+- arrangements and commitments;
+- information and access;
+- material possession/public-record state;
+- relationship positions and memories;
+- final residue and aftermath;
 - immediate tester ratings and notes.
 
-Use **Export traces** to download all local records as readable JSON. The export is intentionally not compressed.
+Use **Export traces** for readable JSON.
 
-## Test discipline
+## What this prototype does not prove
 
-The prototype is not intended to prove final writing, art, performance, animation, campaign structure or production technology. It isolates:
+It does not prove final writing quality, production art, animation, LLM dialogue, full campaign simulation, autonomous NPC scheduling, campaign-length progression, or market fit.
 
-- dialogue fatigue over a longer session;
-- whether voluntary map sequencing creates intention, anticipation and memory;
-- whether the map feels useful or like dead travel time;
-- whether optional observation is noticed and meaningfully funded;
-- whether one sparse physical commitment improves memory and ownership;
-- where support begins to expose process;
-- whether people remember places, movements, objects and aftermath as well as dialogue;
-- whether several plausible intentions form without an objective announcement.
+It is specifically trying to falsify the current core activity hypothesis before production architecture hardens around it.
 
-See [`docs/DESIGN.md`](docs/DESIGN.md) for the experimental design and [`docs/PLAYTEST.md`](docs/PLAYTEST.md) for the protocol.
-
-## File layout
-
-```text
-narrative-interaction-lab-v002/
-├── index.html
-├── app.js
-├── engine.js
-├── story.js
-├── styles.css
-├── server.mjs
-├── tests/validate.mjs
-├── docs/
-│   ├── DESIGN.md
-│   └── PLAYTEST.md
-└── findings/
-    └── README.md
-```
-
-The story source is intentionally readable JavaScript rather than a compressed payload. Findings produced by this version belong under its own `findings/` directory.
+See `docs/DESIGN.md` and `docs/PLAYTEST.md`.

@@ -1,53 +1,40 @@
 # Narrative Interaction Lab v002
 
-A dependency-free, long-form formative prototype for testing the current **arrangement ecology** in *Managed Decline*.
+A dependency-free long-form formative prototype that attempted to test the **arrangement ecology** in *Managed Decline*.
 
-This version supersedes the earlier untested v002 support-dosage design before that branch produced findings. `narrative-interaction-lab-v001` established a strong directional result: dialogue-first presentation beat more operational/system-forward interaction in every tested slice. The August 23 design pass then supplied the missing activity model:
+## Status: failed early
 
-> **Managed Decline is a dialogue-first social RPG about entering, making, altering, keeping and breaking human arrangements under pressure.**
+The prototype is retained as historical implementation and evidence. On 2026-08-24 the tester abandoned it after roughly two minutes and reported that it was boring, not funny and had no clear emotional journey.
 
-This prototype asks whether that model actually produces compelling play for roughly one sustained session.
+This is treated as a **hard failure of the prototype construction**, not a request for a polish pass. The arrangement ecology may remain useful as hidden causal machinery, but this version mistakenly treated causal arrangement structure as sufficient content architecture.
 
-## The evening
+See:
 
-**One Evening on Moor Lane** begins after work with no assigned mission. Three physical places are active:
+- `findings/001-2026-08-24-early-abandonment.md`
+
+Do not use v002 as the current playtest baseline. The next conceptual prototype is `narrative-interaction-lab-v003`, an 8–12 minute slice focused first on immediate hook, comedy, character desire, deliberate emotional movement, escalation, payoff and desire to continue.
+
+## What v002 attempted
+
+**One Evening on Moor Lane** began after work with no assigned mission. Three physical places were active:
 
 - **Bellwether Rooms** — a community hall with a real electrical fault, a passed main room, and no current authorised caretaker;
 - **The Crown & Anchor** — the council's substitute venue, genuinely useful but materially different from the public claim of seamless continuity;
-- **Moor Lane Stop** — where Tabitha has found an old Bellwether key in her mother's coat while the last bus quietly moves earlier.
+- **Moor Lane Stop** — where Tabitha had found an old Bellwether key while the last-bus window shortened.
 
-The player may visit any two locations in either order. The unvisited situation then interrupts by phone. Nadia's online neighbourhood voice room provides a fourth social space before all three arrangements converge at the pub.
+The player could visit any two locations in either order. The unvisited situation then interrupted by phone. An online neighbourhood voice room provided a fourth social space before three foreground arrangements converged.
 
-Foreground arrangements:
+The prototype implemented hidden state for presence, commitments, information, access, limited material state, relationship positions and residue while keeping the player-facing interaction dialogue-first.
 
-1. Maya/Theo's attempt to give the Thursday group some kind of ending and first hearing for a song;
-2. Tabitha's private plan to get chips and leave the lane before the shortened last-bus window closes;
-3. Sophie's attempt to make the substitute venue genuinely count, including a conditional publicity photograph.
+## Why it failed
 
-The arrangements collide around time, incomplete information, public framing, authority, access, and a brass side-door key that is physically useful without conferring permission.
+The implementation began from the causal model rather than from a compelling emotional/comic experience. It supplied several reasonable situations before supplying a reason to care about any of them. Its characters were too reasonable, its satire too understated, and its emotional progression too flat.
 
-## What is implemented
+The central correction is:
 
-Only the mechanical ecology needed for the experiment:
+> **The arrangement ecology should explain how compelling drama becomes interactive and consequential. It does not generate compelling drama by itself.**
 
-- presence and audience;
-- commitments and expectations;
-- information and framing;
-- access and belonging;
-- limited material state;
-- relationship positions and memory;
-- persistent residue.
-
-Player-facing interaction uses:
-
-- dialogue as the primary input;
-- frequent map-level attention choice during the open-life phase;
-- two optional environmental observations;
-- phone/public-private conduct;
-- one high-semantic material climax;
-- no announced objective, visible relationship values, action points, quest log, plan canvas, inventory game, or state sidebar.
-
-## Run
+## Historical run instructions
 
 Requires Node.js 18+.
 
@@ -68,51 +55,19 @@ For hidden-state design debugging:
 http://127.0.0.1:4173/?annotate=1
 ```
 
-Do not use annotation mode for a normal participant session.
-
-## Validate
+## Validation
 
 ```bash
 npm test
 npm run check
 ```
 
-Current validation checks include:
-
-- exactly three physical locations, six important characters and three foreground arrangements;
-- unique action IDs and valid node targets;
-- all six ordered pairs of opening locations correctly trigger the unvisited-location phone interruption;
-- representative routes reach all four aftermaths;
-- a complete representative route contains at least 4,200 authored words;
-- no browser network requests;
-- readable, indented JSON trace export;
-- no exposed quest/objective/meter/state-sidebar vocabulary or UI.
-
-At the time of this revision the implementation validates **31 nodes and 84 authored actions**. The shortest representative complete route contains about **4,300 authored words**, before player deliberation and debrief.
+The validator checks structural properties only. Structural correctness did not prevent experiential failure; that is itself an important finding from this version.
 
 ## Telemetry
 
-Run traces are stored only in browser `localStorage`. Nothing is transmitted.
+Run traces remain local-only and export as readable JSON.
 
-A trace records:
+## Evidence discipline
 
-- timestamps and duration;
-- every map, dialogue, observation, phone/material action;
-- semantic action intent;
-- complete hidden before/after state snapshots;
-- arrangements and commitments;
-- information and access;
-- material possession/public-record state;
-- relationship positions and memories;
-- final residue and aftermath;
-- immediate tester ratings and notes.
-
-Use **Export traces** for readable JSON.
-
-## What this prototype does not prove
-
-It does not prove final writing quality, production art, animation, LLM dialogue, full campaign simulation, autonomous NPC scheduling, campaign-length progression, or market fit.
-
-It is specifically trying to falsify the current core activity hypothesis before production architecture hardens around it.
-
-See `docs/DESIGN.md` and `docs/PLAYTEST.md`.
+Do not promote v002 design choices into accepted game design merely because they are implemented. Findings produced by this version belong under its own `findings/` directory.

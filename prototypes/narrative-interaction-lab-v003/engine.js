@@ -1,4 +1,7 @@
 import { NODES, START_NODE } from "./story.js";
+import { installExtraNodes } from "./story-extra.js";
+
+installExtraNodes(NODES);
 
 export function clone(value) {
   return structuredClone(value);

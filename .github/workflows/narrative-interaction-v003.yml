@@ -1,0 +1,27 @@
+name: Validate narrative interaction lab v003
+
+on:
+  pull_request:
+    paths:
+      - "prototypes/narrative-interaction-lab-v003/**"
+      - ".github/workflows/narrative-interaction-v003.yml"
+  push:
+    branches:
+      - "prototype/narrative-interaction-lab-v003"
+    paths:
+      - "prototypes/narrative-interaction-lab-v003/**"
+      - ".github/workflows/narrative-interaction-v003.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: prototypes/narrative-interaction-lab-v003
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm run check
+      - run: npm test

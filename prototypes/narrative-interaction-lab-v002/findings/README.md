@@ -1,7 +1,11 @@
 # Findings
 
-No playtest findings have been recorded for the current arrangement-ecology revision yet.
+## Recorded findings
 
-When testing begins, keep evidence in this directory. Each substantial test/feedback conversation should receive a numbered findings file, and any supplied browser trace should be stored as readable, uncompressed JSON.
+- `001-2026-08-24-early-abandonment.md` — hard failure. Tester abandoned after roughly two minutes, describing the prototype as boring, not funny and lacking a clear emotional journey. The accepted interpretation is that the arrangement ecology may remain useful as hidden causal machinery but was mistakenly treated as sufficient content architecture.
+
+The next conceptual prototype should be `narrative-interaction-lab-v003`, approximately 8–12 minutes, and should test immediate hook, genuine comedy, character magnetism, deliberate emotional movement, escalation, payoff and desire to continue.
+
+Any supplied browser traces for v002 should remain readable, uncompressed JSON in this directory.
 
 The earlier `narrative-interaction-lab-v001` findings remain the evidence basis for the dialogue-first interaction direction; they are not duplicated here.

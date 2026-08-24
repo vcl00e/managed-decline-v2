@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.mjs",
     "test": "node tests/validate.mjs",
-    "check": "node --check app.js && node --check engine.js && node --check story.js && node --check server.mjs && node --check tests/validate.mjs"
+    "check": "node --check app.js && node --check engine.js && node --check story.js && node --check story-extra.js && node --check server.mjs && node --check tests/validate.mjs"
   },
   "engines": {
     "node": ">=18"

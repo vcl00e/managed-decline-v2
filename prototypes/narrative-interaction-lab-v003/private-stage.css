@@ -1,0 +1,43 @@
+.tone-warm .projector,
+.tone-warm-intimate .projector {
+  border-width: 0;
+  min-height: 250px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 24%, rgba(244, 202, 129, .88) 0 3%, transparent 3.4%),
+    linear-gradient(180deg, #768894 0 42%, #9b8977 42% 48%, #4a514f 48% 64%, #303636 64% 100%);
+  box-shadow: inset 0 -30px 60px rgba(0,0,0,.22), 0 14px 25px rgba(0,0,0,.12);
+}
+
+.tone-warm .projector > *,
+.tone-warm-intimate .projector > * { visibility: hidden; }
+
+.tone-warm .projector::before,
+.tone-warm-intimate .projector::before {
+  position: absolute;
+  inset: auto 18px 18px 18px;
+  padding: 12px 14px;
+  border-radius: 9px;
+  background: rgba(31, 39, 40, .78);
+  color: #f7f0e2;
+  font-weight: 850;
+  letter-spacing: .04em;
+  text-align: left;
+}
+
+.tone-warm .projector::before { content: "OUTSIDE BELLWETHER LIBRARY · NO FACILITATOR NOTES"; }
+.tone-warm-intimate .projector::before { content: "TWO STREETS TOWARD THE CHIP SHOP · TABITHA IS TALKING ABOUT SOMETHING ELSE"; }
+
+.tone-warm .projector::after,
+.tone-warm-intimate .projector::after { content: ""; }
+
+.tone-warm .stage header .eyebrow,
+.tone-warm-intimate .stage header .eyebrow { font-size: 0; }
+.tone-warm .stage header .eyebrow::after,
+.tone-warm-intimate .stage header .eyebrow::after {
+  font-size: 11px;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.tone-warm .stage header .eyebrow::after { content: "Bellwether Library · Outside"; }
+.tone-warm-intimate .stage header .eyebrow::after { content: "Toward the chip shop"; }

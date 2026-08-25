@@ -1,0 +1,15 @@
+{
+  "name": "managed-decline-narrative-interaction-lab-v003",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "Short-form Managed Decline prototype testing immediate hook, comedy, character magnetism and emotional journey.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node tests/validate.mjs",
+    "check": "node --check app.js && node --check engine.js && node --check story.js && node --check story-extra.js && node --check server.mjs && node --check tests/validate.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

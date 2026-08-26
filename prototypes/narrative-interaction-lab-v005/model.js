@@ -39,7 +39,11 @@ export function learn(state, fact) {
   addUnique(state.knowledge, fact);
   if (fact === "vacant_target_monday") state.flags.knowsVacantTarget = true;
   if (fact === "occupancy_sheet_says_empty") state.flags.heardOccupancyContradiction = true;
-  if (fact === "rowan_call_confirms_users_in_situ") state.flags.heardCourtyardCall = true;
+  if (fact === "rowan_call_confirms_users_in_situ") {
+    state.flags.heardCourtyardCall = true;
+    state.flags.knowsVacantTarget = true;
+    addUnique(state.knowledge, "vacant_target_monday");
+  }
 }
 
 export function remember(state, memory) {

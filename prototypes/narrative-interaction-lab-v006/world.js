@@ -125,8 +125,7 @@ export function createWorldRuntime({ canvas, hudRoom, hudTime, promptEl, noticeE
       showNotice('From the bedroom: “You made it. Come here before Britain assigns you a role.”');
     } else if (id === 'priya_knock') {
       npc.priya.visible = true; npc.priya.mood = 'waiting';
-      showNotice('Three quick knocks at the front door.');
-      if (state.player.room !== 'hall') record(state, 'ambient_not_heard', { id });
+      showNotice(state.player.room === 'hall' ? 'Three quick knocks at the front door.' : 'A knock carries through the flat from the hall.');
     } else if (id === 'alex_opens_front' && !state.flags.priyaInside) {
       openFrontDoor(state, 'alex'); doors.front.open = true;
       npc.priya.target = { x: 220, y: 145 }; npc.priya.mood = 'arriving';
@@ -143,7 +142,7 @@ export function createWorldRuntime({ canvas, hudRoom, hudTime, promptEl, noticeE
       showNotice('Priya, in the hall: “Is that the room?”');
     } else if (id === 'alex_opens_bedroom' && state.flags.priyaInside && !doors.bedroom.open) {
       openBedroom(state, 'alex'); doors.bedroom.open = true; npc.priya.target = { x: 730, y: 455 };
-      showNotice('Alex opens Tabitha’s room for the viewing.');
+      showNotice('Alex waves Priya into Tabitha’s room for the viewing.');
     } else if (id === 'agent_delay') {
       state.flags.agentDelayKnown = true; learn(state, 'agent_delayed', 'group_message');
       showNotice('Alex’s phone: “Graham (agent): delayed approx. 25 mins. Please commence viewing if agreeable.”', 4800);
@@ -165,8 +164,8 @@ export function createWorldRuntime({ canvas, hudRoom, hudTime, promptEl, noticeE
       action: () => { openFrontDoor(state, 'player'); doors.front.open = true; npc.priya.target = { x: 220, y: 145 }; showNotice('Priya: “Hi — sorry, I’m early. The bus did something unprecedented.”'); },
     });
     if (state.flags.priyaInside && state.worldTime >= 72 && !doors.bedroom.open) list.push({
-      id: 'bedroom-door', x: doors.bedroom.x, y: doors.bedroom.y, range: 90, priority: 22, label: "Open Tabitha's room for Priya",
-      action: () => { openBedroom(state, 'player'); doors.bedroom.open = true; npc.priya.target = { x: 730, y: 455 }; showNotice(state.worldTime < 82 ? 'You open the room before Tabitha has come back out.' : 'You open the room for the viewing.'); },
+      id: 'bedroom-door', x: doors.bedroom.x, y: doors.bedroom.y, range: 90, priority: 22, label: "Wave Priya into Tabitha's room",
+      action: () => { openBedroom(state, 'player'); doors.bedroom.open = true; npc.priya.target = { x: 730, y: 455 }; showNotice(state.worldTime < 82 ? 'You wave Priya in before Tabitha has come back out.' : 'You wave Priya into the room for the viewing.'); },
     });
     if (!state.flags.dampInspected && state.worldTime >= 55) list.push({
       id: 'damp', x: 1090, y: 410, range: 80, priority: 14, label: 'Look at the damp patch',
@@ -242,7 +241,7 @@ export function createWorldRuntime({ canvas, hudRoom, hudTime, promptEl, noticeE
     }
     for (const o of WORLD.obstacles) { ctx.fillStyle='#4a463f'; ctx.fillRect(o.x,o.y,o.w,o.h); ctx.fillStyle='#777066'; ctx.font='11px system-ui'; ctx.fillText(o.label,o.x+8,o.y+16); }
     ctx.fillStyle = state.flags.dampInspected ? '#5f6652' : '#525747'; ctx.beginPath(); ctx.ellipse(1090,410,22,36,-0.4,0,Math.PI*2); ctx.fill();
-    drawDoor(doors.front.open,14,76,16,44); drawDoor(doors.bedroom.open,642,438,16,64);
+    drawDoor(doors.front.open,14,76,16,44); ctx.fillStyle=doors.bedroom.open?'#a89a73':'#6d675c'; ctx.fillRect(642,438,6,64);
     drawNpc(npc.tabitha,'#d7a7b1'); drawNpc(npc.alex,'#9db6c7'); drawNpc(npc.priya,'#b4c98e');
     ctx.fillStyle='#f3eee3'; ctx.beginPath(); ctx.arc(state.player.x,state.player.y,14,0,Math.PI*2); ctx.fill(); ctx.strokeStyle='#1b1b18'; ctx.lineWidth=3; ctx.stroke();
     ctx.beginPath(); ctx.moveTo(state.player.x,state.player.y); ctx.lineTo(state.player.x+state.player.facing.x*22,state.player.y+state.player.facing.y*22); ctx.stroke();

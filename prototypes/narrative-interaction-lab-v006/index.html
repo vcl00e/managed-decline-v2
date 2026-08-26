@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Managed Decline — Narrative Interaction Lab v006</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main id="app">
+    <header class="topbar">
+      <div>
+        <strong>Narrative Interaction Lab v006</strong>
+        <span class="subtitle">The Viewing</span>
+      </div>
+      <div class="hud"><span id="hud-room"></span><span id="hud-time"></span></div>
+    </header>
+
+    <section class="stage" aria-label="Playable flat">
+      <canvas id="world"></canvas>
+      <div id="notice" class="notice" aria-live="polite"></div>
+      <div id="interaction-prompt" class="interaction-prompt"></div>
+      <div class="controls">WASD / arrows move · E interact · Tab cycles nearby targets</div>
+    </section>
+
+    <section class="footer-note">
+      No objective is shown. Pay attention to what people are doing and decide what, if anything, you care enough to intervene in.
+      <button id="finish-run" class="ghost">End run early</button>
+    </section>
+  </main>
+
+  <section id="vn" class="vn" hidden aria-modal="true" role="dialog">
+    <div class="vn-backdrop"></div>
+    <div class="vn-card">
+      <div class="vn-kicker" id="vn-title"></div>
+      <div class="portrait" aria-hidden="true"><span id="vn-portrait-mark">MD</span></div>
+      <div class="vn-copy">
+        <div class="speaker" id="vn-speaker"></div>
+        <p id="vn-text"></p>
+        <div id="vn-choices" class="vn-choices"></div>
+        <div class="vn-help">1–4 choose · Enter continues · Esc backs out</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="debrief" class="debrief" hidden>
+    <div class="debrief-card">
+      <p class="eyebrow">Run complete</p>
+      <h1>What did this version make you care about?</h1>
+      <ul id="debrief-summary" class="summary"></ul>
+      <form id="debrief-form">
+        <label>What were you trying to preserve by the end?<textarea name="preserve" rows="3"></textarea></label>
+        <label>Which moment would lose meaning if it were dialogue-only?<textarea name="space_value" rows="3"></textarea></label>
+        <label>Which moment needed the VN presentation rather than staying on the map?<textarea name="vn_value" rows="3"></textarea></label>
+        <label>Did you ever feel pressure to poll people for new dialogue?<select name="polling"><option value="">Choose…</option><option>No</option><option>A little</option><option>Yes</option></select></label>
+        <label>Did the resumed world visibly reflect what you said?<select name="world_feedback"><option value="">Choose…</option><option>Clearly</option><option>Somewhat</option><option>No</option></select></label>
+        <label>Would removing the explorable layer make this experience worse?<select name="remove_space"><option value="">Choose…</option><option>Yes</option><option>Unsure</option><option>No</option></select></label>
+        <label>Anything else?<textarea name="notes" rows="4"></textarea></label>
+        <div class="row"><button type="submit">Save debrief</button><button type="button" id="export-trace" class="ghost">Export traces</button><button type="button" id="reset-run" class="ghost">Run again</button></div>
+      </form>
+    </div>
+  </section>
+
+  <script type="module" src="./game.js"></script>
+</body>
+</html>

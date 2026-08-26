@@ -25,9 +25,9 @@
 
   window.addEventListener("keydown", (event) => {
     if (isTypingTarget(event.target)) {
-      // The game listens on window in the bubble phase. Stop the event before
-      // it reaches that listener, but do not prevent the browser's text input.
-      event.stopPropagation();
+      // The game listens on window. Stop this event before it can reach those
+      // bindings, but do not prevent the browser's normal text input.
+      event.stopImmediatePropagation();
       return;
     }
 

@@ -27,4 +27,4 @@ The accepted correction is:
 
 > **Keep continuous social geography and focused VN drama, but use elastic diegetic time and make live situations participable through meaningful positioning rather than NPC polling.**
 
-That correction is tested in `../narrative-interaction-lab-v006b/`.
+That correction is tested in `../../narrative-interaction-lab-v006b/`.

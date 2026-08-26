@@ -1,0 +1,15 @@
+{
+  "name": "managed-decline-narrative-interaction-lab-v004",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "description": "Managed Decline activity-spine prototype comparing dialogue baseline, spatial attention, and situated obligation.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node tests/validate.mjs",
+    "check": "node --check app.js && node --check engine.js && node --check story.js && node --check server.mjs && node --check tests/validate.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

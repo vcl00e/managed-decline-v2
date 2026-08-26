@@ -1,12 +1,14 @@
 # Narrative Interaction Lab v006 — The Viewing
 
-**Status:** first playable synthesis test
+**Status:** concluded — mixed synthesis evidence; corrected by v006b
 
 V006 follows the final conclusion of v005. It does not ask whether walking or continuous space are intrinsically fun. V005 already produced directionally useful evidence that a compact lived place can add presence, anticipation, independent activity, voluntary sequencing, situated intervention and physical social convergence.
 
-V006 tests the unresolved synthesis:
+V006 tested the unresolved synthesis:
 
 > **Can v003-quality authored conversational focus exist inside a v005-style continuously inhabited world, with each mode doing a distinct narrative job and sharing one causal state?**
+
+The answer was mixed. The playtest retained strong evidence for socially meaningful space and focused VN conversation, but rejected the fixed real-time master schedule and non-participable NPC choreography used to connect them. See `findings/002-2026-08-26-final-conclusion.md` for the accepted conclusion and the v006b handoff.
 
 ## Scenario
 
@@ -53,37 +55,41 @@ inhabit the flat
 
 The decisive evidence is not simply a preference score.
 
-V006 is directionally successful if the tester can identify:
+V006 was directionally successful if the tester could identify:
 
 1. a spatial/world moment that would lose meaning if reduced to dialogue;
 2. an important conversation that clearly benefited from full VN presentation;
 3. a spatial or material decision that changed the later dramatic conversation;
-4. a dialogue choice that visibly changed the resumed world;
+4. a dialogue choice that changed the subsequent lived situation;
 5. an intention they formed before the game named an objective;
 6. what they were trying to preserve and what cost they accepted;
 7. little or no pressure to poll every NPC for refreshed content.
 
-The strongest result would be:
+The strongest result would have been:
 
 > **The player wants both modes because they understand that each is carrying information and agency the other handles poorly.**
 
+The final findings show that individual spatial moments and VN focus were valuable, while the fixed-time connective layer failed. The original debrief also conflated expressive agency, fictional acknowledgement and material divergence; those are separated in the findings.
+
 ## Failure criteria
 
-Treat the synthesis as failed or in need of redesign if:
+The synthesis required redesign if:
 
-- the player mostly walks between conversations;
-- the player systematically presses E on everyone to look for new content;
-- VN scenes feel detached from what happened on the map;
-- spatial actions merely select which authored scene plays;
-- dialogue outcomes are not legible after returning to the world;
-- the timed world creates arbitrary anxiety rather than presence;
+- the player mostly walked between conversations;
+- the player systematically pressed E on everyone to look for new content;
+- VN scenes felt detached from what happened on the map;
+- spatial actions merely selected which authored scene played;
+- dialogue outcomes were not legible after returning to the world;
+- the timed world created arbitrary anxiety rather than presence;
 - the player would prefer the whole scenario as a linear VN;
-- the material problem reads as a puzzle with a correct solution;
-- the scenario's tension collapses into “reveal the bad landlord and win.”
+- the material problem read as a puzzle with a correct solution;
+- the scenario's tension collapsed into “reveal the bad landlord and win.”
+
+Several of these warning signs appeared, especially dead time, polling pressure, inaccessible NPC activity and timer-driven pacing. They are the direct reason v006b was created.
 
 ## Deliberate scope limits
 
-V006 does **not** test:
+V006 did **not** test:
 
 - multiple locations;
 - phone gameplay as a full interaction layer;
@@ -95,8 +101,6 @@ V006 does **not** test:
 - campaign-scale persistence;
 - production art;
 - whether this exact scenario belongs in the final game.
-
-If v006 succeeds, the larger multi-arrangement ecology previously proposed becomes an appropriate v007 test.
 
 ## Run
 

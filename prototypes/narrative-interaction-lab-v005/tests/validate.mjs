@@ -18,6 +18,12 @@ assert.equal(state.phase, "open");
 learn(state, "vacant_target_monday");
 assert.equal(state.flags.knowsVacantTarget, true);
 assert.ok(state.knowledge.includes("vacant_target_monday"));
+
+const overheard = createState();
+learn(overheard, "rowan_call_confirms_users_in_situ");
+assert.equal(overheard.flags.heardCourtyardCall, true);
+assert.equal(overheard.flags.knowsVacantTarget, true, "following Rowan to the courtyard must unlock the exact Monday fact");
+assert.ok(overheard.knowledge.includes("vacant_target_monday"));
 assert.equal(resolveOutcome(state, "formal_pause"), true);
 assert.equal(resolveOutcome(state, "live_interview"), false, "outcome should resolve once, not branch retroactively");
 assert.equal(state.outcome, "formal_pause");

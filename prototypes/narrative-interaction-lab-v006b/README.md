@@ -1,6 +1,8 @@
 # Narrative Interaction Lab v006b — The Viewing
 
-**Status:** ready for comparative playtest
+**Status:** concluded — successful targeted correction; proceed to v007
+
+See [`findings/002-2026-08-26-final-conclusion.md`](./findings/002-2026-08-26-final-conclusion.md) for the accepted conclusions and v007 handoff.
 
 V006b is a controlled revision of v006 using the same premise and core characters. It exists because the first v006 runs produced a very specific mixed result:
 

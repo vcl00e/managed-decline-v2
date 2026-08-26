@@ -12,7 +12,7 @@ export function createVNController({ vn, titleEl, speakerEl, textEl, choicesEl, 
   }
 
   function close({ cancelled = false } = {}) {
-    const endAfter = current?.endAfter && !cancelled;
+    const endAfter = Boolean(current?.endAfter);
     vn.hidden = true; runtime.setPaused(false); runtime.setInputContext('world'); queue = []; current = null;
     if (cancelled) record(runtime.state, 'dialogue_cancelled');
     if (endAfter) onCompleteRun();
@@ -58,13 +58,13 @@ export function createVNController({ vn, titleEl, speakerEl, textEl, choicesEl, 
     if (f.dampPhotoTaken) choices.push({id:'viewing_show_photo',text:'Show Priya the photo you took.'});
     choices.push({id:'viewing_let_alex_frame',text:'Look to Alex. Let the person taking over the tenancy explain it.'});
     choices.push({id:'viewing_not_my_call',text:"Say it isn't your room or your disclosure to make."});
-    if (!f.dampInspected) choices.push({id:'viewing_hide',text:'Accept the wording and move the viewing on.'});
+    if (!f.dampInspected) choices.push({id:'viewing_hide',text:'Let the wording pass without adding anything.'});
     return { title:'The room', intro, choices, question:'What do you do with what you know?', responses:{
       viewing_tell_plainly:[['You',"It's not just historic. The paint is soft now. I checked it."],['Priya','Right. Thank you. That changes the question I need to ask.'],['Alex','And also changes the chance she takes the room tonight.'],['Tabitha','Both of those things can be true, which is unfortunately the theme of the evening.']],
       viewing_show_photo:[['You','I took this a few minutes ago.'],['Priya','Okay. That is not “historic moisture ingress”. That is moisture with a current account.'],['Tabitha','You photographed my wall?'],['Alex','Great. We now have disclosure, evidence, and absolutely no replacement tenant. Efficient.']],
       viewing_let_alex_frame:[['Alex','There was a leak. It was reported. The landlord says the source was fixed; the internal damage has not been redecorated yet.'],['Priya','And if it comes back?'],['Alex','Then you inherit the same email chain, which I can forward to you in its entirety and with my condolences.'],['Tabitha','That may be the most honest tenancy handover in London.']],
       viewing_not_my_call:[['You',"It isn't my room. I don't think I get to decide how Tabitha or Alex disclose it."],['Priya','Fair. But I do need somebody to decide.'],['Tabitha','I reported it. It exists. I am leaving. Those are the facts I can give you without becoming the evening programme.'],['Alex','And I can give you the email chain.']],
-      viewing_hide:[['You','I only know what was in the advert.'],['Priya','Right. I will ask Graham when he eventually materialises.'],['Alex','Good luck. His strongest form is an email marked “sent from mobile”.']],
+      viewing_hide:[['You','You let the phrase hang without correcting it.'],['Priya','Right. I will ask Graham when he eventually materialises.'],['Alex','Good luck. His strongest form is an email marked “sent from mobile”.']],
     }};
   }
 

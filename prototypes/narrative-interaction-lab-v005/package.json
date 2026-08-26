@@ -6,7 +6,7 @@
   "description": "Continuous lived-space Managed Decline prototype: Radio Free Bellwether.",
   "scripts": {
     "start": "node server.mjs",
-    "check": "node --check game.js && node --check scenario.js && node --check model.js && node --check server.mjs && node --check tests/validate.mjs",
+    "check": "node --check game.js && node --check interaction-guard.js && node --check scenario.js && node --check model.js && node --check server.mjs && node --check tests/validate.mjs",
     "test": "node tests/validate.mjs"
   },
   "engines": { "node": ">=18" }

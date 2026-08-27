@@ -86,6 +86,10 @@ Dynamic summaries, system maps, dependency views, contradiction checks, and simi
 
 ## Prototypes
 
+Prototype work must follow [`prototypes/REGRESSION-POLICY.md`](./prototypes/REGRESSION-POLICY.md).
+
+Accepted designs are inherited defaults rather than permanent laws: later prototypes may deliberately challenge or supersede them, but same-domain work must not silently ignore earlier accepted findings. Each new prototype should identify its accepted baseline, the new unresolved question, inherited constraints, any deliberate re-tests, and regression probes before implementation. New UI or mechanics are appropriate where genuinely new functionality requires them; when extending an already-tested interaction domain, prior learnings remain the default unless explicitly reopened.
+
 Each conceptual prototype uses a stable base name and a three-digit version number:
 
 ```text

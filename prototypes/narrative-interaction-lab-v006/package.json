@@ -1,0 +1,10 @@
+{
+  "name": "managed-decline-narrative-interaction-lab-v006",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check game.js && node --check world.js && node --check vn.js && node --check model.js && node --check scenario.js && node --check server.mjs"
+  }
+}

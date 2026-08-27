@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Managed Decline — Narrative Interaction Lab v006b</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main id="app">
+    <header class="topbar">
+      <div>
+        <strong>Narrative Interaction Lab v006b</strong>
+        <span class="subtitle">The Viewing — elastic-time revision</span>
+      </div>
+      <div class="hud"><span id="hud-room"></span><span id="hud-time"></span></div>
+    </header>
+
+    <section class="stage" aria-label="Playable flat">
+      <canvas id="world"></canvas>
+      <div id="notice" class="notice" aria-live="polite"></div>
+      <div id="situation" class="situation" aria-live="polite"></div>
+      <div id="interaction-prompt" class="interaction-prompt"></div>
+      <div class="controls">WASD / arrows move · E interact with the highlighted live affordance · Tab cycles nearby targets</div>
+    </section>
+
+    <section class="footer-note">
+      <span>No objective list. People continue what they are doing; join, stay out, listen, or put yourself somewhere else.</span>
+      <button id="finish-run" class="ghost">End run early</button>
+    </section>
+  </main>
+
+  <section id="vn" class="vn" hidden aria-modal="true" role="dialog">
+    <div class="vn-backdrop"></div>
+    <div class="vn-card">
+      <div class="vn-kicker" id="vn-title"></div>
+      <div class="portrait" aria-hidden="true"><span id="vn-portrait-mark">MD</span></div>
+      <div class="vn-copy">
+        <div class="speaker" id="vn-speaker"></div>
+        <p id="vn-text"></p>
+        <div id="vn-choices" class="vn-choices"></div>
+        <div class="vn-help">1–4 choose · Enter continues · Esc backs out</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="debrief" class="debrief" hidden>
+    <div class="debrief-card">
+      <p class="eyebrow">Run complete</p>
+      <h1>Did the lived space finally have the right pacing and participation?</h1>
+      <ul id="debrief-summary" class="summary"></ul>
+      <form id="debrief-form">
+        <label>Did you ever feel you were waiting for the game to continue?
+          <select name="waiting"><option value="">Choose…</option><option>Never</option><option>A little</option><option>Yes</option></select>
+        </label>
+        <label>Did you feel pressure to test people or objects for hidden new content?
+          <select name="polling"><option value="">Choose…</option><option>No</option><option>A little</option><option>Yes</option></select>
+        </label>
+        <label>Were there moments where deciding where to be felt meaningful? Which ones?<textarea name="positioning" rows="3"></textarea></label>
+        <label>Did you feel able to join a situation or stay out of it naturally?
+          <select name="participation"><option value="">Choose…</option><option>Yes</option><option>Mostly</option><option>No</option></select>
+        </label>
+        <label>When the game switched into focused VN presentation, did the extra focus improve the moment? Which transition felt right or unnecessary?<textarea name="vn_transition" rows="3"></textarea></label>
+        <label>Which choices mainly defined your stance or role, even if events did not branch much?<textarea name="stance_choices" rows="3"></textarea></label>
+        <label>Which choices actually changed what happened next in a way you cared about?<textarea name="situation_changes" rows="3"></textarea></label>
+        <label>What happened on the map that would lose meaning if the game automatically presented it as a VN scene?<textarea name="space_value" rows="3"></textarea></label>
+        <label>Would removing the explorable space entirely make this experience worse?
+          <select name="remove_space"><option value="">Choose…</option><option>Yes</option><option>Unsure</option><option>No</option></select>
+        </label>
+        <label>When you were deciding what to do, what were you mostly thinking about?
+          <select name="attention"><option value="">Choose…</option><option>The people and situation</option><option>A mix</option><option>How the prototype worked</option></select>
+        </label>
+        <label>Anything else?<textarea name="notes" rows="4"></textarea></label>
+        <div class="row"><button type="submit">Save debrief</button><button type="button" id="export-trace" class="ghost">Export traces</button><button type="button" id="reset-run" class="ghost">Run again</button></div>
+      </form>
+    </div>
+  </section>
+
+  <script type="module" src="./game.js"></script>
+</body>
+</html>

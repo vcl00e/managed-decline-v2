@@ -19,6 +19,7 @@ export function createState() {
       radioGroupTouched:false,
       radioGroupSceneDone:false,
       priyaArrived:false,
+      priyaArrivalBeat:null,
       priyaSettled:false,
       priyaGreetingDone:false,
       priyaPrivateDone:false,
@@ -80,9 +81,9 @@ case'ready_to_leave':addVisibleChange(state,'affordance','Leaving is now the obv
 
 export function observeBeat(state,id='observe'){recordConduct(state,{id,tags:['comfortable_observer'],audience:[]});if(id==='quiet_linger')state.flags.quietLingerUsed=true;if(id==='room_linger')state.flags.observerLingerUsed=true;addVisibleChange(state,'world','The room continues around you without demanding a response.');advanceBeat(state,10,`observe:${id}`);}
 
-export function progressWorld(state){const c=state.characters;
-  if(state.beat>=1&&!state.flags.priyaArrived){state.flags.priyaArrived=true;c.priya.visible=true;c.priya.target={x:105,y:408};c.priya.mood='arrived';addVisibleChange(state,'arrival','Priya arrives at the forecourt. You do not have to go to her.');}
-  if(state.beat>=2&&state.flags.priyaArrived&&!state.flags.priyaSettled&&!state.flags.priyaGreetingDone){state.flags.priyaSettled=true;c.priya.target={x:610,y:330};c.priya.mood='settling independently';addVisibleChange(state,'npc_initiative','Priya stops waiting for you and heads inside to find Maya herself.');}
+export function progressWorld(state){const c=state.characters;const inSocialRoom=state.player.zone==='main'||state.player.zone==='radio';
+  if(state.beat>=1&&!state.flags.priyaArrived&&(inSocialRoom||state.beat>=2)){state.flags.priyaArrived=true;state.flags.priyaArrivalBeat=state.beat;c.priya.visible=true;c.priya.target={x:105,y:408};c.priya.mood='arrived';addVisibleChange(state,'arrival','Priya arrives at the forecourt. You do not have to go to her.');}
+  if(state.flags.priyaArrived&&state.flags.priyaArrivalBeat!==null&&state.beat>=state.flags.priyaArrivalBeat+1&&!state.flags.priyaSettled&&!state.flags.priyaGreetingDone){state.flags.priyaSettled=true;c.priya.target={x:610,y:330};c.priya.mood='settling independently';addVisibleChange(state,'npc_initiative','Priya stops waiting for you and heads inside to find Maya herself.');}
   if(state.beat>=2&&!state.flags.tabithaSideDone&&c.tabitha.mood!=='annoyed'){c.tabitha.target={x:720,y:350};c.tabitha.mood='taking some air';addVisibleChange(state,'npc_initiative','Tabitha drifts toward the quieter side yard. You can follow her or stay where you are.');}
   if(state.beat>=4&&!state.flags.closureActive){state.flags.closureActive=true;c.elliot.mood='closing up';addVisibleChange(state,'world','Elliot starts quietly closing part of the hall; the evening can continue elsewhere or end.');}
 }

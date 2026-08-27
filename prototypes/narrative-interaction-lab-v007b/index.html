@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Managed Decline — Narrative Interaction Lab v007b</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<main id="app">
+  <header class="topbar"><div><strong>Narrative Interaction Lab v007b</strong><span class="subtitle">Friday Night — free social topology</span></div><div class="hud"><span id="hud-room"></span><span id="hud-time"></span></div></header>
+  <section class="stage" aria-label="Playable community hall"><canvas id="world"></canvas><div id="notice" class="notice" aria-live="polite"></div><div id="situation" class="situation" aria-live="polite"></div><div id="interaction-prompt" class="interaction-prompt"></div><div class="controls">WASD / arrows move · E interact · Tab cycles nearby affordances</div></section>
+  <section class="footer-note"><span>No objective list. Spend time with who you want, join or leave groups, listen, wander, or head out.</span><button id="finish-run" class="ghost">End run early</button></section>
+</main>
+<section id="vn" class="vn" hidden aria-modal="true" role="dialog"><div class="vn-backdrop"></div><div class="vn-card"><div class="vn-kicker" id="vn-title"></div><div class="portrait"><span id="vn-portrait-mark">MD</span></div><div class="vn-copy"><div class="speaker" id="vn-speaker"></div><p id="vn-text"></p><div id="vn-choices" class="vn-choices"></div><div class="vn-help">1–4 choose · Enter continues · Esc backs out</div></div></div></section>
+<section id="debrief" class="debrief" hidden><div class="debrief-card"><p class="eyebrow">Run complete</p><h1>Did you get to choose the kind of social evening you wanted?</h1><ul id="debrief-summary" class="summary"></ul><form id="debrief-form">
+<label>How enjoyable was simply spending time in the evening?<select name="enjoyment"><option value="">Choose…</option><option>1 — not enjoyable</option><option>2</option><option>3</option><option>4</option><option>5 — very enjoyable</option></select></label>
+<label>Could you choose how social you wanted to be?<select name="social_bandwidth"><option value="">Choose…</option><option>Yes</option><option>Mostly</option><option>No</option></select></label>
+<label>If you wanted one-to-one time, could you get it without doing unrelated group content first?<select name="quiet_access"><option value="">Choose…</option><option>Yes</option><option>Mostly</option><option>No</option><option>I did not seek one-to-one time</option></select></label>
+<label>Could you join and leave small groups naturally?<select name="group_permeability"><option value="">Choose…</option><option>Yes</option><option>Mostly</option><option>No</option><option>I avoided groups</option></select></label>
+<label>When NPCs talked to each other, did it feel like social life or like waiting through content?<textarea name="npc_to_npc" rows="3"></textarea></label>
+<label>Which choices produced an immediate difference you noticed?<textarea name="immediate_feedback" rows="3"></textarea></label>
+<label>Did any choice feel as though it did nothing?<textarea name="dead_choices" rows="3"></textarea></label>
+<label>Did the map/UI feel like a game rather than a dashboard or web application?<select name="ui_gamefeel"><option value="">Choose…</option><option>Yes</option><option>Mostly</option><option>No</option></select></label>
+<label>Where was most of your attention?<select name="attention"><option value="">Choose…</option><option>People and situation</option><option>A mix</option><option>Operating the prototype</option></select></label>
+<label>What social configuration did you actually prefer in this run?<textarea name="preferred_social_texture" rows="3"></textarea></label>
+<label>Anything else?<textarea name="notes" rows="4"></textarea></label>
+<div class="row"><button type="submit">Save debrief</button><button type="button" id="export-trace" class="ghost">Export traces</button><button type="button" id="reset-run" class="ghost">Run again</button></div>
+</form></div></section>
+<script type="module" src="game.js"></script></body></html>

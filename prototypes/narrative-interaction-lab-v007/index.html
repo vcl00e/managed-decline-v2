@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Managed Decline — Narrative Interaction Lab v007</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Narrative Interaction Lab v007</p>
+        <h1>Friday Night</h1>
+      </div>
+      <div class="status-strip" aria-live="polite">
+        <span id="timeLabel">19:03</span>
+        <span id="phaseLabel">arrival</span>
+      </div>
+    </header>
+
+    <section class="experiment-note">
+      <strong>Play it as an evening, not a test case.</strong>
+      There is no objective list. Wander, join people, leave conversations, follow someone, or call it a night when that feels right.
+    </section>
+
+    <section class="play-layout">
+      <div class="world-card">
+        <canvas id="world" width="900" height="520" aria-label="Community hall social space"></canvas>
+        <div class="legend">
+          <span><kbd>WASD</kbd>/<kbd>Arrows</kbd> move</span>
+          <span><kbd>Tab</kbd> select nearby action</span>
+          <span><kbd>E</kbd>/<kbd>Enter</kbd> interact</span>
+        </div>
+      </div>
+
+      <aside class="side-card">
+        <section>
+          <p class="section-label">What is happening here</p>
+          <p id="situationText" class="situation"></p>
+        </section>
+
+        <section>
+          <p class="section-label">Nearby possibilities</p>
+          <div id="actions" class="actions"></div>
+        </section>
+
+        <section>
+          <p class="section-label">Room tone</p>
+          <div id="ambient" class="ambient" aria-live="polite"></div>
+        </section>
+
+        <details class="debug-panel">
+          <summary>Developer state</summary>
+          <pre id="debugState"></pre>
+        </details>
+      </aside>
+    </section>
+
+    <section id="aftermath" class="aftermath hidden">
+      <p class="eyebrow">Sunday morning</p>
+      <h2>The evening has become part of your life.</h2>
+      <div id="residueCards" class="residue-grid"></div>
+      <details>
+        <summary>Developer interpretation trace</summary>
+        <pre id="interpretationTrace"></pre>
+      </details>
+      <button id="openDebrief" class="primary">Debrief this run</button>
+    </section>
+
+    <section id="debrief" class="debrief hidden">
+      <p class="eyebrow">Playtest debrief</p>
+      <h2>What did the evening feel like?</h2>
+      <form id="debriefForm">
+        <label>How enjoyable was simply spending time in the evening?
+          <select name="enjoyment" required>
+            <option value="">Choose…</option>
+            <option>1 — not enjoyable</option><option>2</option><option>3</option><option>4</option><option>5 — very enjoyable</option>
+          </select>
+        </label>
+        <label>Did one-to-one and small-group moments feel meaningfully different?
+          <select name="social_texture" required>
+            <option value="">Choose…</option><option>Yes, strongly</option><option>Somewhat</option><option>No</option>
+          </select>
+        </label>
+        <label>When NPCs talked to each other, how did it feel?
+          <select name="npc_to_npc" required>
+            <option value="">Choose…</option><option>Like being inside a social situation</option><option>Mostly fine</option><option>Like waiting through a cutscene</option>
+          </select>
+        </label>
+        <label>Did you feel like you had to manage obligations or optimise the evening?
+          <select name="obligation_pressure" required>
+            <option value="">Choose…</option><option>No</option><option>A little</option><option>Yes</option>
+          </select>
+        </label>
+        <label>When did deciding who to be with or where to be feel meaningful?
+          <textarea name="positioning_meaning" rows="3"></textarea>
+        </label>
+        <label>Did the next-day reactions/residue fit the pattern of how you behaved?
+          <select name="interpretation_fit" required>
+            <option value="">Choose…</option><option>Yes</option><option>Mostly</option><option>No</option>
+          </select>
+        </label>
+        <label>Did any reaction feel unsupported or as though it only remembered your latest choice?
+          <textarea name="unsupported_reaction" rows="3"></textarea>
+        </label>
+        <label>Where was most of your attention?
+          <select name="attention" required>
+            <option value="">Choose…</option><option>People and situation</option><option>Mixed</option><option>Operating the prototype</option>
+          </select>
+        </label>
+        <label>Would you want to continue playing from this Sunday state?
+          <select name="continue_desire" required>
+            <option value="">Choose…</option><option>Yes</option><option>Maybe</option><option>No</option>
+          </select>
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="primary">Finish and export JSON</button>
+          <button type="button" id="copyRun">Copy current run JSON</button>
+        </div>
+      </form>
+      <textarea id="exportPreview" class="export-preview" rows="12" readonly></textarea>
+    </section>
+  </main>
+
+  <div id="vnOverlay" class="vn-overlay hidden" role="dialog" aria-modal="true" aria-label="Focused conversation">
+    <div class="vn-stage">
+      <div class="vn-portraits" id="vnPortraits"></div>
+      <div class="vn-box">
+        <p id="vnSpeaker" class="vn-speaker"></p>
+        <p id="vnLine" class="vn-line"></p>
+        <div id="vnChoices" class="vn-choices"></div>
+        <p id="vnHint" class="vn-hint">Enter to continue</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>

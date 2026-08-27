@@ -1,8 +1,10 @@
 # Narrative Interaction Lab v007b — Friday Night, Free Social Topology
 
-**Status:** design/delta specification — implementation not yet playtest-ready
+**Status:** ready for external playtest — internal regression/preflight gate passed
 
 **Process:** governed by [`../REGRESSION-POLICY.md`](../REGRESSION-POLICY.md)
+
+**Internal preflight evidence:** [`findings/000-2026-08-27-internal-preflight.md`](./findings/000-2026-08-27-internal-preflight.md)
 
 ## Baseline
 
@@ -164,6 +166,7 @@ Later:
 
 - Priya arrives causally and is capable of entering / finding a social position without being collected by the protagonist;
 - the player may meet her, ignore her, introduce her, make room for her, or remain with somebody else;
+- if the player deliberately remains in quiet company outside, Priya's arrival is delayed long enough for that choice to be experienced rather than immediately overwritten by another social demand;
 - Tabitha may peel away to the side yard based on her own social rhythm, not as a reward unlocked by completing a mandatory group scene;
 - Maya/Alex can continue banter or radio activity without waiting for the player;
 - the player can join a group, listen briefly, leave, follow someone else or simply remain elsewhere.
@@ -201,18 +204,19 @@ No one topology is the intended route.
 
 ## Choice/feedback target
 
-V007b should contain **fewer meaningful choices than v007**, with clearer local consequences.
+V007b contains **fewer meaningful choices than v007**, with clearer local consequences.
 
 Examples:
 
 ### Stay outside with Tabitha
 
-Immediate observable shadow may include:
+Immediate observable shadow includes:
 
 - Tabitha remains outside rather than entering immediately;
-- a different private exchange becomes available;
+- the map explicitly reflects that she stayed with the player;
+- another quiet-time affordance remains available;
 - Maya/Alex continue inside without the player;
-- later arrival/meeting context changes.
+- Priya does not immediately appear and overwrite the chosen quiet interval.
 
 ### Join Maya and Alex
 
@@ -223,12 +227,12 @@ Immediate observable shadow may include:
 - Tabitha may stay nearby, join later or peel away based on her current state;
 - the player remains free to walk away.
 
-### Introduce Priya
+### Let Priya find her own place
 
 Immediate observable shadow may include:
 
-- Maya begins addressing Priya directly;
-- Priya no longer depends on the protagonist as her only social anchor;
+- Priya heads into the hall independently;
+- she no longer depends on the protagonist as her only social anchor;
 - subsequent group membership/position visibly changes.
 
 ### Respect or cross a teasing boundary
@@ -239,15 +243,15 @@ Immediate observable shadow may include:
 - the group responds differently;
 - later private interpretation can still remember the public act.
 
-The implementation should prefer **visible behavioural consequences over explanatory text**.
+The implementation prefers **visible behavioural consequences over explanatory text**.
 
 ## Modest world disturbance
 
-The hall's absurd 21:30 closure policy may remain, but only if it emerges late enough and lightly enough that it changes the social shape of the evening rather than becoming the evening's objective.
+The hall's absurd closure policy may emerge later in the evening, but only as something that changes the social shape of the night rather than becoming the night's objective.
 
-The player must be free to:
+The player is free to:
 
-- help;
+- help lightly;
 - laugh and let Maya handle it;
 - leave with somebody;
 - go elsewhere;
@@ -257,7 +261,7 @@ No `save the radio night` structure.
 
 ## Regression probes
 
-These must pass before the build is described as ready for user playtesting.
+These must remain passing before external playtesting.
 
 ### Route/topology probes
 
@@ -287,13 +291,14 @@ These must pass before the build is described as ready for user playtesting.
 
 ### Choice-feedback probes
 
-- at least three situational choices produce visible acknowledgement within the next interaction cycle;
+- multiple situational choices produce visible acknowledgement within the next interaction cycle;
 - no early sequence consists mainly of choices whose only effect is hidden telemetry;
-- private/public audience difference is observable in at least one interaction.
+- private/public audience difference is observable in at least one interaction;
+- choosing quiet company is visibly acknowledged before unrelated social arrivals occur.
 
 ### Anti-pattern scan
 
-Explicitly verify absence of:
+Explicitly check for recurrence of:
 
 - dialogue terminal;
 - animated scenery when participation matters;
@@ -306,28 +311,76 @@ Explicitly verify absence of:
 
 ## Preflight personas
 
-Before external playtest, self-play at minimum as:
+Internal preflight includes:
 
-- **quiet player:** wants mostly Tabitha one-to-one time;
-- **social player:** wants groups and introductions;
-- **observer:** wants to listen and wander;
-- **Priya-selective player:** wants Priya but not the radio crowd;
-- **uninterested player:** leaves rather than following the evening's opportunities.
+- **quiet player:** mostly Tabitha one-to-one time;
+- **social player:** groups and group variation;
+- **observer:** listening/wandering and zero required VN scenes;
+- **Priya-selective player:** Priya without the radio route;
+- **uninterested player:** leaving rather than following the evening's opportunities.
 
-If the implementation fights one of these intentions without a strong fictional reason, it is not playtest-ready.
+The critical quiet-player path was additionally exercised through a rendered Chromium page with actual keyboard interaction.
 
 ## Playtest-ready gate
 
-Do not change this status to `ready for playtest` until:
+The current build has passed:
 
-- syntax/build/runtime checks pass;
-- state/model tests pass;
-- route/topology regression tests pass;
-- UI regression scan passes;
-- immediate-feedback probes pass;
-- the anti-pattern scan passes;
-- contrasting goal-directed self-plays have been completed;
-- no known v006/v006b correction has returned unless explicitly documented as a re-test.
+- syntax/build checks;
+- exact-branch GitHub Actions execution;
+- HTTP runtime smoke test;
+- state/model tests;
+- route/topology regression tests;
+- UI regression scan;
+- immediate-feedback regression checks;
+- five contrasting scripted player-intent preflights;
+- rendered quiet-player interaction preflight;
+- targeted scan for the known v006/v006b/v007 failure classes relevant to this build.
+
+See [`findings/000-2026-08-27-internal-preflight.md`](./findings/000-2026-08-27-internal-preflight.md) for the evidence and limitations.
+
+The remaining questions are intentionally experiential and require the user's playtest rather than more internal simulation.
+
+## Run
+
+Requires Node.js 18+.
+
+```bash
+cd prototypes/narrative-interaction-lab-v007b
+npm run check
+npm test
+npm start
+```
+
+Open:
+
+```text
+http://127.0.0.1:4177
+```
+
+## Controls
+
+- `WASD` / arrow keys — move;
+- `Tab` — cycle nearby contextual affordances;
+- `E` / `Enter` — use the highlighted affordance;
+- `Enter` — advance focused VN dialogue;
+- `1–4` — choose VN options;
+- `Esc` — leave a focused conversation and return to the live space.
+
+## Telemetry
+
+Runs are stored locally under `md-v007b-runs` and export as readable indented JSON.
+
+Telemetry records:
+
+- fictional-time / meaningful-beat advancement;
+- conduct;
+- audience and privacy context;
+- immediate visible state changes;
+- scenes actually entered;
+- accumulated character interpretations;
+- residue;
+- debrief answers;
+- chronological trace.
 
 ## Current implementation principle
 

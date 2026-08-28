@@ -1,0 +1,41 @@
+name: Narrative Interaction Lab v007d
+
+on:
+  push:
+    branches:
+      - prototype/narrative-interaction-lab-v007d
+  pull_request:
+    paths:
+      - 'prototypes/narrative-interaction-lab-v007d/**'
+      - '.github/workflows/narrative-interaction-v007d.yml'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: prototypes/narrative-interaction-lab-v007d
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Syntax checks
+        run: npm run check
+      - name: Dyadic interaction and regression tests
+        run: npm test
+      - name: HTTP smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          node server.mjs > /tmp/md-v007d-server.log 2>&1 &
+          pid=$!
+          trap 'kill $pid || true' EXIT
+          for i in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:4177/ | grep -q 'Narrative Interaction Lab v007d'; then
+              exit 0
+            fi
+            sleep 0.25
+          done
+          cat /tmp/md-v007d-server.log
+          exit 1

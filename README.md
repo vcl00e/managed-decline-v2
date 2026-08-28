@@ -86,11 +86,15 @@ Dynamic summaries, system maps, dependency views, contradiction checks, and simi
 
 ## Prototypes
 
-Prototype work must follow both [`prototypes/REGRESSION-POLICY.md`](./prototypes/REGRESSION-POLICY.md) and [`prototypes/EXPERIENCE-VALUE-POLICY.md`](./prototypes/EXPERIENCE-VALUE-POLICY.md).
+Prototype work must follow [`prototypes/PROTOTYPE-POLICY.md`](./prototypes/PROTOTYPE-POLICY.md).
 
-Accepted designs are inherited defaults rather than permanent laws: later prototypes may deliberately challenge or supersede them, but same-domain work must not silently ignore earlier accepted findings. Each new prototype should identify its accepted baseline, the new unresolved question, inherited constraints, any deliberate re-tests, and regression probes before implementation. New UI or mechanics are appropriate where genuinely new functionality requires them; when extending an already-tested interaction domain, prior learnings remain the default unless explicitly reopened.
+The policy uses three gates:
 
-Regression safety is necessary but not sufficient. Any major route a prototype invites or claims to test must also have an explicit positive Experience Contract and pass route-value preflight. A path that is technically reachable yet provides little worthwhile experience is not playtest-ready.
+1. preserve relevant accepted design unless deliberately reopened;
+2. define and fund the player experiences the prototype invites;
+3. review the complete played experience rather than treating passing state tests as evidence of quality.
+
+Accepted designs remain inherited defaults rather than permanent laws. New UI or mechanics are appropriate where genuinely different functionality requires them; same-domain work inherits prior player-facing strengths unless explicitly under re-test.
 
 Each conceptual prototype uses a stable base name and a three-digit version number:
 

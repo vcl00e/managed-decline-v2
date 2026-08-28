@@ -1,0 +1,58 @@
+name: Materialize v007c active-experience refactor
+
+on:
+  push:
+    branches:
+      - prototype/narrative-interaction-lab-v007c
+    paths:
+      - .github/workflows/materialize-v007c-active.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: prototype/narrative-interaction-lab-v007c
+          fetch-depth: 0
+
+      - name: Extract tested refactor
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .materialize/v007c-*.b64 | base64 --decode > /tmp/v007c-active.tar.gz
+          tar -tzf /tmp/v007c-active.tar.gz >/dev/null
+          tar -xzf /tmp/v007c-active.tar.gz
+
+      - name: Install consolidated prototype policy
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin process/positive-experience-gates --depth=1
+          git show FETCH_HEAD:prototypes/PROTOTYPE-POLICY.md > prototypes/PROTOTYPE-POLICY.md
+          rm -f prototypes/REGRESSION-POLICY.md prototypes/EXPERIENCE-VALUE-POLICY.md
+
+      - name: Remove superseded staging and tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .materialize
+          rm -f .github/workflows/materialize-v007c-active.yml
+          rm -f .github/workflows/materialize-v007c.yml
+          rm -f prototypes/narrative-interaction-lab-v007c/tests/content.test.mjs
+          rm -f prototypes/narrative-interaction-lab-v007c/tests/preflight.test.mjs
+
+      - name: Commit refactor
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git diff --cached --check
+          git commit -m "Refactor v007c around active social experiences"
+          git push origin HEAD:prototype/narrative-interaction-lab-v007c

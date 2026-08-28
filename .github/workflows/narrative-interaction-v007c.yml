@@ -1,5 +1,6 @@
 name: Narrative Interaction Lab v007c
 
+# Exact-branch gate for the consolidated active-experience refactor.
 on:
   push:
     branches:
@@ -22,7 +23,7 @@ jobs:
           node-version: 20
       - name: Syntax checks
         run: npm run check
-      - name: State, regression, content and experience-contract tests
+      - name: State, regression, active-experience and experience-contract tests
         run: npm test
       - name: HTTP smoke test
         shell: bash

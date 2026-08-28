@@ -1,46 +1,83 @@
-import test from 'node:test';import assert from 'node:assert/strict';
-import {createState,applySceneChoice,shareNotice,getAvailableInteractions,routeValueSummary,finishRun,advanceBeat} from '../model.js';
-import {SCENES} from '../scenario.js';
-const c=(scene,id)=>SCENES[scene].choices.find(x=>x.id===id);
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { SCENES } from '../scenario.js';
+import {
+  advanceBeat,
+  applySceneChoice,
+  createState,
+  finishRun,
+  getAvailableInteractions,
+  observeClosure,
+  observeCrosscurrents,
+  observeRadio,
+  observeRoom,
+  stayWithGroup,
+  routeValueSummary,
+  shareNotice,
+} from '../model.js';
 
-test('quiet Tabitha route contains substantive sequence before payoff',()=>{
- const s=createState();
- applySceneChoice(s,'tabitha_opening',c('tabitha_opening','open_stay'));
- assert.equal(s.flags.withTabitha,true);assert.equal(s.flags.tabithaPrivateDone,false);
- shareNotice(s);assert.equal(s.flags.noticeShared,true);
- applySceneChoice(s,'tabitha_private',c('tabitha_private','private_no_reason'));
- assert.equal(s.flags.tabithaPrivateDone,true);assert.equal(s.flags.tabithaPlan,'breakfast');
- assert.equal(s.flags.tabithaCallbackAvailable,true);
- const v=routeValueSummary(s).tabitha;assert.deepEqual([v.opening,v.sharedActivity,v.substantivePrivate],[true,true,true]);
+const choice = (sceneId, choiceId) => SCENES[sceneId].choices.find((item) => item.id === choiceId);
+
+test('Tabitha experience delivers its complete promised arc without group content', () => {
+  const state = createState();
+  applySceneChoice(state, 'tabitha_opening', choice('tabitha_opening', 'open_stay'));
+  shareNotice(state);
+  applySceneChoice(state, 'tabitha_private', choice('tabitha_private', 'private_no_score'));
+  applySceneChoice(state, 'tabitha_callback', choice('tabitha_callback', 'callback_stay'));
+  finishRun(state, { id: 'end_tabitha', text: 'Leave together.', tags: ['left_with_tabitha'] });
+
+  const summary = routeValueSummary(state);
+  assert.equal(summary.experiences.tabitha_companionship.status, 'complete');
+  assert.deepEqual(summary.experiences.tabitha_companionship.missing, []);
+  assert.equal(summary.tabitha.plan, 'building_walk');
+  assert.equal(state.seenScenes.includes('radio_group'), false);
 });
 
-test('Tabitha payoff cannot be reached from one short scene plus time advance',()=>{
- const s=createState();applySceneChoice(s,'tabitha_opening',c('tabitha_opening','open_stay'));
- advanceBeat(s,30,'try to skip content');
- assert.equal(s.flags.tabithaCallbackAvailable,false);
- assert.ok(!getAvailableInteractions(s,'side').includes('tabitha_callback'));
+test('group experience can develop without requiring the private route', () => {
+  const state = createState();
+  state.player.zone = 'main';
+  applySceneChoice(state, 'radio_group', choice('radio_group', 'group_joke'));
+  stayWithGroup(state);
+  assert.equal(state.flags.priyaSettled, true);
+  assert.equal(state.characters.tabitha.mood, 'inside');
+  assert.ok(getAvailableInteractions(state, 'main').includes('mixed_story'));
+
+  applySceneChoice(state, 'mixed_story', choice('mixed_story', 'story_veto'));
+  finishRun(state, { id: 'end_maya', text: 'Continue with Maya.', tags: ['joined_afterparty'] });
+
+  const summary = routeValueSummary(state);
+  assert.equal(summary.experiences.radio_group.status, 'complete');
+  assert.deepEqual(summary.experiences.radio_group.missing, []);
+  assert.equal(state.seenScenes.includes('tabitha_private'), false);
 });
 
-test('private route produces concrete plan and motif',()=>{
- const s=createState();applySceneChoice(s,'tabitha_opening',c('tabitha_opening','open_stay'));shareNotice(s);applySceneChoice(s,'tabitha_private',c('tabitha_private','private_permission'));
- assert.equal(s.flags.tabithaPlan,'notice_walk');assert.equal(s.flags.privateMotif,'notice ranking');
+test('Priya-selective experience can produce a concrete plan without radio-group participation', () => {
+  const state = createState();
+  state.player.zone = 'main';
+  observeRadio(state);
+  observeRoom(state);
+  assert.equal(state.flags.priyaSettled, true);
+  applySceneChoice(state, 'priya_private', choice('priya_private', 'priya_chips'));
+  finishRun(state, { id: 'end_priya', text: 'Get chips.', tags: ['went_chips_priya'] });
+
+  const summary = routeValueSummary(state);
+  assert.equal(summary.experiences.priya_companionship.status, 'complete');
+  assert.deepEqual(summary.experiences.priya_companionship.missing, []);
+  assert.equal(state.seenScenes.includes('radio_group'), false);
 });
 
-test('quiet route does not require any group scene',()=>{
- const s=createState();applySceneChoice(s,'tabitha_opening',c('tabitha_opening','open_stay'));shareNotice(s);applySceneChoice(s,'tabitha_private',c('tabitha_private','private_no_reason'));
- s.player.zone='side';applySceneChoice(s,'tabitha_callback',c('tabitha_callback','callback_walk'));
- assert.equal(s.ended,true);assert.equal(s.flags.radioGroupSceneDone,false);assert.equal(s.flags.tabithaCallbackDone,true);
-});
+test('observer experience contains multiple observations and a contained payoff', () => {
+  const state = createState();
+  state.player.zone = 'main';
+  observeRadio(state);
+  observeRoom(state);
+  observeCrosscurrents(state);
+  assert.equal(state.flags.closureActive, true);
+  observeClosure(state);
+  finishRun(state, { id: 'end_solo', text: 'Head home.', tags: ['left_solo'] });
 
-test('group route remains available without private route',()=>{
- const s=createState();s.player.zone='main';assert.ok(getAvailableInteractions(s,'main').includes('radio_group'));
- applySceneChoice(s,'radio_group',c('radio_group','group_joke'));assert.equal(s.flags.radioGroupTouched,true);assert.equal(s.flags.tabithaPrivateDone,false);
-});
-
-test('Priya self-settles without player shepherding',()=>{
- const s=createState();s.player.zone='main';applySceneChoice(s,'radio_group',c('radio_group','group_joke'));assert.equal(s.flags.priyaArrived,true);advanceBeat(s,6,'continue');assert.equal(s.flags.priyaSettled,true);
-});
-
-test('solo leaving remains valid without consuming social content',()=>{
- const s=createState();applySceneChoice(s,'tabitha_opening',c('tabitha_opening','open_inside'));finishRun(s,{id:'end_solo',text:'You go home alone.',tags:['left_solo']});assert.equal(s.ended,true);
+  const summary = routeValueSummary(state);
+  assert.equal(summary.experiences.observer_evening.status, 'complete');
+  assert.deepEqual(summary.experiences.observer_evening.missing, []);
+  assert.equal(state.seenScenes.length, 0);
 });

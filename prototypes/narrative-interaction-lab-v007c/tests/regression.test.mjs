@@ -6,3 +6,5 @@ test('observer can advance without focused group scene',()=>{const s=createState
 test('private intention is not repeated stay-confirmation gating',()=>{const s=createState();applySceneChoice(s,'tabitha_opening',c('tabitha_opening','open_stay'));assert.ok(getAvailableInteractions(s,'forecourt').includes('noticeboard'));assert.ok(!getAvailableInteractions(s,'forecourt').includes('stay_again'));shareNotice(s);assert.ok(getAvailableInteractions(s,'forecourt').includes('tabitha_private'));});
 
 test('quiet route keeps unrelated arrival out of shared/private feedback window',()=>{const s=createState();applySceneChoice(s,'tabitha_opening',c('tabitha_opening','open_stay'));assert.equal(s.flags.priyaArrived,false);shareNotice(s);assert.equal(s.flags.priyaArrived,false);applySceneChoice(s,'tabitha_private',c('tabitha_private','private_no_score'));assert.equal(s.flags.priyaArrived,false);});
+
+test('long NPC social movement is not snapped back to static spawn',()=>{const w=fs.readFileSync(new URL('../world.js',import.meta.url),'utf8');assert.ok(!w.includes('Math.abs(npc[id].x-s.x)>220'));});

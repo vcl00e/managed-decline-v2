@@ -48,7 +48,7 @@ export function applySceneChoice(state,sceneId,choice){
   recordConduct(state,choice.id,choice.tags??[],defaultAudience(sceneId,state));
   applyEffect(state,choice.effect);
   markDone(state,sceneId);
-  advanceBeat(state,sceneId==='tabitha_private'?10:sceneId==='closing'?10:6,`scene:${sceneId}`);
+  if(!state.ended)advanceBeat(state,sceneId==='tabitha_private'?10:sceneId==='closing'?10:6,`scene:${sceneId}`);
   return choice.responses??[];
 }
 
@@ -102,7 +102,7 @@ export function observeRadio(state){
 
 export function progressWorld(state){const c=state.characters;
   const playerSocial = ['main','radio'].includes(state.player.zone) || state.flags.radioGroupTouched;
-  const priyaThreshold = playerSocial ? 1 : state.flags.tabithaPrivateDone ? 3 : 2;
+  const priyaThreshold = playerSocial ? 1 : state.flags.tabithaPrivateDone ? 4 : Number.POSITIVE_INFINITY;
   if(state.beat>=priyaThreshold&&!state.flags.priyaArrived){state.flags.priyaArrived=true;c.priya.visible=true;c.priya.mood='arrived';c.priya.target={x:105,y:408};addVisibleChange(state,'arrival','Priya arrives. She does not require you to collect her.');}
   if(state.flags.priyaArrived&&!state.flags.priyaSettled&&state.beat>=priyaThreshold+1){state.flags.priyaSettled=true;c.priya.mood='settled independently';c.priya.target={x:610,y:330};addVisibleChange(state,'npc_initiative','Priya heads inside under her own steam and starts talking to Maya.');}
   if(state.beat>=5&&!state.flags.closureActive){state.flags.closureActive=true;c.elliot.mood='closing up';addVisibleChange(state,'world','Elliot starts closing part of the hall. The evening can continue elsewhere or end.');}

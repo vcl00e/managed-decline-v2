@@ -1,12 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { launchBrowser, sleep, waitForHttp } from '../../narrative-interaction-harness-v002/tests/e2e/cdp.mjs';
 
 const ROOT_URL = 'http://127.0.0.1:4190/';
+const SERVER = fileURLToPath(new URL('../server.mjs', import.meta.url));
 
 async function withApp(fn) {
-  const server = spawn(process.execPath, ['server.mjs'], { cwd: new URL('..', import.meta.url), stdio: 'ignore' });
+  const server = spawn(process.execPath, [SERVER], { stdio: 'ignore' });
   let browser;
   try {
     await waitForHttp(ROOT_URL);

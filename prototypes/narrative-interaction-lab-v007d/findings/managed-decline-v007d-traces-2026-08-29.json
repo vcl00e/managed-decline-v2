@@ -1,0 +1,1087 @@
+[
+  {
+    "savedAt": "2026-08-29T13:23:56.352Z",
+    "state": {
+      "runId": "48ec4cdd-8ba7-487c-a945-3e27e3645eec",
+      "fictionalTime": "20:18",
+      "minutes": 75,
+      "ended": false,
+      "player": {
+        "x": 694.1559512373225,
+        "y": 300.5877168310823
+      },
+      "tabitha": {
+        "x": 714.741062623682,
+        "y": 258.5476521695071,
+        "target": {
+          "x": 716,
+          "y": 258
+        },
+        "mood": "reading brickwork",
+        "speech": "Exactly. Opening was about this wide.",
+        "speechUntil": 126.5
+      },
+      "activity": {
+        "stage": "side_search",
+        "tabithaInitiated": true,
+        "playerEngaged": true,
+        "bannerAttempt": "hold_corner",
+        "sideSuggested": true,
+        "sideReached": true,
+        "focusedExchangeSeen": false,
+        "resolved": false,
+        "pendingEnding": null
+      },
+      "banner": {
+        "heldByPlayer": true,
+        "torchUsed": false,
+        "touchedByTabitha": true,
+        "warnedOff": false,
+        "visibleText": "...STITUTE",
+        "dateVisible": false
+      },
+      "facts": {
+        "lettersSeen": "STITUTE",
+        "dateSeen": null,
+        "doorConfirmed": false,
+        "playerFoundHinge": false,
+        "hingeFoundBy": null,
+        "playerChallengedDoor": false,
+        "seamInspected": true,
+        "plaqueSeen": false,
+        "roomName": null,
+        "tabithaLibraryMentioned": false
+      },
+      "dynamic": {
+        "workingStyle": "cooperative",
+        "playerCredit": 0,
+        "tabithaLead": 1,
+        "cautious": false,
+        "teasing": false
+      },
+      "conduct": [
+        "hold_corner",
+        "read_letters",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam"
+      ],
+      "trace": [
+        {
+          "index": 0,
+          "type": "run_started",
+          "fictionalTime": "19:03"
+        },
+        {
+          "index": 0,
+          "type": "visible_change",
+          "fictionalTime": "19:03",
+          "kind": "initiative",
+          "detail": "Tabitha walks over and starts inspecting the banner without waiting for you."
+        },
+        {
+          "index": 2,
+          "type": "tabitha_initiative",
+          "fictionalTime": "19:03",
+          "action": "inspect_banner"
+        },
+        {
+          "index": 3,
+          "type": "banner_action",
+          "fictionalTime": "19:03",
+          "action": "hold_corner"
+        },
+        {
+          "index": 1,
+          "type": "visible_change",
+          "fictionalTime": "19:03",
+          "kind": "physical",
+          "detail": "You hold the loose vinyl while Tabitha leans in to read the stone behind it."
+        },
+        {
+          "index": 5,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:06",
+          "minutes": 3,
+          "reason": "banner:hold_corner"
+        },
+        {
+          "index": 6,
+          "type": "banner_clue_action",
+          "fictionalTime": "19:06",
+          "action": "read_letters"
+        },
+        {
+          "index": 2,
+          "type": "visible_change",
+          "fictionalTime": "19:06",
+          "kind": "discovery",
+          "detail": "The exposed letters read ...STITUTE."
+        },
+        {
+          "index": 8,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:08",
+          "minutes": 2,
+          "reason": "banner_clue:read_letters"
+        },
+        {
+          "index": 3,
+          "type": "visible_change",
+          "fictionalTime": "19:08",
+          "kind": "initiative",
+          "detail": "Tabitha decides the front has given enough clues and heads round the side of the hall."
+        },
+        {
+          "index": 10,
+          "type": "tabitha_initiative",
+          "fictionalTime": "19:08",
+          "action": "move_side",
+          "reason": "read_letters"
+        },
+        {
+          "index": 4,
+          "type": "visible_change",
+          "fictionalTime": "19:08",
+          "kind": "initiative",
+          "detail": "Tabitha stops at a vertical seam in the side wall and points it out."
+        },
+        {
+          "index": 12,
+          "type": "side_action",
+          "fictionalTime": "19:08",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 5,
+          "type": "visible_change",
+          "fictionalTime": "19:08",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 14,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:10",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 15,
+          "type": "side_action",
+          "fictionalTime": "19:10",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 6,
+          "type": "visible_change",
+          "fictionalTime": "19:10",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 17,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:12",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 18,
+          "type": "side_action",
+          "fictionalTime": "19:12",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 7,
+          "type": "visible_change",
+          "fictionalTime": "19:12",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 20,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:14",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 21,
+          "type": "side_action",
+          "fictionalTime": "19:14",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 8,
+          "type": "visible_change",
+          "fictionalTime": "19:14",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 23,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:16",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 24,
+          "type": "side_action",
+          "fictionalTime": "19:16",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 9,
+          "type": "visible_change",
+          "fictionalTime": "19:16",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 26,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:18",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 27,
+          "type": "side_action",
+          "fictionalTime": "19:18",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 10,
+          "type": "visible_change",
+          "fictionalTime": "19:18",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 29,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:20",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 30,
+          "type": "side_action",
+          "fictionalTime": "19:20",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 11,
+          "type": "visible_change",
+          "fictionalTime": "19:20",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 32,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:22",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 33,
+          "type": "side_action",
+          "fictionalTime": "19:22",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 12,
+          "type": "visible_change",
+          "fictionalTime": "19:22",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 35,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:24",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 36,
+          "type": "side_action",
+          "fictionalTime": "19:24",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 13,
+          "type": "visible_change",
+          "fictionalTime": "19:24",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 38,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:26",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 39,
+          "type": "side_action",
+          "fictionalTime": "19:26",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 14,
+          "type": "visible_change",
+          "fictionalTime": "19:26",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 41,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:28",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 42,
+          "type": "side_action",
+          "fictionalTime": "19:28",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 15,
+          "type": "visible_change",
+          "fictionalTime": "19:28",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 44,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:30",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 45,
+          "type": "side_action",
+          "fictionalTime": "19:30",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 16,
+          "type": "visible_change",
+          "fictionalTime": "19:30",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 47,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:32",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 48,
+          "type": "side_action",
+          "fictionalTime": "19:32",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 17,
+          "type": "visible_change",
+          "fictionalTime": "19:32",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 50,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:34",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 51,
+          "type": "side_action",
+          "fictionalTime": "19:34",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 18,
+          "type": "visible_change",
+          "fictionalTime": "19:34",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 53,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:36",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 54,
+          "type": "side_action",
+          "fictionalTime": "19:36",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 19,
+          "type": "visible_change",
+          "fictionalTime": "19:36",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 56,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:38",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 57,
+          "type": "side_action",
+          "fictionalTime": "19:38",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 20,
+          "type": "visible_change",
+          "fictionalTime": "19:38",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 59,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:40",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 60,
+          "type": "side_action",
+          "fictionalTime": "19:40",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 21,
+          "type": "visible_change",
+          "fictionalTime": "19:40",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 62,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:42",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 63,
+          "type": "side_action",
+          "fictionalTime": "19:42",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 22,
+          "type": "visible_change",
+          "fictionalTime": "19:42",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 65,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:44",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 66,
+          "type": "side_action",
+          "fictionalTime": "19:44",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 23,
+          "type": "visible_change",
+          "fictionalTime": "19:44",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 68,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:46",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 69,
+          "type": "side_action",
+          "fictionalTime": "19:46",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 24,
+          "type": "visible_change",
+          "fictionalTime": "19:46",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 71,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:48",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 72,
+          "type": "side_action",
+          "fictionalTime": "19:48",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 25,
+          "type": "visible_change",
+          "fictionalTime": "19:48",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 74,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:50",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 75,
+          "type": "side_action",
+          "fictionalTime": "19:50",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 26,
+          "type": "visible_change",
+          "fictionalTime": "19:50",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 77,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:52",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 78,
+          "type": "side_action",
+          "fictionalTime": "19:52",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 27,
+          "type": "visible_change",
+          "fictionalTime": "19:52",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 80,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:54",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 81,
+          "type": "side_action",
+          "fictionalTime": "19:54",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 28,
+          "type": "visible_change",
+          "fictionalTime": "19:54",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 83,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:56",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 84,
+          "type": "side_action",
+          "fictionalTime": "19:56",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 29,
+          "type": "visible_change",
+          "fictionalTime": "19:56",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 86,
+          "type": "fiction_advanced",
+          "fictionalTime": "19:58",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 87,
+          "type": "side_action",
+          "fictionalTime": "19:58",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 30,
+          "type": "visible_change",
+          "fictionalTime": "19:58",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 89,
+          "type": "fiction_advanced",
+          "fictionalTime": "20:00",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 90,
+          "type": "side_action",
+          "fictionalTime": "20:00",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 31,
+          "type": "visible_change",
+          "fictionalTime": "20:00",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 92,
+          "type": "fiction_advanced",
+          "fictionalTime": "20:02",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 93,
+          "type": "side_action",
+          "fictionalTime": "20:02",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 32,
+          "type": "visible_change",
+          "fictionalTime": "20:02",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 95,
+          "type": "fiction_advanced",
+          "fictionalTime": "20:04",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 96,
+          "type": "side_action",
+          "fictionalTime": "20:04",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 33,
+          "type": "visible_change",
+          "fictionalTime": "20:04",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 98,
+          "type": "fiction_advanced",
+          "fictionalTime": "20:06",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 99,
+          "type": "side_action",
+          "fictionalTime": "20:06",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 34,
+          "type": "visible_change",
+          "fictionalTime": "20:06",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 101,
+          "type": "fiction_advanced",
+          "fictionalTime": "20:08",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 102,
+          "type": "side_action",
+          "fictionalTime": "20:08",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 35,
+          "type": "visible_change",
+          "fictionalTime": "20:08",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 104,
+          "type": "fiction_advanced",
+          "fictionalTime": "20:10",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 105,
+          "type": "side_action",
+          "fictionalTime": "20:10",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 36,
+          "type": "visible_change",
+          "fictionalTime": "20:10",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 107,
+          "type": "fiction_advanced",
+          "fictionalTime": "20:12",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 108,
+          "type": "side_action",
+          "fictionalTime": "20:12",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 37,
+          "type": "visible_change",
+          "fictionalTime": "20:12",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 110,
+          "type": "fiction_advanced",
+          "fictionalTime": "20:14",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 111,
+          "type": "side_action",
+          "fictionalTime": "20:14",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 38,
+          "type": "visible_change",
+          "fictionalTime": "20:14",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 113,
+          "type": "fiction_advanced",
+          "fictionalTime": "20:16",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        },
+        {
+          "index": 114,
+          "type": "side_action",
+          "fictionalTime": "20:16",
+          "action": "inspect_seam"
+        },
+        {
+          "index": 39,
+          "type": "visible_change",
+          "fictionalTime": "20:16",
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 116,
+          "type": "fiction_advanced",
+          "fictionalTime": "20:18",
+          "minutes": 2,
+          "reason": "side:inspect_seam"
+        }
+      ],
+      "visibleChanges": [
+        {
+          "index": 0,
+          "kind": "initiative",
+          "detail": "Tabitha walks over and starts inspecting the banner without waiting for you."
+        },
+        {
+          "index": 1,
+          "kind": "physical",
+          "detail": "You hold the loose vinyl while Tabitha leans in to read the stone behind it."
+        },
+        {
+          "index": 2,
+          "kind": "discovery",
+          "detail": "The exposed letters read ...STITUTE."
+        },
+        {
+          "index": 3,
+          "kind": "initiative",
+          "detail": "Tabitha decides the front has given enough clues and heads round the side of the hall."
+        },
+        {
+          "index": 4,
+          "kind": "initiative",
+          "detail": "Tabitha stops at a vertical seam in the side wall and points it out."
+        },
+        {
+          "index": 5,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 6,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 7,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 8,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 9,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 10,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 11,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 12,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 13,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 14,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 15,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 16,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 17,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 18,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 19,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 20,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 21,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 22,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 23,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 24,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 25,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 26,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 27,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 28,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 29,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 30,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 31,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 32,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 33,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 34,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 35,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 36,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 37,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 38,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        },
+        {
+          "index": 39,
+          "kind": "physical",
+          "detail": "You trace the straight mortar joint where the brick pattern changes."
+        }
+      ],
+      "ending": null
+    }
+  }
+]

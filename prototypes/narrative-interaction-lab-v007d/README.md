@@ -1,8 +1,10 @@
 # Narrative Interaction Lab v007d — Dyadic Interaction Grammar
 
-**Status:** ready for external playtest — exact-branch checks and dyadic whole-play preflight passed
+**Status:** failed external playtest — archived; do not patch forward
 
 **Process:** governed by [`../PROTOTYPE-POLICY.md`](../PROTOTYPE-POLICY.md)
+
+**External failure:** [`findings/001-2026-08-29-external-playtest-unplayable.md`](./findings/001-2026-08-29-external-playtest-unplayable.md)
 
 **Internal review:** [`findings/000-2026-08-28-internal-dyadic-preflight.md`](./findings/000-2026-08-28-internal-dyadic-preflight.md)
 

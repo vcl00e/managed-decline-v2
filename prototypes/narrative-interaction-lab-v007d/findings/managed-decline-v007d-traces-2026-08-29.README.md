@@ -1,1 +1,0 @@
-The exact uploaded JSON trace is being materialized on this branch by the infrastructure-stabilisation change. See `001-2026-08-29-external-playtest-unplayable.md` for the analysed failure.

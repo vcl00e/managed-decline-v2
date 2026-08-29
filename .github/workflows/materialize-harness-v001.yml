@@ -45,6 +45,7 @@ jobs:
           set -euo pipefail
           rm -rf .materialize
           rm -f .github/workflows/materialize-harness-v001.yml
+          rm -f .github/workflows/narrative-interaction-harness-v001.yml
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add -A

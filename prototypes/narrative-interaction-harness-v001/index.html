@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Managed Decline — Interaction Harness v001</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="app">
+    <header class="topbar">
+      <div>
+        <strong>Interaction Harness v001</strong>
+        <span>internal reliability fixture</span>
+      </div>
+      <div class="hud"><span id="hud-stage"></span><span id="hud-time"></span></div>
+    </header>
+
+    <section class="stage" aria-label="Harness fixture">
+      <canvas id="world" width="840" height="460"></canvas>
+      <div id="notice" class="notice" aria-live="polite"></div>
+      <div id="interaction-prompt" class="prompt" aria-live="polite"></div>
+      <div class="controls">WASD / arrows move · E interact · Enter advances · 1–2 choose · Esc pauses focused exchange</div>
+    </section>
+
+    <footer>
+      <span>This fixture exists to verify runtime behavior, not narrative quality.</span>
+      <button id="reset" class="ghost" type="button">Reset fixture</button>
+    </footer>
+  </main>
+
+  <section id="vn" class="vn" hidden role="dialog" aria-modal="true">
+    <div class="vn-card">
+      <div id="vn-title" class="vn-title"></div>
+      <div class="portrait">ARI</div>
+      <div class="vn-copy">
+        <div id="vn-speaker" class="speaker"></div>
+        <p id="vn-text"></p>
+        <div id="vn-choices" class="choices"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="debrief" class="debrief" hidden>
+    <div class="debrief-card">
+      <p class="eyebrow">Fixture complete</p>
+      <h1 id="ending-title">Rendered-client route completed.</h1>
+      <p id="ending-copy"></p>
+      <div class="row">
+        <button id="export" type="button">Export trace</button>
+        <button id="run-again" type="button" class="ghost dark">Run again</button>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

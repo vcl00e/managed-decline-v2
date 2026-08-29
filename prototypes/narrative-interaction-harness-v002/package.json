@@ -1,0 +1,16 @@
+{
+  "name": "managed-decline-narrative-interaction-harness-v002",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "find . -type f \\( -name '*.js' -o -name '*.mjs' \\) -not -path './node_modules/*' -print0 | xargs -0 -n1 node --check",
+    "test:unit": "node --test tests/unit/*.test.mjs",
+    "test:e2e": "node --test tests/e2e/*.test.mjs",
+    "test": "npm run check && npm run test:unit && npm run test:e2e"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

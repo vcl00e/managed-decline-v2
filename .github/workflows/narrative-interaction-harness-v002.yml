@@ -1,0 +1,46 @@
+name: Narrative Interaction Harness v002
+
+on:
+  push:
+    branches:
+      - infrastructure/narrative-interaction-harness-v002
+  pull_request:
+    paths:
+      - 'prototypes/narrative-interaction-harness-v002/**'
+      - '.github/workflows/narrative-interaction-harness-v002.yml'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: prototypes/narrative-interaction-harness-v002
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Locate Chromium
+        shell: bash
+        run: |
+          browser="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
+          test -n "$browser"
+          echo "CHROMIUM_PATH=$browser" >> "$GITHUB_ENV"
+          "$browser" --version
+      - name: Contract, unit, rendered-client and trace gates
+        run: npm test
+      - name: HTTP smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          node server.mjs > /tmp/md-harness-v002.log 2>&1 &
+          pid=$!
+          trap 'kill $pid || true' EXIT
+          for i in {1..30}; do
+            if curl --fail --silent 'http://127.0.0.1:4182/?scenario=parcel-fixture' | grep -q 'Narrative Interaction Harness v002'; then
+              exit 0
+            fi
+            sleep 0.2
+          done
+          cat /tmp/md-harness-v002.log
+          exit 1

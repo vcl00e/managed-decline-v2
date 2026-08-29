@@ -3,6 +3,10 @@ extends Node3D
 const PlayerScript = preload("res://scripts/player.gd")
 const CompanionScript = preload("res://scripts/companion.gd")
 
+const CAMERA_FOV := 34.0
+const CAMERA_SIDE_LIMIT := 5.4
+const CAMERA_DEPTH_LIMIT := 4.0
+
 var player
 var companion
 var camera: Camera3D
@@ -11,6 +15,12 @@ var caption_label: Label
 var debug_label: Label
 
 var camera_preset := 1
+var camera_angle_index := 1
+var camera_yaw := deg_to_rad(45.0)
+var camera_target_yaw := deg_to_rad(45.0)
+var camera_focus := Vector3.ZERO
+var dead_zone_focus := Vector3.ZERO
+
 var hud_visible := true
 var total_distance := 0.0
 var previous_player_position := Vector3.ZERO
@@ -42,7 +52,7 @@ func _ready() -> void:
 	_build_camera()
 	_build_ui()
 	previous_player_position = player.global_position
-	_set_caption("There is no objective marker. Walk where you are curious; Tabitha should remain company, not a target to chase.")
+	_set_caption("Perspective miniature + large dead-zone. Walk normally; the camera should stay composed instead of constantly drifting after you.")
 
 func _physics_process(delta: float) -> void:
 	if player == null:
@@ -65,9 +75,14 @@ func _physics_process(delta: float) -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo:
 		return
+
 	if event.keycode == KEY_C:
 		camera_preset = (camera_preset + 1) % 3
-		_apply_camera_preset()
+		_set_caption("Framing: %s. These are discrete authored states, not analogue camera fiddling." % _camera_preset_name())
+	elif event.keycode == KEY_Z:
+		_rotate_camera(-1)
+	elif event.keycode == KEY_X:
+		_rotate_camera(1)
 	elif event.keycode == KEY_F1:
 		hud_visible = not hud_visible
 		hud_label.visible = hud_visible
@@ -171,36 +186,93 @@ func _spawn_player_and_companion() -> void:
 
 func _build_camera() -> void:
 	camera = Camera3D.new()
-	camera.projection = Camera3D.PROJECTION_ORTHOGONAL
+	camera.name = "DioramaCamera"
+	camera.projection = Camera3D.PROJECTION_PERSPECTIVE
+	camera.fov = CAMERA_FOV
+	camera.keep_aspect = Camera3D.KEEP_HEIGHT
+	camera.near = 0.1
+	camera.far = 120.0
 	camera.current = true
 	add_child(camera)
-	_apply_camera_preset()
-	_update_camera(1.0)
 
-func _apply_camera_preset() -> void:
-	match camera_preset:
-		0:
-			camera.size = 22.0
-		1:
-			camera.size = 27.0
-		2:
-			camera.size = 33.0
+	dead_zone_focus = player.global_position
+	dead_zone_focus.y = 0.9
+	camera_focus = dead_zone_focus
+	camera_yaw = camera_target_yaw
+	_apply_camera_transform()
 
 func _update_camera(delta: float) -> void:
-	var focus: Vector3 = player.global_position
-	focus.x = clampf(focus.x, -6.5, 7.5)
-	focus.z = clampf(focus.z, -4.0, 6.0)
-	focus.y = 0.0
+	_update_dead_zone_focus()
+	camera_focus = dead_zone_focus
 
-	var offset := Vector3(20.0, 24.0, 23.0)
-	if camera_preset == 0:
-		offset = Vector3(17.0, 20.0, 20.0)
-	elif camera_preset == 2:
-		offset = Vector3(23.0, 29.0, 27.0)
+	var rotation_blend := clampf(delta * 8.5, 0.0, 1.0)
+	camera_yaw = lerp_angle(camera_yaw, camera_target_yaw, rotation_blend)
+	_apply_camera_transform()
 
-	var desired := focus + offset
-	camera.global_position = camera.global_position.lerp(desired, minf(1.0, delta * 5.0))
-	camera.look_at(focus + Vector3(0.0, 0.8, 0.0), Vector3.UP)
+func _update_dead_zone_focus() -> void:
+	var delta: Vector3 = player.global_position - dead_zone_focus
+	delta.y = 0.0
+
+	var right := Vector3(-sin(camera_target_yaw), 0.0, cos(camera_target_yaw))
+	var forward := Vector3(-cos(camera_target_yaw), 0.0, -sin(camera_target_yaw))
+
+	var side := delta.dot(right)
+	var depth := delta.dot(forward)
+
+	if absf(side) > CAMERA_SIDE_LIMIT:
+		var side_sign := 1.0 if side > 0.0 else -1.0
+		dead_zone_focus += right * (side - side_sign * CAMERA_SIDE_LIMIT)
+
+	if absf(depth) > CAMERA_DEPTH_LIMIT:
+		var depth_sign := 1.0 if depth > 0.0 else -1.0
+		dead_zone_focus += forward * (depth - depth_sign * CAMERA_DEPTH_LIMIT)
+
+	dead_zone_focus.y = 0.9
+
+func _apply_camera_transform() -> void:
+	var radius := _camera_radius()
+	var height := _camera_height()
+	camera.global_position = camera_focus + Vector3(
+		cos(camera_yaw) * radius,
+		height,
+		sin(camera_yaw) * radius
+	)
+	camera.look_at(camera_focus + Vector3(0.0, 0.30, 0.0), Vector3.UP)
+
+func _camera_radius() -> float:
+	match camera_preset:
+		0:
+			return 16.5
+		1:
+			return 25.5
+		2:
+			return 34.0
+	return 25.5
+
+func _camera_height() -> float:
+	match camera_preset:
+		0:
+			return 9.5
+		1:
+			return 15.2
+		2:
+			return 20.5
+	return 15.2
+
+func _camera_preset_name() -> String:
+	match camera_preset:
+		0:
+			return "close"
+		1:
+			return "standard"
+		2:
+			return "wide"
+	return "standard"
+
+func _rotate_camera(direction: int) -> void:
+	camera_angle_index = (camera_angle_index + direction + 8) % 8
+	camera_target_yaw = deg_to_rad(float(camera_angle_index) * 45.0)
+	_set_caption("Camera angle %d/8. Rotation is smooth; the destination is an exact 45° authored view." % (camera_angle_index + 1))
 
 func _build_ui() -> void:
 	var layer := CanvasLayer.new()
@@ -208,7 +280,7 @@ func _build_ui() -> void:
 
 	var top_panel := PanelContainer.new()
 	top_panel.position = Vector2(24.0, 24.0)
-	top_panel.custom_minimum_size = Vector2(470.0, 0.0)
+	top_panel.custom_minimum_size = Vector2(570.0, 0.0)
 	layer.add_child(top_panel)
 
 	var margin := MarginContainer.new()
@@ -224,7 +296,7 @@ func _build_ui() -> void:
 	margin.add_child(hud_label)
 
 	debug_label = Label.new()
-	debug_label.position = Vector2(24.0, 155.0)
+	debug_label.position = Vector2(24.0, 175.0)
 	debug_label.add_theme_font_size_override("font_size", 17)
 	debug_label.add_theme_color_override("font_color", Color("#233238"))
 	layer.add_child(debug_label)
@@ -250,10 +322,15 @@ func _build_ui() -> void:
 	caption_margin.add_child(caption_label)
 
 func _update_hud() -> void:
-	var camera_names := ["closer", "baseline", "wide"]
-	hud_label.text = "DIORAMA ENVIRONMENT v001\nWASD / arrows — walk    C — camera: %s\nF1 — hide test HUD    F8 — save trace" % camera_names[camera_preset]
+	hud_label.text = "DIORAMA ENVIRONMENT v001\nWASD / arrows — walk    C — framing: %s\nZ / X — rotate 45°    F1 — hide HUD    F8 — save trace" % _camera_preset_name()
 	var together_ratio := 0.0 if elapsed_seconds <= 0.0 else together_seconds / elapsed_seconds
-	debug_label.text = "distance %.0fm   together %.0f%%   max separation %.1fm   landmarks %d/5" % [total_distance, together_ratio * 100.0, max_companion_separation, visited_landmarks.size()]
+	debug_label.text = "perspective · dead-zone   angle %d/8   distance %.0fm   together %.0f%%   max separation %.1fm   landmarks %d/5" % [
+		camera_angle_index + 1,
+		total_distance,
+		together_ratio * 100.0,
+		max_companion_separation,
+		visited_landmarks.size()
+	]
 
 func _set_caption(text: String) -> void:
 	caption_label.text = text
@@ -285,7 +362,13 @@ func _export_trace() -> void:
 		"prototype": "diorama-environment-v001",
 		"elapsed_seconds": snappedf(elapsed_seconds, 0.01),
 		"distance_travelled": snappedf(total_distance, 0.01),
+		"camera_projection": "perspective",
 		"camera_preset": camera_preset,
+		"camera_preset_name": _camera_preset_name(),
+		"camera_angle_index": camera_angle_index,
+		"camera_angle_degrees": camera_angle_index * 45,
+		"camera_dead_zone_side": CAMERA_SIDE_LIMIT,
+		"camera_dead_zone_depth": CAMERA_DEPTH_LIMIT,
 		"together_ratio": snappedf(together_ratio, 0.001),
 		"max_companion_separation": snappedf(max_companion_separation, 0.01),
 		"visited_shared_stops": visited_shared_stops,

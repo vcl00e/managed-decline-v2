@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { launchBrowser, sleep, waitForHttp } from '../../narrative-interaction-harness-v002/tests/e2e/cdp.mjs';
 
 const scenarioRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const port = 4190;
+const port = 4197;
 const ROOT_URL = `http://127.0.0.1:${port}/`;
 
 async function withApp(fn) {
@@ -15,13 +15,24 @@ async function withApp(fn) {
     env: { ...process.env, PORT: String(port) },
     stdio: ['ignore', 'pipe', 'pipe'],
   });
+  let stdout = '';
+  let stderr = '';
+  server.stdout.on('data', (chunk) => { stdout += chunk.toString(); });
+  server.stderr.on('data', (chunk) => { stderr += chunk.toString(); });
   let browser;
   try {
-    await waitForHttp(ROOT_URL);
+    await Promise.race([
+      waitForHttp(ROOT_URL),
+      new Promise((_, reject) => server.once('exit', (code, signal) => reject(new Error(
+        `baseline server exited before HTTP readiness (code=${code}, signal=${signal})\nstdout:\n${stdout}\nstderr:\n${stderr}`,
+      )))),
+    ]);
     browser = await launchBrowser({ debugPort: 9490 + Math.floor(Math.random() * 100) });
     await browser.client.send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
     await browser.navigate(ROOT_URL);
     await fn(browser.client);
+  } catch (error) {
+    throw new Error(`${error.message}\nserver stdout:\n${stdout}\nserver stderr:\n${stderr}`);
   } finally {
     await browser?.close();
     server.kill('SIGTERM');

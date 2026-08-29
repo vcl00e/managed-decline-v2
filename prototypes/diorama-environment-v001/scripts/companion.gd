@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 
 	var move_dir: Vector3 = player.last_move_dir
 	var side := Vector3(-move_dir.z, 0.0, move_dir.x) * 0.62
-	var target := player.global_position - move_dir * follow_distance + side
+	var target: Vector3 = player.global_position - move_dir * follow_distance + side
 	target.y = global_position.y
 
 	var offset := target - global_position

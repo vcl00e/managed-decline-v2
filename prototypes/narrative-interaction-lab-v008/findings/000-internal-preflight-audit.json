@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "runs": [
+    {
+      "scenarioId": "narrative-interaction-lab-v008",
+      "runId": "run-1788021595049",
+      "passed": true,
+      "actionCount": 3,
+      "ended": true,
+      "errors": [],
+      "warnings": []
+    }
+  ],
+  "errorCount": 0,
+  "warningCount": 0
+}

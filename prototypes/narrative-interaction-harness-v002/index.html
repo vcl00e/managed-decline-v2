@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Narrative Interaction Harness v002</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">Managed Decline · internal infrastructure</p>
+        <h1 id="scenario-title">Narrative Interaction Harness v002</h1>
+        <p id="scenario-subtitle" class="subtitle"></p>
+      </div>
+      <div class="hud" aria-label="Current fictional context">
+        <span id="hud-stage"></span>
+        <span id="hud-time"></span>
+      </div>
+    </header>
+
+    <section class="playfield" aria-label="Playable fixture">
+      <canvas id="world" width="840" height="460"></canvas>
+      <div id="notice" class="notice" aria-live="polite"></div>
+      <div id="interaction-prompt" class="interaction-prompt" aria-live="polite"></div>
+    </section>
+
+    <p class="controls">Move: WASD / arrows · Interact: E / Enter · Cycle nearby actions: Tab · Cancel focused interaction: Esc</p>
+
+    <section id="vn" class="vn" hidden aria-label="Focused interaction">
+      <div class="vn-card">
+        <p id="vn-title" class="vn-title"></p>
+        <p id="vn-speaker" class="vn-speaker"></p>
+        <p id="vn-text" class="vn-text"></p>
+        <div id="vn-choices" class="vn-choices"></div>
+      </div>
+    </section>
+
+    <section id="debrief" class="debrief" hidden>
+      <h2>Run complete</h2>
+      <p id="ending-copy"></p>
+      <div class="debrief-actions">
+        <button id="export" type="button">Export trace</button>
+        <button id="run-again" type="button">Run again</button>
+      </div>
+    </section>
+
+    <button id="reset" class="reset" type="button">Reset fixture</button>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

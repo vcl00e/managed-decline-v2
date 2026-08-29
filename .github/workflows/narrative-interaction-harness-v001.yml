@@ -1,0 +1,48 @@
+name: Narrative Interaction Harness v001
+
+on:
+  push:
+    branches:
+      - infrastructure/narrative-interaction-harness-v001
+  pull_request:
+    paths:
+      - 'prototypes/narrative-interaction-harness-v001/**'
+      - '.github/workflows/narrative-interaction-harness-v001.yml'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: prototypes/narrative-interaction-harness-v001
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Locate browser
+        shell: bash
+        run: |
+          set -euo pipefail
+          browser="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
+          echo "CHROMIUM_PATH=$browser" >> "$GITHUB_ENV"
+          "$browser" --version
+      - name: Syntax, unit, rendered-client and trace gates
+        run: npm test
+      - name: Confirm historical regression is rejected
+        run: npm run audit:v007d-fixture
+      - name: HTTP smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          node server.mjs > /tmp/md-harness-server.log 2>&1 &
+          pid=$!
+          trap 'kill $pid || true' EXIT
+          for i in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:4180/ | grep -q 'Interaction Harness v001'; then
+              exit 0
+            fi
+            sleep 0.25
+          done
+          cat /tmp/md-harness-server.log
+          exit 1

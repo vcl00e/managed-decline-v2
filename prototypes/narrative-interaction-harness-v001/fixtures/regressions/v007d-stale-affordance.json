@@ -1,0 +1,40 @@
+[
+  {
+    "savedAt": "2026-08-29T13:23:56.352Z",
+    "state": {
+      "runId": "v007d-regression-fixture",
+      "fictionalTime": "20:18",
+      "ended": false,
+      "activity": {
+        "stage": "side_search",
+        "focusedExchangeSeen": false,
+        "resolved": false
+      },
+      "conduct": [
+        "hold_corner",
+        "read_letters",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam",
+        "inspect_seam"
+      ],
+      "trace": [
+        { "type": "side_action", "action": "inspect_seam", "fictionalTime": "19:08" },
+        { "type": "fiction_advanced", "minutes": 2, "reason": "side:inspect_seam", "fictionalTime": "19:10" },
+        { "type": "side_action", "action": "inspect_seam", "fictionalTime": "19:10" },
+        { "type": "fiction_advanced", "minutes": 2, "reason": "side:inspect_seam", "fictionalTime": "19:12" },
+        { "type": "side_action", "action": "inspect_seam", "fictionalTime": "19:12" },
+        { "type": "fiction_advanced", "minutes": 2, "reason": "side:inspect_seam", "fictionalTime": "19:14" },
+        { "type": "side_action", "action": "inspect_seam", "fictionalTime": "19:14" },
+        { "type": "fiction_advanced", "minutes": 2, "reason": "side:inspect_seam", "fictionalTime": "19:16" }
+      ],
+      "visibleChanges": [
+        { "kind": "physical", "detail": "You trace the straight mortar joint where the brick pattern changes." },
+        { "kind": "physical", "detail": "You trace the straight mortar joint where the brick pattern changes." },
+        { "kind": "physical", "detail": "You trace the straight mortar joint where the brick pattern changes." },
+        { "kind": "physical", "detail": "You trace the straight mortar joint where the brick pattern changes." }
+      ]
+    }
+  }
+]

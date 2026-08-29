@@ -1,0 +1,17 @@
+{
+  "name": "managed-decline-narrative-interaction-harness-v001",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check app.js && node --check src/engine.js && node --check src/scenario.js && node --check src/trace-audit.js && node --check src/vn.js && node --check server.mjs && node --check tools/audit-trace.mjs && node --check tests/e2e/cdp.mjs",
+    "test:unit": "node --test tests/unit/*.test.mjs",
+    "test:e2e": "node --test tests/e2e/*.test.mjs",
+    "test": "npm run check && npm run test:unit && npm run test:e2e",
+    "audit:v007d-fixture": "node tools/audit-trace.mjs fixtures/regressions/v007d-stale-affordance.json --expect-failure",
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

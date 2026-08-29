@@ -21,10 +21,21 @@ func _physics_process(delta: float) -> void:
 	if wasd.length_squared() > 0.001:
 		input_2d = wasd.normalized()
 
-	# Movement is screen-relative for the fixed isometric-ish camera.
-	var camera_forward := Vector3(-0.656, 0.0, -0.755)
-	var camera_right := Vector3(0.755, 0.0, -0.656)
-	var direction := camera_right * input_2d.x + camera_forward * -input_2d.y
+	var active_camera: Camera3D = get_viewport().get_camera_3d()
+	var camera_forward := Vector3(0.0, 0.0, -1.0)
+	var camera_right := Vector3(1.0, 0.0, 0.0)
+	if active_camera != null:
+		camera_forward = -active_camera.global_transform.basis.z
+		camera_forward.y = 0.0
+		if camera_forward.length_squared() > 0.001:
+			camera_forward = camera_forward.normalized()
+
+		camera_right = active_camera.global_transform.basis.x
+		camera_right.y = 0.0
+		if camera_right.length_squared() > 0.001:
+			camera_right = camera_right.normalized()
+
+	var direction: Vector3 = camera_right * input_2d.x + camera_forward * -input_2d.y
 	if direction.length_squared() > 0.001:
 		direction = direction.normalized()
 		last_move_dir = direction

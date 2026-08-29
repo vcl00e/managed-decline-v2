@@ -1,0 +1,372 @@
+{
+  "scenarioId": "narrative-interaction-lab-v008",
+  "runId": "run-1788021595049",
+  "fictionalMinutes": 4,
+  "fictionalTime": "20:05",
+  "ended": true,
+  "ending": "noticeboard",
+  "mode": "world",
+  "stage": "complete",
+  "player": {
+    "x": 722.1350000000008,
+    "y": 266.50000000000017
+  },
+  "actors": {
+    "tabitha": {
+      "id": "tabitha",
+      "x": 446,
+      "y": 418,
+      "target": {
+        "x": 446,
+        "y": 418
+      },
+      "mood": "waiting to see where the sheet goes",
+      "speech": null,
+      "speechUntil": 0
+    }
+  },
+  "facts": {
+    "tabithaInitiated": true,
+    "kioskJoined": true,
+    "firstAnswer": "move_fiction",
+    "outtakeReaction": "nearly_laughed",
+    "printoutTaken": true,
+    "note": "biscuits",
+    "sheetText": "BUY BISCUITS BEFORE HOUR SIX",
+    "sheetHeld": false,
+    "destination": "noticeboard"
+  },
+  "memory": {},
+  "currentVN": null,
+  "consumedActions": [
+    "join_kiosk",
+    "take_printout",
+    "pin_sheet"
+  ],
+  "actionUses": {
+    "join_kiosk": 1,
+    "take_printout": 1,
+    "pin_sheet": 1
+  },
+  "visibleChanges": [
+    {
+      "index": 0,
+      "kind": "situation",
+      "detail": "The archived build recognises a mouse movement and resumes where somebody left it."
+    },
+    {
+      "index": 1,
+      "kind": "situation",
+      "detail": "Tabitha opens FACILITATOR TOOLS. A printer behind you wakes with a mechanical cough."
+    },
+    {
+      "index": 2,
+      "kind": "physical",
+      "detail": "You catch the warm sheet before it folds itself into the output tray."
+    },
+    {
+      "index": 3,
+      "kind": "physical",
+      "detail": "The facilitator notes now read: BUY BISCUITS BEFORE HOUR SIX."
+    },
+    {
+      "index": 4,
+      "kind": "ending",
+      "detail": "Tabitha reads it on the board. “Mandatory learning.”"
+    }
+  ],
+  "trace": [
+    {
+      "index": 0,
+      "type": "run_started",
+      "fictionalTime": "20:01"
+    },
+    {
+      "minutes": 1,
+      "reason": "action:join_kiosk",
+      "index": 1,
+      "type": "fiction_advanced",
+      "fictionalTime": "20:02"
+    },
+    {
+      "index": 2,
+      "kind": "situation",
+      "detail": "The archived build recognises a mouse movement and resumes where somebody left it.",
+      "type": "visible_change",
+      "fictionalTime": "20:02"
+    },
+    {
+      "actionId": "join_kiosk",
+      "accepted": true,
+      "repeatable": false,
+      "useNumber": 1,
+      "stageBefore": "kiosk_available",
+      "stageAfter": "kiosk_question",
+      "promptBefore": {
+        "id": "join_kiosk",
+        "label": "Join Tabitha at the old kiosk",
+        "count": 1
+      },
+      "promptAfter": null,
+      "meaningfulChange": true,
+      "timeAdvanced": 1,
+      "output": "The archived build recognises a mouse movement and resumes where somebody left it.",
+      "index": 3,
+      "type": "action_performed",
+      "fictionalTime": "20:02"
+    },
+    {
+      "index": 4,
+      "type": "input_event",
+      "fictionalTime": "20:02",
+      "context": "vn",
+      "key": "enter",
+      "handled": true
+    },
+    {
+      "index": 5,
+      "type": "input_event",
+      "fictionalTime": "20:02",
+      "context": "vn",
+      "key": "enter",
+      "handled": true
+    },
+    {
+      "index": 6,
+      "type": "input_event",
+      "fictionalTime": "20:02",
+      "context": "vn",
+      "key": "enter",
+      "handled": true
+    },
+    {
+      "nodeId": "question",
+      "choiceId": "move_fiction",
+      "stageBefore": "kiosk_question",
+      "stageAfter": "kiosk_outtake",
+      "meaningfulChange": true,
+      "nextNode": "outtake",
+      "promptAfter": null,
+      "output": null,
+      "index": 7,
+      "type": "vn_choice",
+      "fictionalTime": "20:02"
+    },
+    {
+      "index": 8,
+      "type": "input_event",
+      "fictionalTime": "20:02",
+      "context": "vn",
+      "key": "3",
+      "handled": true
+    },
+    {
+      "index": 9,
+      "type": "input_event",
+      "fictionalTime": "20:02",
+      "context": "vn",
+      "key": "enter",
+      "handled": true
+    },
+    {
+      "index": 10,
+      "type": "input_event",
+      "fictionalTime": "20:02",
+      "context": "vn",
+      "key": "enter",
+      "handled": true
+    },
+    {
+      "index": 11,
+      "type": "input_event",
+      "fictionalTime": "20:02",
+      "context": "vn",
+      "key": "enter",
+      "handled": true
+    },
+    {
+      "index": 12,
+      "type": "input_event",
+      "fictionalTime": "20:02",
+      "context": "vn",
+      "key": "enter",
+      "handled": true
+    },
+    {
+      "index": 13,
+      "kind": "situation",
+      "detail": "Tabitha opens FACILITATOR TOOLS. A printer behind you wakes with a mechanical cough.",
+      "type": "visible_change",
+      "fictionalTime": "20:02"
+    },
+    {
+      "nodeId": "outtake",
+      "choiceId": "nearly_laughed",
+      "stageBefore": "kiosk_outtake",
+      "stageAfter": "reach_printer",
+      "meaningfulChange": true,
+      "nextNode": null,
+      "promptAfter": null,
+      "output": "Tabitha opens FACILITATOR TOOLS. A printer behind you wakes with a mechanical cough.",
+      "index": 14,
+      "type": "vn_choice",
+      "fictionalTime": "20:02"
+    },
+    {
+      "index": 15,
+      "type": "input_event",
+      "fictionalTime": "20:02",
+      "context": "vn",
+      "key": "3",
+      "handled": true
+    },
+    {
+      "index": 16,
+      "type": "input_event",
+      "fictionalTime": "20:02",
+      "context": "vn",
+      "key": "enter",
+      "handled": true
+    },
+    {
+      "index": 17,
+      "type": "input_event",
+      "fictionalTime": "20:02",
+      "context": "vn",
+      "key": "enter",
+      "handled": true
+    },
+    {
+      "minutes": 1,
+      "reason": "action:take_printout",
+      "index": 18,
+      "type": "fiction_advanced",
+      "fictionalTime": "20:03"
+    },
+    {
+      "index": 19,
+      "kind": "physical",
+      "detail": "You catch the warm sheet before it folds itself into the output tray.",
+      "type": "visible_change",
+      "fictionalTime": "20:03"
+    },
+    {
+      "actionId": "take_printout",
+      "accepted": true,
+      "repeatable": false,
+      "useNumber": 1,
+      "stageBefore": "reach_printer",
+      "stageAfter": "plan",
+      "promptBefore": {
+        "id": "take_printout",
+        "label": "Take the sheet from the printer with Tabitha",
+        "count": 1
+      },
+      "promptAfter": null,
+      "meaningfulChange": true,
+      "timeAdvanced": 1,
+      "output": "You catch the warm sheet before it folds itself into the output tray.",
+      "index": 20,
+      "type": "action_performed",
+      "fictionalTime": "20:03"
+    },
+    {
+      "index": 21,
+      "type": "input_event",
+      "fictionalTime": "20:03",
+      "context": "vn",
+      "key": "enter",
+      "handled": true
+    },
+    {
+      "index": 22,
+      "type": "input_event",
+      "fictionalTime": "20:03",
+      "context": "vn",
+      "key": "enter",
+      "handled": true
+    },
+    {
+      "index": 23,
+      "type": "input_event",
+      "fictionalTime": "20:03",
+      "context": "vn",
+      "key": "enter",
+      "handled": true
+    },
+    {
+      "index": 24,
+      "kind": "physical",
+      "detail": "The facilitator notes now read: BUY BISCUITS BEFORE HOUR SIX.",
+      "type": "visible_change",
+      "fictionalTime": "20:03"
+    },
+    {
+      "nodeId": "plan",
+      "choiceId": "note_biscuits",
+      "stageBefore": "plan",
+      "stageAfter": "place_sheet",
+      "meaningfulChange": true,
+      "nextNode": null,
+      "promptAfter": {
+        "id": "give_sheet",
+        "label": "Give the amended plan to Tabitha",
+        "count": 2
+      },
+      "output": "The facilitator notes now read: BUY BISCUITS BEFORE HOUR SIX.",
+      "index": 25,
+      "type": "vn_choice",
+      "fictionalTime": "20:03"
+    },
+    {
+      "index": 26,
+      "type": "input_event",
+      "fictionalTime": "20:03",
+      "context": "vn",
+      "key": "2",
+      "handled": true
+    },
+    {
+      "index": 27,
+      "type": "input_event",
+      "fictionalTime": "20:03",
+      "context": "vn",
+      "key": "enter",
+      "handled": true
+    },
+    {
+      "minutes": 2,
+      "reason": "action:pin_sheet",
+      "index": 28,
+      "type": "fiction_advanced",
+      "fictionalTime": "20:05"
+    },
+    {
+      "index": 29,
+      "kind": "ending",
+      "detail": "Tabitha reads it on the board. “Mandatory learning.”",
+      "type": "visible_change",
+      "fictionalTime": "20:05"
+    },
+    {
+      "actionId": "pin_sheet",
+      "accepted": true,
+      "repeatable": false,
+      "useNumber": 1,
+      "stageBefore": "place_sheet",
+      "stageAfter": "complete",
+      "promptBefore": {
+        "id": "pin_sheet",
+        "label": "Pin the amended plan to the staff noticeboard",
+        "count": 2
+      },
+      "promptAfter": null,
+      "meaningfulChange": true,
+      "timeAdvanced": 2,
+      "output": "Tabitha reads it on the board. “Mandatory learning.”",
+      "index": 30,
+      "type": "action_performed",
+      "fictionalTime": "20:05"
+    }
+  ]
+}

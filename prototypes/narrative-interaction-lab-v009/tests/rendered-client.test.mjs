@@ -40,6 +40,13 @@ async function advance(client, count = 1) {
   for (let i = 0; i < count; i += 1) await client.press('enter');
 }
 
+async function mapInputReady() {
+  // The inherited shell intentionally rejects duplicate map interactions for 240ms.
+  // Automated VN traversal is much faster than a reader, so wait past that lock
+  // before testing the next distinct map action.
+  await sleep(280);
+}
+
 test('intended rendered route preserves recovered UX and completes a reciprocal two-photo exchange', async () => {
   await withBrowser(async (client) => {
     const initial = await client.text('#situation');
@@ -72,6 +79,7 @@ test('intended rendered route preserves recovered UX and completes a reciprocal 
     assert.equal(state.actors.tabitha.target.y, 397);
     assert.match(await client.text('#situation'), /One shot remains/);
 
+    await mapInputReady();
     await client.press('e'); // use last shot
     await advance(client); // Tabitha line
     await client.press('1'); // candid Tabitha
@@ -84,6 +92,7 @@ test('intended rendered route preserves recovered UX and completes a reciprocal 
     assert.equal(state.actors.tabitha.target.x, 385);
     assert.equal(state.actors.tabitha.target.y, 397);
 
+    await mapInputReady();
     await client.press('e'); // trade prints, highest priority
     await client.waitForExpression('window.__HARNESS__.state().ended');
     state = await client.evaluate('window.__HARNESS__.state()');
@@ -110,6 +119,7 @@ test('player can reverse the order and Tabitha follows the player’s direction'
     assert.equal(state.facts.playerDirectedTabitha, true);
     assert.match(state.facts.tabithaPhoto, /EXIT sign/);
 
+    await mapInputReady();
     await client.press('e');
     await advance(client);
     await client.press('3'); // player pulls face
@@ -132,6 +142,7 @@ test('focused interaction can be cancelled and resumed without Tabitha advancing
     assert.match(await client.text('#situation'), /still beside you/i);
     assert.equal((await client.evaluate('window.__HARNESS__.prompt()')).id, 'resume_photo');
 
+    await mapInputReady();
     await client.press('e');
     await client.waitForExpression("!document.querySelector('#vn').hidden");
     state = await client.evaluate('window.__HARNESS__.state()');

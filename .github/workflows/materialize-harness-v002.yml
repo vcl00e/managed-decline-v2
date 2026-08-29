@@ -47,3 +47,5 @@ jobs:
           git diff --cached --check
           git commit -m 'Add scenario-pluggable narrative interaction harness v002'
           git push origin HEAD:infrastructure/narrative-interaction-harness-v002
+
+# retry after corrected staging chunks

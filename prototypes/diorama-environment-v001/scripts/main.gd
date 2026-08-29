@@ -187,7 +187,7 @@ func _apply_camera_preset() -> void:
 			camera.size = 33.0
 
 func _update_camera(delta: float) -> void:
-	var focus := player.global_position
+	var focus: Vector3 = player.global_position
 	focus.x = clampf(focus.x, -6.5, 7.5)
 	focus.z = clampf(focus.z, -4.0, 6.0)
 	focus.y = 0.0

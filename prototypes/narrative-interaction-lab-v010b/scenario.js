@@ -112,7 +112,7 @@ function updateJourneyBeats(state) {
         'The bus display flickers: 12 MIN → DUE → 12 MIN. Tabitha looks at it, then at you.',
       );
     }
-    if (x > 735) {
+    if (x > 735 && (!state.facts.suggestionPassed || state.facts.stop)) {
       const text = state.facts.stop
         ? 'A bus pulls away and the pavement briefly empties. Tabitha: “There. We survived commerce.”'
         : 'A bus pulls away and the pavement briefly empties. Tabitha stays alongside you.';
@@ -128,11 +128,13 @@ function updateJourneyBeats(state) {
     }
     if (x > 710) {
       state.facts.foxPresent = true;
-      markJourneyBeat(
-        state,
-        'quiet_fox',
-        'An urban fox pauses ahead near the path. You and Tabitha both slow a little.',
-      );
+      if (!state.facts.suggestionPassed || state.facts.stop) {
+        markJourneyBeat(
+          state,
+          'quiet_fox',
+          'An urban fox pauses ahead near the path. You and Tabitha both slow a little.',
+        );
+      }
     }
   }
 }
@@ -232,8 +234,8 @@ export const v010bScenario = {
 
   tick(state, dtSeconds) {
     v010Scenario.tick(state, dtSeconds);
-    updateIgnoredAcknowledgement(state);
     updateJourneyBeats(state);
+    updateIgnoredAcknowledgement(state);
     updateFormation(state);
   },
 

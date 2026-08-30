@@ -1,12 +1,14 @@
 # Narrative Interaction Lab v010 — The Way Back
 
-**Status:** internally approved for one external playtest after movement, reciprocity, comprehension, recovered-UX and rendered-client gates.
+**Status:** external playtest complete — **partial success**. Movement added journey/exploration value, but shared locomotion, conduct acknowledgement, narration placement and journey activity density remain unresolved.
 
 **Runtime:** reliable narrative-interaction-harness-v002 engine/contract/trace layer.
 
 **Player-facing shell:** merged narrative-interaction-harness-v003 recovered presentation. V010 does not modify it.
 
 **Internal review:** [`findings/000-2026-08-30-internal-preflight.md`](./findings/000-2026-08-30-internal-preflight.md)
+
+**External finding:** [`findings/001-2026-08-30-external-playtest-partial-success.md`](./findings/001-2026-08-30-external-playtest-partial-success.md)
 
 ## Evidence inherited
 
@@ -20,6 +22,29 @@ V010 tests the combination rather than reopening either result.
 ## Primary question
 
 > **Can player-led movement through a small lived space change the terms of one-to-one time with Tabitha while preserving the reciprocal “spending time together” quality of v009?**
+
+## External answer
+
+**Partly.**
+
+Positive evidence:
+
+- physically choosing the route felt worthwhile;
+- public vs quiet route distinction mattered somewhat;
+- movement added something a dialogue choice could not;
+- the run felt like a journey / experience together and like the pair explored together;
+- movement itself was not reported as locomotion tax.
+
+Unresolved / failed aspects:
+
+- Tabitha looked like a follower NPC on the map even though she felt narratively with the player;
+- ignoring her suggestion did not receive the expected character acknowledgement in the player's run;
+- the journey did not contain enough activity;
+- important live narration was harder to read at the top/right while attention was on characters in the middle; bottom-middle narration was preferred.
+
+Therefore the reusable conclusion is narrower than a full success:
+
+> **Meaningful player-led movement can add journey, exploration and shared-experience value that dialogue alone cannot, but accompaniment must visually read as walking together and the journey needs enough reciprocal/event density to feel inhabited.**
 
 ## Premise
 
@@ -58,43 +83,34 @@ No route-selection menu substitutes for the map. The player's path is the choice
 
 ## Accompaniment contract
 
-While `accompanying` is true:
+V010's initial implementation maintained proximity by making Tabitha target the player's position. External play showed that this was not enough: it visually read as **following**.
 
-- Tabitha maintains conversational proximity to the player;
-- ordinary player movement causes Tabitha to follow the player, not vice versa;
-- stopping causes the pair to settle rather than Tabitha continuing to the next beat;
-- route landmarks never become Tabitha target waypoints;
-- Tabitha may suggest, react, pause or disagree without silently taking control of locomotion;
-- separation must be an explicit fictional event, not ordinary pathfinding drift.
+The next implementation must distinguish:
 
-## Experience promise
+```text
+FOLLOWING
+player moves → companion catches up to previous/current player position
+```
 
-The player should be able to describe what happened in spatial verbs:
+from:
 
-- left together;
-- led Tabitha one way rather than another;
-- kept walking or turned into a stop she suggested;
-- occupied a more public or more private route;
-- arrived together or separated at the station.
+```text
+WALKING TOGETHER
+player movement establishes a travelling formation → companion occupies a nearby side/formation slot → both visibly move as a pair
+```
 
-And in reciprocal verbs:
-
-- Tabitha asked / suggested;
-- player redirected the shared walk;
-- Tabitha adapted to the player's route;
-- the pair did something together at an optional stop;
-- later conversation acknowledged the route and stop actually taken.
+Formation may collapse naturally to single file on narrow paths or thresholds, but ordinary wide-path movement should not look like perpetual catch-up.
 
 ## Movement must matter
 
-A v010 run fails its design question if movement is merely:
+A movement-rich run fails if movement is merely:
 
 - walking between dialogue triggers;
 - catching up with Tabitha;
 - selecting a route whose only difference is cosmetic text;
 - traversing empty distance before the same scene.
 
-The two route families change:
+The v010 route families changed:
 
 - audience / publicness;
 - conversational room / intimacy;
@@ -102,29 +118,43 @@ The two route families change:
 - environmental observation;
 - final route callback.
 
-## First-pass comprehension
+External play confirmed these spatial differences were worthwhile, but the route was underfunded: more things need to happen **during** the journey without turning every few metres into a prompt.
 
-A cold reader should understand in one pass:
+## Conduct acknowledgement
 
-1. **What are we doing?** Walking to the station together.
-2. **Who leads?** The player normally leads movement; Tabitha accompanies.
-3. **What can movement change?** Route, publicness, optional stop and what the pair talk about later.
-4. **Can I ignore a suggestion?** Yes. Keep walking.
-5. **Do I need to chase Tabitha?** No.
+V010 allowed a suggestion to be declined by simply continuing to walk. That interaction form was accepted as natural, but the player's run did not receive a noticeable Tabitha reaction.
+
+The next implementation must preserve the no-menu spatial decline while ensuring the conduct casts an observable shadow:
+
+- a short immediate acknowledgement;
+- and/or a later callback;
+- never a punishment for not stopping.
+
+## Narration placement
+
+Important live narration should return to a readable **bottom-middle** placement near the player's visual focal area.
+
+Corner HUDs may carry peripheral status, but narrative copy should not require looking away from the characters to read small text.
+
+## Journey density
+
+The next movement experiment should add a sparse ecology of route events rather than simply more distance:
+
+- environmental observations with short reciprocal comments;
+- occasional route/pace/position choices;
+- thresholds or crossings;
+- optional micro-stops;
+- an encountered person/place/event that differs by route;
+- character initiative and player response while still moving;
+- intentional quiet stretches.
+
+The target is **inhabited movement**, not prompt saturation.
 
 ## Verification
 
-Exact-branch run `33324195373` passed **15/15** checks plus HTTP smoke.
+Pre-playtest exact-branch runs passed the automated/runtime gates, including two rendered keyboard-driven routes.
 
-Rendered Chromium playthroughs used actual keyboard movement and covered:
-
-- high street → shop stop → station entrance together;
-- quiet cut-through → park stop → explicit forecourt separation;
-- declining the shop by continuing to walk;
-- cancel/resume at an optional stop;
-- accompaniment proximity;
-- recovered desktop UI/VN dimensions;
-- trace health.
+Those checks established technical viability but did not predict the external locomotion/readability/density issues above.
 
 ## Run
 
@@ -142,39 +172,12 @@ Open:
 http://127.0.0.1:4210
 ```
 
-Controls:
+## Next question
 
-- `WASD` / arrows — move;
-- `E` / `Enter` — contextual action;
-- `Tab` — cycle nearby affordances;
-- `1–4` — focused choice;
-- `Esc` — return from an optional focused stop to the live space.
+Do not rerun v010 for design feedback.
 
-## External playtest
+The next corrective experiment should ask:
 
-Play once naturally. Do not try to cover both routes.
+> **Can Tabitha and the player visibly walk together in a shared travelling formation while a denser but still natural sequence of observations, acknowledgements and route events makes the journey feel inhabited?**
 
-Primary question:
-
-> **Did walking with Tabitha feel like moving together through a place, with spatial choices that changed the time you were having, or did it still feel like walking between authored content pockets?**
-
-Useful feedback:
-
-- whether Tabitha felt beside you rather than like a follower or waypoint;
-- whether physically choosing the route was worthwhile;
-- whether turning into / ignoring the optional stop felt natural;
-- whether the public vs quiet route distinction mattered in play;
-- whether any walking felt like locomotion tax;
-- whether movement added something that ordinary dialogue choices could not.
-
-Export the trace at the end if the run completes.
-
-## Not being tested
-
-- whether every intimate scene needs movement;
-- long-distance navigation;
-- movement skill or timing;
-- combat, stealth or traversal challenge;
-- relationship meters;
-- campaign-scale memory;
-- production-canon geography.
+That experiment should preserve the parts v010 already validated: physical route choice, exploration value, public/private spatial differentiation and explicit separation.

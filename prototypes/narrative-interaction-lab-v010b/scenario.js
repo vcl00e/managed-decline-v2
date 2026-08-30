@@ -163,24 +163,35 @@ function updateJourneyBeats(state) {
 }
 
 function updateSuggestionPresentation(state) {
-  if (
-    state.facts.route !== 'high_street'
-    || !state.facts.suggestionIssued
-    || state.facts.stop
-    || state.facts.suggestionPassed
-  ) return;
+  if (!state.facts.suggestionIssued || state.facts.stop || state.facts.suggestionPassed) return;
 
-  if (state.player.x < 480) {
-    if (!state.memory.highSuggestionDeferred) {
-      state.memory.highSuggestionDeferred = true;
-      liveFeedback(state, 'The path opens again and Tabitha comes back alongside you. The bus display keeps changing its mind.');
+  if (state.facts.route === 'high_street') {
+    if (state.player.x < 480) {
+      if (!state.memory.highSuggestionDeferred) {
+        state.memory.highSuggestionDeferred = true;
+        liveFeedback(state, 'The path opens again and Tabitha comes back alongside you. The bus display keeps changing its mind.');
+      }
+      return;
+    }
+    if (!state.memory.highSuggestionPresented) {
+      state.memory.highSuggestionPresented = true;
+      liveFeedback(state, 'Tabitha glances at the late corner shop. “I could eat something. Your call.”');
     }
     return;
   }
 
-  if (!state.memory.highSuggestionPresented) {
-    state.memory.highSuggestionPresented = true;
-    liveFeedback(state, 'Tabitha glances at the late corner shop. “I could eat something. Your call.”');
+  if (state.facts.route === 'cut_through') {
+    if (state.player.x < 500) {
+      if (!state.memory.quietSuggestionDeferred) {
+        state.memory.quietSuggestionDeferred = true;
+        liveFeedback(state, 'The path opens again and Tabitha comes back alongside you. The lit upstairs window is still behind you.');
+      }
+      return;
+    }
+    if (!state.memory.quietSuggestionPresented) {
+      state.memory.quietSuggestionPresented = true;
+      liveFeedback(state, 'Tabitha nods toward the little pocket park. “Five minutes? Or not.”');
+    }
   }
 }
 
@@ -264,6 +275,8 @@ export const v010bScenario = {
     state.memory.journeyBeats = {};
     state.memory.highSuggestionDeferred = false;
     state.memory.highSuggestionPresented = false;
+    state.memory.quietSuggestionDeferred = false;
+    state.memory.quietSuggestionPresented = false;
     return state;
   },
 

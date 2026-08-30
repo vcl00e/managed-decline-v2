@@ -1,0 +1,81 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { spawn } from 'node:child_process';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { launchBrowser, sleep, waitForHttp } from '../../narrative-interaction-harness-v002/tests/e2e/cdp.mjs';
+
+const scenarioRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const port = 4197;
+const ROOT_URL = `http://127.0.0.1:${port}/`;
+
+async function withApp(fn) {
+  const server = spawn(process.execPath, ['server.mjs'], {
+    cwd: scenarioRoot,
+    env: { ...process.env, PORT: String(port) },
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  let stdout = '';
+  let stderr = '';
+  server.stdout.on('data', (chunk) => { stdout += chunk.toString(); });
+  server.stderr.on('data', (chunk) => { stderr += chunk.toString(); });
+  let browser;
+  try {
+    await Promise.race([
+      waitForHttp(ROOT_URL),
+      new Promise((_, reject) => server.once('exit', (code, signal) => reject(new Error(
+        `baseline server exited before HTTP readiness (code=${code}, signal=${signal})\nstdout:\n${stdout}\nstderr:\n${stderr}`,
+      )))),
+    ]);
+    browser = await launchBrowser({ debugPort: 9490 + Math.floor(Math.random() * 100) });
+    await browser.client.send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
+    await browser.navigate(ROOT_URL);
+    await fn(browser.client);
+  } catch (error) {
+    throw new Error(`${error.message}\nserver stdout:\n${stdout}\nserver stderr:\n${stderr}`);
+  } finally {
+    await browser?.close();
+    server.kill('SIGTERM');
+  }
+}
+
+test('rendered control restores large focused VN and persistent context', async () => {
+  await withApp(async (client) => {
+    const initialSituation = await client.text('#situation');
+    assert.match(initialSituation, /Tabitha is sitting beside you/);
+    await sleep(2600);
+    assert.equal(await client.text('#situation'), initialSituation, 'important situation text must not expire');
+
+    await client.press('e');
+    await client.waitForExpression("!document.querySelector('#vn').hidden");
+    const metrics = await client.evaluate(`(() => {
+      const card = document.querySelector('.vn-card').getBoundingClientRect();
+      const text = getComputedStyle(document.querySelector('#vn-text'));
+      const shell = document.querySelector('.shell').getBoundingClientRect();
+      return { cardWidth: card.width, cardHeight: card.height, cardTop: card.top, textSize: parseFloat(text.fontSize), shellWidth: shell.width };
+    })()`);
+    assert.ok(metrics.shellWidth >= 1100, JSON.stringify(metrics));
+    assert.ok(metrics.cardWidth >= 940, JSON.stringify(metrics));
+    assert.ok(metrics.cardHeight >= 540, JSON.stringify(metrics));
+    assert.ok(metrics.cardTop < 180, JSON.stringify(metrics));
+    assert.ok(metrics.textSize >= 26, JSON.stringify(metrics));
+
+    for (let i = 0; i < 3; i++) await client.press('enter');
+    await client.press('1');
+    await client.press('enter');
+    for (let i = 0; i < 3; i++) await client.press('enter');
+    await client.press('1');
+    await client.press('enter');
+    for (let i = 0; i < 3; i++) await client.press('enter');
+    await client.press('1');
+    await client.press('enter');
+
+    await client.waitForExpression("document.querySelector('#vn').hidden");
+    const state = await client.evaluate('window.__HARNESS__.state()');
+    assert.equal(state.stage, 'control_residue');
+    assert.equal(state.actors.tabitha.target.x, 360);
+    assert.equal(state.actors.tabitha.target.y, 410);
+    assert.match(await client.text('#situation'), /Tabitha stays beside you/);
+    assert.match(await client.text('#feedback'), /still beside you/);
+  });
+});

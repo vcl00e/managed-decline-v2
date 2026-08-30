@@ -1,0 +1,14 @@
+{
+  "name": "managed-decline-narrative-interaction-harness-v003",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "find . -type f \\( -name '*.js' -o -name '*.mjs' \\) -not -path './node_modules/*' -print0 | xargs -0 -n1 node --check",
+    "test": "npm run check && node --test tests/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

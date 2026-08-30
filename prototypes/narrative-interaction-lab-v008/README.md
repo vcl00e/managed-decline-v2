@@ -1,40 +1,53 @@
 # Narrative Interaction Lab v008 — The Old Build
 
-**Status:** internally approved for external playtest after exact-branch CI
+**Status:** failed external playtest — retained as evidence; do not patch forward
 
 **Runtime:** imports `../narrative-interaction-harness-v002/`; does not copy or modify the harness core
 
 **Internal review:** [`findings/000-2026-08-29-internal-preflight.md`](./findings/000-2026-08-29-internal-preflight.md)
 
+**External failure:** [`findings/001-2026-08-29-external-playtest-ux-chase-comprehension.md`](./findings/001-2026-08-29-external-playtest-ux-chase-comprehension.md)
+
 ## Baseline and evidence
 
-V008 inherits:
+V008 attempted to inherit:
 
 - v003's accepted entertainment hierarchy: hook, character magnetism, authored movement, meaningful participation and acknowledgement before hidden systems;
 - v006b's compact lived-space / focused-VN grammar, elastic time and meaningful positioning;
 - the merged prototype policy and release-gate separation between runtime reliability, interaction design and writing quality;
 - v007–v007d failure evidence: no group curriculum, empty company, monologue-as-interaction, relationship-slogan choices, bespoke route engines or user-discovered stale prompts.
 
-## Question
+The external playtest showed that it did **not** successfully preserve those player-facing strengths.
+
+## Original question
 
 > **Can a short one-to-one Tabitha interaction feel like enjoyable shared activity—with both people initiating, short natural exchanges, player-authored residue and meaningful map/VN continuity—rather than a monologue or a small scripted investigation?**
 
-## Premise
+## Result
 
-A forgotten council kiosk in the community-hall lobby still contains an archived build of the programme that turned Tabitha into a cautionary character.
+**No.** The experiment failed for three independent reasons:
 
-Tabitha approaches it herself. The pair can:
+1. **UX regression:** the generic harness shell shrank the player-facing presentation, used small timed notices for important information, and reduced focused VN dialogue to a smaller bottom-aligned card compared with the accepted v006b treatment.
+2. **Companionship failure:** Tabitha repeatedly moved to the next waypoint while the player followed to unlock the next beat. NPC agency was incorrectly implemented as the NPC walking ahead, producing a chase rather than a shared activity.
+3. **First-pass comprehension failure:** the short sequence still required decoding too much institutional vocabulary and callback logic. The player ran it twice to understand it and did not find it fun or interesting.
 
-- answer one of its ridiculous questions;
-- react to an unused recording;
-- accidentally open facilitator tools;
-- retrieve a printed personal resilience plan;
-- amend its facilitator notes;
-- decide where the physical sheet remains.
+Passing runtime and writing checks did not make the experience worth playing. The internal readiness judgment was therefore wrong.
 
-This is controlled prototype material, not accepted production canon.
+## Accepted recovery direction
 
-## Interaction shape
+Do not make a direct v008 patch.
+
+Keep harness v002's runtime reliability work, but stop treating its generic player-facing shell as the visual/UX baseline. Before another new narrative experiment:
+
+1. restore the accepted v006b-scale map and focused-VN presentation on top of the reliable runtime;
+2. reproduce known-good v003/v006b qualities as an internal control;
+3. require important state/context text to persist until superseded rather than disappearing on a short timer;
+4. treat companionship as sticky: ordinary relocation while spending time together should not require tailing the NPC;
+5. define shared activity as **coupled reciprocal action**, not alternating NPC waypoints and player triggers;
+6. add a first-pass comprehension gate before external testing;
+7. compare new builds against positive precedents, not only against bug/regression checklists.
+
+## Historical interaction shape
 
 ```text
 TABITHA LEAVES THE ENTRANCE FOR THE KIOSK
@@ -58,25 +71,11 @@ return to live space holding the artefact
 pin / return / give / take away / leave
 ```
 
-No relationship meter, future-date reward or “real you” reassurance is used to certify progression. The changed artefact, callbacks and physical destination are the residue.
-
-## Internal gates passed
-
-Local prepublication verification:
-
-- **11/11** unit and writing checks;
-- **5/5** rendered Chromium tests;
-- rapid repeated-input protection;
-- cancel/resume;
-- immediate voluntary exit;
-- two distinct complete artefact destinations;
-- completed trace with zero audit errors or warnings;
-- maximum three pre-choice turns in any focused node;
-- no local engine, VN controller or duplicated runtime.
+This shape is retained as evidence of what **not** to use as a dyadic interaction grammar.
 
 ## Run
 
-Requires Node.js 22+.
+The failed build remains runnable for historical inspection only:
 
 ```bash
 cd prototypes/narrative-interaction-lab-v008
@@ -84,35 +83,4 @@ npm test
 npm start
 ```
 
-Open:
-
-```text
-http://127.0.0.1:4188
-```
-
-## Controls
-
-- `WASD` / arrows — move;
-- `E` / `Enter` — use the contextual action;
-- `Tab` — cycle when more than one nearby action exists;
-- `1–4` — choose during focused interaction;
-- `Esc` — leave focused interaction and return to the live space.
-
-## External playtest
-
-Do not cover every option. Follow or leave Tabitha according to actual interest.
-
-Primary question:
-
-> **Did this feel like doing something with Tabitha that was enjoyable in itself, or could you still feel the game delivering a packaged interaction?**
-
-Useful feedback concerns:
-
-- desire to continue spending time with her;
-- whether the writing sounds natural and specific;
-- whether the programme is fun to operate or feels like another menu;
-- whether map transitions add to the interaction;
-- whether the amended sheet feels like meaningful residue;
-- any point where attention drops.
-
-Basic runtime, duplicate-input, route and trace QA should already have been handled internally.
+Open `http://127.0.0.1:4188`.

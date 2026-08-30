@@ -1,0 +1,52 @@
+:root { --v010b-narration-width: 760px; }
+
+.live-narration {
+  position: absolute;
+  left: 50%;
+  bottom: 92px;
+  transform: translateX(-50%);
+  width: min(var(--v010b-narration-width), calc(100% - 44px));
+  display: grid;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.live-narration .situation,
+.live-narration .feedback {
+  position: static;
+  inset: auto;
+  transform: none;
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 10px 15px;
+  font-size: 17px;
+  line-height: 1.38;
+  text-align: center;
+  box-shadow: 0 5px 20px #0006;
+}
+
+.live-narration .situation {
+  background: #11120fdc;
+  border: 1px solid #57564d;
+  border-left: 1px solid #57564d;
+  color: #ddd7cb;
+}
+
+.live-narration .feedback {
+  background: #20211deb;
+  border: 1px solid #817a69;
+  color: #fff8eb;
+  font-size: 18px;
+}
+
+.interaction-prompt { bottom: 46px; z-index: 5; }
+.controls { bottom: 9px; }
+
+@media (max-width: 760px) {
+  .live-narration { bottom: 100px; width: calc(100% - 24px); }
+  .live-narration .situation,
+  .live-narration .feedback { font-size: 15px; padding: 9px 11px; }
+  .live-narration .feedback { font-size: 16px; }
+}

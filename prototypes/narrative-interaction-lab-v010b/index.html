@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Managed Decline v010b — Walking Together</title>
+  <link rel="stylesheet" href="/narrative-interaction-harness-v003/styles.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell" id="app">
+    <header class="topbar">
+      <div>
+        <strong id="scenario-title"></strong>
+        <span class="subtitle" id="scenario-subtitle"></span>
+      </div>
+      <div class="hud"><span id="hud-stage"></span><span id="hud-time"></span></div>
+    </header>
+
+    <section class="stage" aria-label="Playable space">
+      <canvas id="world"></canvas>
+      <div class="live-narration" aria-live="polite">
+        <div id="situation" class="situation"></div>
+        <div id="feedback" class="feedback"></div>
+      </div>
+      <div id="interaction-prompt" class="interaction-prompt"></div>
+      <div class="controls">WASD / arrows move · E interact · Tab cycles nearby affordances</div>
+    </section>
+
+    <section class="footer-note">
+      <span>Live narration stays near the action and updates as the walk changes.</span>
+      <button id="reset" class="ghost">Reset</button>
+    </section>
+  </main>
+
+  <section id="vn" class="vn" hidden aria-modal="true" role="dialog">
+    <div class="vn-backdrop"></div>
+    <div class="vn-card">
+      <div class="vn-kicker" id="vn-title"></div>
+      <div class="portrait" aria-hidden="true"><span>TM</span></div>
+      <div class="vn-copy">
+        <div class="speaker" id="vn-speaker"></div>
+        <p id="vn-text"></p>
+        <div id="vn-choices" class="vn-choices"></div>
+        <div class="vn-help">1–4 choose · Enter continues · Esc returns to the live space</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="debrief" class="debrief" hidden>
+    <div class="debrief-card">
+      <p class="eyebrow">Run complete</p>
+      <h1>Walking Together</h1>
+      <p id="ending-copy"></p>
+      <div class="row"><button id="run-again">Run again</button><button id="export" class="ghost">Export trace</button></div>
+    </div>
+  </section>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

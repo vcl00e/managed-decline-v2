@@ -124,6 +124,17 @@ function updatePassedSuggestion(state) {
   recordSpatial(state, 'suggestion_declined_by_movement', { route: state.facts.route });
 }
 
+function updateCancelledStopDeparture(state) {
+  if (state.stage !== 'stop_paused' || !state.memory.pausedVN) return;
+  const point = state.memory.pausedVN === 'shop' ? WORLD.shop : WORLD.park;
+  if (Math.hypot(state.player.x - point.x, state.player.y - point.y) <= 135) return;
+  const nodeId = state.memory.pausedVN;
+  state.memory.pausedVN = null;
+  state.stage = state.facts.route === 'high_street' ? 'walking_high_street' : 'walking_cut_through';
+  setSpatialFeedback(state, 'You leave the suggested stop and keep walking together.');
+  recordSpatial(state, 'cancelled_stop_left_by_movement', { nodeId });
+}
+
 function updateAccompaniment(state) {
   const tabitha = state.actors.tabitha;
   if (!state.facts.accompanying || state.stage === 'separating') return;
@@ -138,6 +149,7 @@ function updateAccompaniment(state) {
 function stopChoice(state, id, feedback, response) {
   state.facts.stop = id;
   state.facts.stopCompleted = true;
+  state.memory.pausedVN = null;
   state.stage = state.facts.route === 'high_street' ? 'walking_high_street' : 'walking_cut_through';
   setSpatialFeedback(state, feedback);
   return { kind: 'companionship', output: feedback, response };
@@ -211,6 +223,7 @@ export const v010Scenario = {
           && state.facts.suggestionIssued
           && !state.facts.stop
           && !state.facts.suggestionPassed
+          && !state.memory.pausedVN
           && near(state.player, WORLD.shop, 92);
       },
       apply(state) {
@@ -233,6 +246,7 @@ export const v010Scenario = {
           && state.facts.suggestionIssued
           && !state.facts.stop
           && !state.facts.suggestionPassed
+          && !state.memory.pausedVN
           && near(state.player, WORLD.park, 95);
       },
       apply(state) {
@@ -241,6 +255,29 @@ export const v010Scenario = {
         state.currentVN = 'park';
         setSpatialFeedback(state, 'You turn into the pocket park together and sit under the tree.');
         return { kind: 'companionship', output: 'You turn into the pocket park together and sit under the tree.' };
+      },
+    },
+
+    resume_stop: {
+      id: 'resume_stop',
+      label: 'Resume the shared stop',
+      repeatable: true,
+      durationMinutes: 0,
+      priority: 25,
+      available(state) {
+        if (state.stage !== 'stop_paused' || !state.memory.pausedVN) return false;
+        const point = state.memory.pausedVN === 'shop' ? WORLD.shop : WORLD.park;
+        return near(state.player, point, 105);
+      },
+      apply(state) {
+        const nodeId = state.memory.pausedVN;
+        state.stage = nodeId === 'shop' ? 'shop_stop' : 'park_stop';
+        state.mode = 'vn';
+        state.currentVN = nodeId;
+        setSpatialFeedback(state, nodeId === 'shop'
+          ? 'You step back into the shop together.'
+          : 'You sit back down in the pocket park together.');
+        return { kind: 'companionship', output: state.memory.currentFeedback };
       },
     },
 
@@ -409,7 +446,7 @@ export const v010Scenario = {
   },
 
   onCancelVN(state, nodeId) {
-    state.stage = state.facts.route === 'high_street' ? 'walking_high_street' : 'walking_cut_through';
+    state.stage = 'stop_paused';
     setSpatialFeedback(state, nodeId === 'shop'
       ? 'You step back outside with Tabitha. The shop is still there if you want it.'
       : 'You stand again with Tabitha. The park is still there if you want it.');
@@ -425,12 +462,18 @@ export const v010Scenario = {
     updateRouteFromMovement(state);
     updateSuggestion(state);
     updatePassedSuggestion(state);
+    updateCancelledStopDeparture(state);
     updateAccompaniment(state);
   },
 
   situationText(state) {
     if (state.stage === 'separating') {
       return 'You have stopped at the forecourt edge. Tabitha is walking the last few metres to the station without you.';
+    }
+    if (state.stage === 'stop_paused') {
+      return state.memory.pausedVN === 'shop'
+        ? 'You and Tabitha are just outside the shop. Resume the stop or walk away together.'
+        : 'You and Tabitha are standing by the pocket park. Resume the stop or walk away together.';
     }
     if (!state.facts.route) {
       return 'You and Tabitha are walking to the station. The lit high street is above; the quieter cut-through is below.';
@@ -453,12 +496,10 @@ export const v010Scenario = {
   render(_context, state, h) {
     h.rect(25, 28, 910, 504, '#d7d0c2', '#756f65', 2);
 
-    // Hall / starting pavement.
     h.rect(36, 255, 205, 174, '#b9aa91', '#756b59', 2);
     h.text('COMMUNITY HALL', 135, 291, { align: 'center', font: 'bold 12px system-ui', color: '#51493f' });
     h.text('wet pavement', 145, 406, { align: 'center', font: '11px system-ui', color: '#686158' });
 
-    // High street.
     h.rect(250, 106, 590, 142, '#b9b7ad', '#6f6d66', 2);
     h.rect(250, 153, 590, 45, '#747671');
     h.text('HIGH STREET', 442, 133, { font: 'bold 11px system-ui', color: '#4b4d49' });
@@ -468,7 +509,6 @@ export const v010Scenario = {
     h.text('LATE SHOP', 575, 96, { align: 'center', font: 'bold 10px system-ui', color: '#493f2f' });
     h.text('OPEN', 575, 124, { align: 'center', font: '9px system-ui', color: '#5a4c38' });
 
-    // Quiet cut-through.
     h.rect(250, 319, 590, 147, '#b7baa9', '#737767', 2);
     h.rect(250, 364, 590, 46, '#8f9383');
     h.text('CUT-THROUGH', 438, 346, { font: 'bold 11px system-ui', color: '#505447' });
@@ -478,7 +518,6 @@ export const v010Scenario = {
     h.rect(557, 477, 76, 11, '#6e5b45');
     h.text('bench', 596, 505, { align: 'center', font: '9px system-ui', color: '#f4f0df' });
 
-    // Junctions and station.
     h.rect(250, 196, 121, 172, '#aaa99f');
     h.text('FORK', 310, 286, { align: 'center', font: 'bold 10px system-ui', color: '#55544f' });
     h.rect(796, 196, 120, 172, '#aaa99f');
@@ -503,6 +542,7 @@ export const v010Scenario = {
       walking_cut_through: 'cut-through',
       shop_stop: 'corner shop',
       park_stop: 'pocket park',
+      stop_paused: 'stop paused',
       separating: 'parting at station',
       complete: 'complete',
     }[state.stage] ?? state.stage.replaceAll('_', ' ');

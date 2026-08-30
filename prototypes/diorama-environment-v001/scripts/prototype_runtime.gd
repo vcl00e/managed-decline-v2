@@ -34,7 +34,7 @@ func _bind_scene() -> void:
 	world_space = scene_root.get_world_3d().direct_space_state
 	_collect_player_meshes(player)
 	_build_xray_material()
-	_hide_explanatory_caption(scene_root)
+	_replace_companion_explanation_with_observation()
 
 func _physics_process(delta: float) -> void:
 	if player == null or camera == null or world_space == null:
@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 
 	var actual_counts: Dictionary = {}
 	var anticipation: Dictionary = {}
-	var blocked_probe_count := 0
+	var blocked_probe_count: int = 0
 
 	var upper_body_probes: Array[Vector3] = [
 		player.global_position + Vector3(0.0, 1.38, 0.0),
@@ -58,11 +58,11 @@ func _physics_process(delta: float) -> void:
 		player.global_position - camera_right * 0.28 + Vector3(0.0, 0.98, 0.0)
 	]
 
-	for target in upper_body_probes:
-		var blockers := _eligible_blockers_to(target)
+	for target: Vector3 in upper_body_probes:
+		var blockers: Array[StaticBody3D] = _eligible_blockers_to(target)
 		if not blockers.is_empty():
 			blocked_probe_count += 1
-		for body in blockers:
+		for body: StaticBody3D in blockers:
 			actual_counts[body] = int(actual_counts.get(body, 0)) + 1
 
 	# R1-style restrained corridor pre-fade. These side probes prepare a nearby
@@ -71,26 +71,28 @@ func _physics_process(delta: float) -> void:
 		player.global_position + camera_right * R1_CORRIDOR_MARGIN + Vector3(0.0, 1.08, 0.0),
 		player.global_position - camera_right * R1_CORRIDOR_MARGIN + Vector3(0.0, 1.08, 0.0)
 	]
-	for target in corridor_targets:
-		for body in _eligible_blockers_to(target):
+	for target: Vector3 in corridor_targets:
+		var corridor_blockers: Array[StaticBody3D] = _eligible_blockers_to(target)
+		for body: StaticBody3D in corridor_blockers:
 			anticipation[body] = true
 
 	var touched: Dictionary = {}
-	for body in actual_counts.keys():
+	for body: Variant in actual_counts.keys():
 		touched[body] = true
-	for body in anticipation.keys():
+	for body: Variant in anticipation.keys():
 		touched[body] = true
-	for body in building_fades.keys():
+	for body: Variant in building_fades.keys():
 		touched[body] = true
 
-	for body in touched.keys():
-		if not is_instance_valid(body):
-			building_fades.erase(body)
-			building_meshes.erase(body)
+	for body_variant: Variant in touched.keys():
+		var body: StaticBody3D = body_variant as StaticBody3D
+		if body == null or not is_instance_valid(body):
+			building_fades.erase(body_variant)
+			building_meshes.erase(body_variant)
 			continue
 
-		var count := int(actual_counts.get(body, 0))
-		var target_fade := 0.0
+		var count: int = int(actual_counts.get(body, 0))
+		var target_fade: float = 0.0
 		if count >= 4:
 			target_fade = 1.0
 		elif count == 3:
@@ -98,8 +100,8 @@ func _physics_process(delta: float) -> void:
 		elif anticipation.has(body):
 			target_fade = PREFADE_STRENGTH
 
-		var current_fade := float(building_fades.get(body, 0.0))
-		var speed := 7.0 if target_fade > current_fade else 4.0
+		var current_fade: float = float(building_fades.get(body, 0.0))
+		var speed: float = 7.0 if target_fade > current_fade else 4.0
 		current_fade = move_toward(current_fade, target_fade, speed * delta)
 		building_fades[body] = current_fade
 		_apply_building_fade(body, current_fade)
@@ -112,17 +114,17 @@ func _eligible_blockers_to(target: Vector3) -> Array[StaticBody3D]:
 
 	# Continue past low/ineligible geometry so fences can hide legs without forcing
 	# an architectural fade, while stacked substantial occluders can reveal together.
-	for _layer in range(5):
-		var query := PhysicsRayQueryParameters3D.create(camera.global_position, target)
+	for _layer: int in range(5):
+		var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(camera.global_position, target)
 		query.collision_mask = 1
 		query.exclude = excluded
-		var hit := world_space.intersect_ray(query)
+		var hit: Dictionary = world_space.intersect_ray(query)
 		if hit.is_empty():
 			break
 
-		var collider := hit.get("collider")
+		var collider: Object = hit.get("collider") as Object
 		if collider is StaticBody3D:
-			var body := collider as StaticBody3D
+			var body: StaticBody3D = collider as StaticBody3D
 			excluded.append(body.get_rid())
 			if _is_fade_eligible(body):
 				blockers.append(body)
@@ -132,7 +134,7 @@ func _eligible_blockers_to(target: Vector3) -> Array[StaticBody3D]:
 	return blockers
 
 func _is_fade_eligible(body: StaticBody3D) -> bool:
-	var body_name := String(body.name)
+	var body_name: String = String(body.name)
 	return (
 		body_name.begins_with("Terrace")
 		or body_name == "CornerShop"
@@ -141,21 +143,23 @@ func _is_fade_eligible(body: StaticBody3D) -> bool:
 	)
 
 func _apply_building_fade(body: StaticBody3D, fade: float) -> void:
-	var meshes := _meshes_for_building(body)
-	for geometry in meshes:
+	var meshes: Array[GeometryInstance3D] = _meshes_for_building(body)
+	for geometry: GeometryInstance3D in meshes:
 		if is_instance_valid(geometry):
 			# GeometryInstance3D transparency preserves the authored material/shading.
 			geometry.transparency = fade * MAX_BUILDING_TRANSPARENCY
 
 func _meshes_for_building(body: StaticBody3D) -> Array[GeometryInstance3D]:
 	if building_meshes.has(body):
-		return building_meshes[body]
+		var cached_variant: Variant = building_meshes[body]
+		if cached_variant is Array:
+			return cached_variant as Array[GeometryInstance3D]
 
 	var meshes: Array[GeometryInstance3D] = []
 	_collect_geometry(body, meshes)
 
 	# Greybox roofs are sibling nodes rather than children of their collision bodies.
-	var roof := scene_root.get_node_or_null(String(body.name) + "Roof") as GeometryInstance3D
+	var roof: GeometryInstance3D = scene_root.get_node_or_null(String(body.name) + "Roof") as GeometryInstance3D
 	if roof != null:
 		meshes.append(roof)
 
@@ -163,7 +167,7 @@ func _meshes_for_building(body: StaticBody3D) -> Array[GeometryInstance3D]:
 	return meshes
 
 func _collect_geometry(node: Node, output: Array[GeometryInstance3D]) -> void:
-	for child in node.get_children():
+	for child: Node in node.get_children():
 		if child is GeometryInstance3D:
 			output.append(child as GeometryInstance3D)
 		_collect_geometry(child, output)
@@ -181,24 +185,35 @@ func _build_xray_material() -> void:
 	xray_material.cull_mode = BaseMaterial3D.CULL_DISABLED
 
 func _apply_player_xray(blocked_probe_count: int) -> void:
-	var enabled := blocked_probe_count >= 3
+	var enabled: bool = blocked_probe_count >= 3
 	if xray_material != null:
-		var alpha := 0.38 if blocked_probe_count >= 4 else 0.28
-		var color := xray_material.albedo_color
+		var alpha: float = 0.38 if blocked_probe_count >= 4 else 0.28
+		var color: Color = xray_material.albedo_color
 		color.a = alpha
 		xray_material.albedo_color = color
 
-	for geometry in player_meshes:
+	for geometry: GeometryInstance3D in player_meshes:
 		if is_instance_valid(geometry):
 			geometry.material_overlay = xray_material if enabled else null
 
-func _hide_explanatory_caption(node: Node) -> void:
-	# The bottom narration panel told the player what the spatial relationship was
-	# supposed to mean. The playtest rejected that: companionship must be shown by
-	# actual shared activity/staging, not asserted by prototype narration.
-	for child in node.get_children():
-		if child is PanelContainer:
-			var panel := child as PanelContainer
-			if panel.custom_minimum_size.x >= 770.0 and panel.custom_minimum_size.x <= 790.0:
-				panel.visible = false
-		_hide_explanatory_caption(child)
+func _replace_companion_explanation_with_observation() -> void:
+	# The panel itself tested well. What failed was copy that told the player what
+	# Tabitha's proximity was supposed to mean. Keep the surface; use narration only
+	# for things the player can actually observe in the place or situation.
+	var stops_variant: Variant = scene_root.get("shared_stops")
+	if not stops_variant is Array:
+		return
+
+	var stops: Array = stops_variant as Array
+	for stop_variant: Variant in stops:
+		if not stop_variant is Dictionary:
+			continue
+		var stop: Dictionary = stop_variant as Dictionary
+		var stop_id: String = String(stop.get("id", ""))
+		match stop_id:
+			"bus_stop":
+				stop["caption"] = "The timetable has faded to the colour of weak tea. A bus is still apparently due."
+			"green_bench":
+				stop["caption"] = "One slat on the bench has been replaced with timber that does not quite match."
+			"corner_shop":
+				stop["caption"] = "The shop window is crowded with handwritten offers and a sun-bleached opening-hours card."

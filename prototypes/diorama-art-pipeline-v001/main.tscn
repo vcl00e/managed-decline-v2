@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="2_player"]
+[ext_resource type="PackedScene" path="res://assets/export/street_bend.gltf" id="3_street"]
+[ext_resource type="PackedScene" path="res://assets/export/corner_shop.gltf" id="4_shop"]
+[ext_resource type="PackedScene" path="res://assets/export/terrace_end.gltf" id="5_terrace"]
+[ext_resource type="PackedScene" path="res://assets/export/green_edge.gltf" id="6_green"]
+[ext_resource type="PackedScene" path="res://assets/export/bench.gltf" id="7_bench"]
+[ext_resource type="PackedScene" path="res://assets/export/wheelie_bin.gltf" id="8_bin"]
+[ext_resource type="PackedScene" path="res://assets/export/lamp_post.gltf" id="9_lamp"]
+[ext_resource type="PackedScene" path="res://assets/export/tree.gltf" id="10_tree"]
+
+[node name="DioramaArtPipeline" type="Node3D"]
+script = ExtResource("1_main")
+
+[node name="Art" type="Node3D" parent="."]
+
+[node name="StreetBend" parent="Art" instance=ExtResource("3_street")]
+
+[node name="CornerShop" parent="Art" instance=ExtResource("4_shop")]
+position = Vector3(9.1, 0, -3.4)
+rotation = Vector3(0, 1.9198622, 0)
+
+[node name="TerraceEnd" parent="Art" instance=ExtResource("5_terrace")]
+position = Vector3(-2.0, 0, -10.2)
+rotation = Vector3(0, 0.17453292, 0)
+
+[node name="GreenEdge" parent="Art" instance=ExtResource("6_green")]
+position = Vector3(-2.2, 0, 0.6)
+rotation = Vector3(0, -0.2617994, 0)
+
+[node name="Bench" parent="Art" instance=ExtResource("7_bench")]
+position = Vector3(-1.6, 0, -0.2)
+rotation = Vector3(0, -0.35, 0)
+
+[node name="BinA" parent="Art" instance=ExtResource("8_bin")]
+position = Vector3(5.9, 0, -6.2)
+rotation = Vector3(0, 0.35, 0)
+
+[node name="BinB" parent="Art" instance=ExtResource("8_bin")]
+position = Vector3(6.65, 0, -6.05)
+rotation = Vector3(0, 0.25, 0)
+scale = Vector3(0.94, 0.94, 0.94)
+
+[node name="Lamp" parent="Art" instance=ExtResource("9_lamp")]
+position = Vector3(4.0, 0, -1.0)
+
+[node name="TreeA" parent="Art" instance=ExtResource("10_tree")]
+position = Vector3(-4.6, 0, 1.2)
+scale = Vector3(1.12, 1.12, 1.12)
+
+[node name="TreeB" parent="Art" instance=ExtResource("10_tree")]
+position = Vector3(1.6, 0, 3.0)
+scale = Vector3(0.82, 0.82, 0.82)
+
+[node name="Player" type="CharacterBody3D" parent="."]
+position = Vector3(6.8, 0.25, -7.0)
+script = ExtResource("2_player")

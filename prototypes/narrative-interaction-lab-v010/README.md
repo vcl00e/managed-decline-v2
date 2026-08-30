@@ -1,10 +1,12 @@
 # Narrative Interaction Lab v010 — The Way Back
 
-**Status:** pre-implementation experiment; no external playtest until the movement, reciprocity, comprehension and recovered-UX gates pass.
+**Status:** internally approved for one external playtest after movement, reciprocity, comprehension, recovered-UX and rendered-client gates.
 
 **Runtime:** reliable narrative-interaction-harness-v002 engine/contract/trace layer.
 
-**Player-facing shell:** merged narrative-interaction-harness-v003 recovered presentation. V010 must not modify it.
+**Player-facing shell:** merged narrative-interaction-harness-v003 recovered presentation. V010 does not modify it.
+
+**Internal review:** [`findings/000-2026-08-30-internal-preflight.md`](./findings/000-2026-08-30-internal-preflight.md)
 
 ## Evidence inherited
 
@@ -92,13 +94,13 @@ A v010 run fails its design question if movement is merely:
 - selecting a route whose only difference is cosmetic text;
 - traversing empty distance before the same scene.
 
-The two route families must change at least two of:
+The two route families change:
 
 - audience / publicness;
-- intimacy / conversational room;
+- conversational room / intimacy;
 - available shared stop;
 - environmental observation;
-- final callback at the station.
+- final route callback.
 
 ## First-pass comprehension
 
@@ -110,6 +112,63 @@ A cold reader should understand in one pass:
 4. **Can I ignore a suggestion?** Yes. Keep walking.
 5. **Do I need to chase Tabitha?** No.
 
+## Verification
+
+Exact-branch run `33324195373` passed **15/15** checks plus HTTP smoke.
+
+Rendered Chromium playthroughs used actual keyboard movement and covered:
+
+- high street → shop stop → station entrance together;
+- quiet cut-through → park stop → explicit forecourt separation;
+- declining the shop by continuing to walk;
+- cancel/resume at an optional stop;
+- accompaniment proximity;
+- recovered desktop UI/VN dimensions;
+- trace health.
+
+## Run
+
+Requires Node.js 22+.
+
+```bash
+cd prototypes/narrative-interaction-lab-v010
+npm test
+npm start
+```
+
+Open:
+
+```text
+http://127.0.0.1:4210
+```
+
+Controls:
+
+- `WASD` / arrows — move;
+- `E` / `Enter` — contextual action;
+- `Tab` — cycle nearby affordances;
+- `1–4` — focused choice;
+- `Esc` — return from an optional focused stop to the live space.
+
+## External playtest
+
+Play once naturally. Do not try to cover both routes.
+
+Primary question:
+
+> **Did walking with Tabitha feel like moving together through a place, with spatial choices that changed the time you were having, or did it still feel like walking between authored content pockets?**
+
+Useful feedback:
+
+- whether Tabitha felt beside you rather than like a follower or waypoint;
+- whether physically choosing the route was worthwhile;
+- whether turning into / ignoring the optional stop felt natural;
+- whether the public vs quiet route distinction mattered in play;
+- whether any walking felt like locomotion tax;
+- whether movement added something that ordinary dialogue choices could not.
+
+Export the trace at the end if the run completes.
+
 ## Not being tested
 
 - whether every intimate scene needs movement;
@@ -119,15 +178,3 @@ A cold reader should understand in one pass:
 - relationship meters;
 - campaign-scale memory;
 - production-canon geography.
-
-## Release rule
-
-Do not ask for an external playtest until:
-
-- the original recovered shell remains unchanged;
-- a rendered run requires substantial player movement to complete;
-- both route families complete;
-- optional stops can be accepted or declined spatially;
-- Tabitha never becomes the next waypoint;
-- first-pass language stays simple;
-- a whole-play qualitative review judges the walk worth the user's time.

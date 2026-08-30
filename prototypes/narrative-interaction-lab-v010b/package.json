@@ -1,0 +1,12 @@
+{
+  "name": "managed-decline-narrative-interaction-lab-v010b",
+  "version": "0.10.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "find . -type f \\( -name '*.js' -o -name '*.mjs' \\) -not -path './node_modules/*' -print0 | xargs -0 -n1 node --check",
+    "test": "npm run check && node --test tests/*.test.mjs",
+    "start": "node server.mjs"
+  },
+  "engines": { "node": ">=22" }
+}

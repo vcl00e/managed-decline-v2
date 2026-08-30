@@ -162,6 +162,28 @@ function updateJourneyBeats(state) {
   }
 }
 
+function updateSuggestionPresentation(state) {
+  if (
+    state.facts.route !== 'high_street'
+    || !state.facts.suggestionIssued
+    || state.facts.stop
+    || state.facts.suggestionPassed
+  ) return;
+
+  if (state.player.x < 480) {
+    if (!state.memory.highSuggestionDeferred) {
+      state.memory.highSuggestionDeferred = true;
+      liveFeedback(state, 'The path opens again and Tabitha comes back alongside you. The bus display keeps changing its mind.');
+    }
+    return;
+  }
+
+  if (!state.memory.highSuggestionPresented) {
+    state.memory.highSuggestionPresented = true;
+    liveFeedback(state, 'Tabitha glances at the late corner shop. “I could eat something. Your call.”');
+  }
+}
+
 function updateIgnoredAcknowledgement(state) {
   if (!state.facts.suggestionPassed || state.facts.ignoredSuggestionAcknowledged) return;
   state.facts.ignoredSuggestionAcknowledged = true;
@@ -240,6 +262,8 @@ export const v010bScenario = {
     state.memory.formationMode = 'side_by_side';
     state.memory.formationNarrated = {};
     state.memory.journeyBeats = {};
+    state.memory.highSuggestionDeferred = false;
+    state.memory.highSuggestionPresented = false;
     return state;
   },
 
@@ -260,6 +284,7 @@ export const v010bScenario = {
   tick(state, dtSeconds) {
     v010Scenario.tick(state, dtSeconds);
     updateJourneyBeats(state);
+    updateSuggestionPresentation(state);
     updateIgnoredAcknowledgement(state);
     updateFormation(state);
   },

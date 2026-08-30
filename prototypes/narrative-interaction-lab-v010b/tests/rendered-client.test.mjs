@@ -138,7 +138,11 @@ test('high-street journey visibly walks together, refreshes bottom narration and
     await client.waitForExpression('window.__HARNESS__.state().ended');
     current = await state(client);
     assert.equal(current.ending, 'arrived_together');
-    assert.ok(current.facts.journeyBeatCount >= 4, JSON.stringify(current.facts));
+    assert.equal(current.memory.formationNarrated.high_street, true);
+    assert.equal(current.memory.journeyBeats.high_display_seen, true);
+    assert.equal(current.facts.busDisplayChecked, true);
+    assert.equal(current.facts.ignoredSuggestionAcknowledged, true);
+    assert.ok(current.facts.journeyBeatCount >= 3, JSON.stringify(current.facts));
     const audit = await client.evaluate('window.__HARNESS__.audit()');
     assert.equal(audit.passed, true, JSON.stringify(audit));
   });

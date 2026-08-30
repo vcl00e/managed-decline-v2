@@ -153,7 +153,13 @@ func _meshes_for_building(body: StaticBody3D) -> Array[GeometryInstance3D]:
 	if building_meshes.has(body):
 		var cached_variant: Variant = building_meshes[body]
 		if cached_variant is Array:
-			return cached_variant as Array[GeometryInstance3D]
+			var cached_items: Array = cached_variant as Array
+			var cached_meshes: Array[GeometryInstance3D] = []
+			for item_variant: Variant in cached_items:
+				var cached_geometry: GeometryInstance3D = item_variant as GeometryInstance3D
+				if cached_geometry != null:
+					cached_meshes.append(cached_geometry)
+			return cached_meshes
 
 	var meshes: Array[GeometryInstance3D] = []
 	_collect_geometry(body, meshes)

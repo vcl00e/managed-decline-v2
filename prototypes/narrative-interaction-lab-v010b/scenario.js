@@ -38,6 +38,9 @@ function updateHeading(state) {
   const delta = { x: state.player.x - previous.x, y: state.player.y - previous.y };
   const distance = Math.hypot(delta.x, delta.y);
   if (distance > 0.35) {
+    if (Math.abs(delta.x) > Math.abs(delta.y) * 1.25) {
+      state.memory.corridorDirection = delta.x < 0 ? -1 : 1;
+    }
     const next = normalized(delta, state.memory.travelHeading);
     const current = state.memory.travelHeading ?? next;
     const dot = current.x * next.x + current.y * next.y;
@@ -48,6 +51,26 @@ function updateHeading(state) {
     }, next);
   }
   state.memory.lastPlayer = { ...state.player };
+}
+
+function formationHeading(state) {
+  const { x, y } = state.player;
+  const corridorDirection = state.memory.corridorDirection ?? 1;
+  if (
+    state.facts.route === 'high_street'
+    && x >= 330 && x < 795
+    && y >= 130 && y <= 255
+  ) {
+    return { x: corridorDirection, y: 0 };
+  }
+  if (
+    state.facts.route === 'cut_through'
+    && x >= 330 && x < 795
+    && y >= 315 && y <= 470
+  ) {
+    return { x: corridorDirection, y: 0 };
+  }
+  return normalized(state.memory.travelHeading);
 }
 
 function setFormation(state, mode) {
@@ -70,7 +93,7 @@ function updateFormation(state) {
   if (!state.facts.accompanying || state.stage === 'separating') return;
   updateHeading(state);
 
-  const heading = normalized(state.memory.travelHeading);
+  const heading = formationHeading(state);
   const mode = isNarrowSection(state) ? 'single_file' : 'side_by_side';
   setFormation(state, mode);
 
@@ -212,6 +235,7 @@ export const v010bScenario = {
     state.facts.foxStopped = false;
     state.memory.lastPlayer = { ...state.player };
     state.memory.travelHeading = { x: 1, y: 0 };
+    state.memory.corridorDirection = 1;
     state.memory.companionSide = 1;
     state.memory.formationMode = 'side_by_side';
     state.memory.formationNarrated = {};
@@ -224,6 +248,7 @@ export const v010bScenario = {
       ...v010Scenario.meaningfulState(state),
       formationMode: state.memory.formationMode,
       travelHeading: state.memory.travelHeading,
+      corridorDirection: state.memory.corridorDirection,
       journeyBeats: state.memory.journeyBeats,
       journeyBeatCount: state.facts.journeyBeatCount,
       ignoredSuggestionAcknowledged: state.facts.ignoredSuggestionAcknowledged,

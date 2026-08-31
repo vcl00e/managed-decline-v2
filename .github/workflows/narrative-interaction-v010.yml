@@ -1,0 +1,48 @@
+name: Narrative Interaction Lab v010
+
+on:
+  push:
+    branches:
+      - prototype/narrative-interaction-lab-v010
+  pull_request:
+    paths:
+      - 'prototypes/narrative-interaction-lab-v010/**'
+      - 'prototypes/narrative-interaction-harness-v003/**'
+      - 'prototypes/narrative-interaction-harness-v002/**'
+      - '.github/workflows/narrative-interaction-v010.yml'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Locate Chromium
+        shell: bash
+        run: |
+          set -euo pipefail
+          browser="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
+          test -n "$browser"
+          echo "CHROMIUM_PATH=$browser" >> "$GITHUB_ENV"
+          "$browser" --version
+      - name: Movement, reciprocity, comprehension and rendered-client gates
+        working-directory: prototypes/narrative-interaction-lab-v010
+        run: npm test
+      - name: HTTP smoke
+        working-directory: prototypes/narrative-interaction-lab-v010
+        shell: bash
+        run: |
+          set -euo pipefail
+          node server.mjs >/tmp/v010-server.log 2>&1 &
+          pid=$!
+          trap 'kill $pid 2>/dev/null || true' EXIT
+          for _ in $(seq 1 50); do
+            if curl -fsS http://127.0.0.1:4210/ >/dev/null; then
+              exit 0
+            fi
+            sleep .1
+          done
+          cat /tmp/v010-server.log
+          exit 1

@@ -1,8 +1,8 @@
 # Managed Decline v2
 
-This repository is deliberately simple. It keeps the original design conversations and prototype test history, and derives the current game design from those records when needed.
+This repository is deliberately simple. It keeps the original design conversations and prototype test history, and derives the current game design from those records.
 
-There is **no manually maintained master design document**. That avoids duplicated summaries drifting out of sync with the conversations that produced them.
+There is **no manually maintained master design document**. Historical conversations and prototype findings remain the source material. Current structured views live under `generated/` and are rebuilt from that source material so they can be useful without becoming a second canon.
 
 ## Structure
 
@@ -10,6 +10,9 @@ There is **no manually maintained master design document**. That avoids duplicat
 managed-decline-v2/
 ├── README.md
 ├── notes/
+├── generated/
+│   ├── README.md
+│   └── design-synthesis.md
 ├── prototypes/
 │   └── <prototype-name>-vNNN/
 │       └── findings/
@@ -55,7 +58,7 @@ Acceptance must be interpreted from the surrounding conversation. For example, `
 
 ## Dynamic design passes
 
-When the current design is needed, derive it from the repository rather than relying on a separate summary file.
+When the current design is needed, derive it from the repository rather than treating a summary as an independent authority.
 
 A design pass should inspect the relevant notes chronologically and, where relevant, prototype findings.
 
@@ -74,15 +77,45 @@ A design pass should inspect the relevant notes chronologically and, where relev
 11. If two accepted designs conflict and the conversation history does not clearly resolve the conflict, report the contradiction as unresolved and identify the source files.
 12. Do not rewrite historical notes merely to make the derived design cleaner.
 
-When useful, a dynamic design view should distinguish:
+When useful, a design view should distinguish:
 
 - current accepted design;
 - older accepted design that has been superseded or subsumed;
+- developed but not clearly accepted concepts;
 - exploratory ideas;
 - unresolved questions;
 - unresolved contradictions.
 
-Dynamic summaries, system maps, dependency views, contradiction checks, and similar views should normally be generated on demand rather than saved as additional authoritative documents.
+## Generated views
+
+`generated/` contains **derived, auto-generated project views**. It exists so the current design can be read as a coherent structure without reorganising or duplicating the source conversations in `notes/`.
+
+Everything in `generated/` other than `generated/README.md` should be treated as disposable output and **must not be manually edited**.
+
+### Regeneration rules
+
+- When a note is added, removed, or materially changed, regenerate the affected generated views.
+- Rebuild from the **complete current source set**, not by appending the newest note to the previous generated text.
+- Relevant prototype findings should also be considered when they provide evidence or contain explicitly accepted design decisions.
+- Apply the same acceptance, chronology, supersession, and contradiction rules used by a normal design pass.
+- A source idea may appear under multiple generated headings when it genuinely affects multiple areas. This is intentional and does not duplicate the canonical source.
+- Generated documents must not invent a clean resolution where the source record is unresolved.
+- Prefer source-file references for important decisions, supersessions, and contradictions so the derived view remains auditable.
+
+The default overall synthesis is organised as:
+
+1. **Core Direction**
+2. **Experience & Systems**
+3. **World & Situations**
+4. **Characters & Performance**
+5. **Visual Language**
+6. **Audio & Music**
+7. **Identity & Presentation**
+8. **Cross-System Concepts**
+9. **Decisions & Canon**
+10. **Open Questions / Unresolved**
+
+This taxonomy is a **view over the design**, not a required filing scheme for `notes/`. Notes should remain organised as verbatim conversation records even when one conversation crosses several of these areas.
 
 ## Prototypes
 
@@ -164,6 +197,7 @@ Create the next version only when deliberately starting the game implementation 
 
 Typical requests can be direct:
 
+- `Update the notes with this conversation, then regenerate the generated design synthesis.`
 - `Do a design pass over all notes and tell me the current accepted character design.`
 - `Find every accepted design that affects narrative control.`
 - `Check the notes for unresolved contradictions around progression.`
@@ -171,4 +205,4 @@ Typical requests can be direct:
 - `Read the movement prototype findings and compare v001 with v002.`
 - `Before changing this system, identify other accepted designs that appear to depend on it.`
 
-The repository stores the conversations and evidence. ChatGPT generates the useful current view when it is needed.
+The repository stores the conversations and evidence. `generated/` stores disposable structured views derived from them. ChatGPT should regenerate those views whenever their source material materially changes.
